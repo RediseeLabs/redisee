@@ -21,10 +21,20 @@ function Form() {
   }
 
   const handleSubmit =(e)=>{
+    e.preventDefault();
 
-    console.log('checkkk')
+    fetch('localhost:3000', {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('data came back')
+    })
+    .catch(err => console.log(err))
 
-    e.preventDefault()
+    
   }
   return (
     <div className='form'>

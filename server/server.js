@@ -1,5 +1,6 @@
-const express = require("express");
-const cors = require("cors");
+const express = require('express');
+const cors = require('cors');
+const router = require('./Routers/router.js');
 
 // import router here
 
@@ -7,7 +8,7 @@ const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "*",
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 
@@ -19,16 +20,17 @@ app.use(express.urlencoded({ extended: true }));
 //use router here
 
 //app.use("/", );
+app.use('/', router);
 
-app.use("*", (req, res) => {
-  res.status(500).json("Wrong route");
+app.use('*', (req, res) => {
+  res.status(500).json('Wrong route');
 });
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: err.status || 500,
-    message: { err: "An error occurred" },
+    message: { err: 'An error occurred' },
   };
   let errorObj = { ...defaultErr, ...err };
   console.log(errorObj.log);

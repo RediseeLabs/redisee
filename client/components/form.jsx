@@ -22,18 +22,28 @@ function Form() {
 
   const handleSubmit =(e)=>{
     e.preventDefault();
-
-    fetch('localhost:3000', {
+    
+    fetch('http://localhost:3000', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify({
+        userName,
+        password,
+        port,
+        host
+      })
     })
     .then(res => res.json())
     .then(data => {
       console.log('data came back')
     })
     .catch(err => console.log(err))
-
+    typeUserName('');
+    typePassword('');
+    typePort('');
+    typeHost('');
     
   }
   return (
@@ -53,7 +63,7 @@ function Form() {
         <label >
           port:
         </label><br/>
-        <input type="text" value={port} required onChange={(e) => {portChange(e)}} /><br/>
+        <input type="number" value={port} required onChange={(e) => {portChange(e)}} /><br/>
 
         <label >
           host:

@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const router = require('./Routers/router.js');
+ const router = require('./Routers/router.js');
 
 // import router here
 
@@ -19,6 +19,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //use router here
 
+//created to see whether form works with server
+app.post('/',(req,res) => {
+  console.log(req.body);
+})
 //app.use("/", );
 app.use('/', router);
 

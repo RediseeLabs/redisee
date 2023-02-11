@@ -22,10 +22,7 @@ function Form() {
 
   const handleSubmit =(e)=>{
     e.preventDefault();
-    typeUserName('');
-    typePassword('');
-    typePort('');
-    typeHost('');
+    
     fetch('http://localhost:3000', {
       method: 'POST',
       headers: {
@@ -43,7 +40,10 @@ function Form() {
       console.log('data came back')
     })
     .catch(err => console.log(err))
-
+    typeUserName('');
+    typePassword('');
+    typePort('');
+    typeHost('');
     
   }
   return (

@@ -1,26 +1,22 @@
 import React from "react";
-// import Form from "./components/form";
-import { Routes, Route } from 'react-router-dom';
-import MenuBar from "./components/SideBar/MenuBar";
+import { Routes, Route } from "react-router-dom";
+import SideBar from "./components/SideBar";
 import ActivitiesPage from "./components/BasicActivities/ActivitiesPage";
-import ErrorsPage from "./components/Errors/ErrorsPage"
+import ErrorsPage from "./components/Errors/ErrorsPage";
 import MemoryPage from "./components/Memory/MemoryPage";
-// import TestGraph from "./TestGraph.jsx";
-import PerformancePage from "./components/Performance/PerformancePage"
-import PersistencePage from "./components/Persistence/PersistencePage"
+import PerformancePage from "./components/Performance/PerformancePage";
+import PersistencePage from "./components/Persistence/PersistencePage";
 
 const App = (props) => {
   return (
-    <div>
-      <h1>myApp</h1>
-      <MenuBar />
+    <div style={{ display: "flex" }}>
+      <SideBar />
       <Routes>
-        <Route path="/BasicActivities" element={ <ActivitiesPage />} />
-        <Route path="/Errors" element={ <ErrorsPage  />} />
-        <Route path="/Memory" element={ <MemoryPage /> } />
-        <Route path="/Performance" element={ <PerformancePage />} />
-        <Route path="/Persistence" element={ <PersistencePage />}  />
-      {/* <Form /> */}
+        <Route path="/BasicActivities" element={<ActivitiesPage />} />
+        <Route path="/Errors" element={<ErrorsPage />} />
+        <Route path="/Memory" element={<MemoryPage />} />
+        <Route path="/Performance" element={<PerformancePage />} />
+        <Route path="/Persistence" element={<PersistencePage />} />
       </Routes>
     </div>
   );

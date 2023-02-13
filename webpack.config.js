@@ -1,15 +1,17 @@
-const path = require('path');
-const HtmLWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './build'),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "./build"),
+    publicPath: "/",
   },
   devServer: {
+    historyApiFallback: true,
     static: {
-      directory: path.resolve(__dirname, './build'),
+      directory: path.resolve(__dirname, "./build"),
     },
     port: 8080,
     // proxy: {
@@ -22,28 +24,28 @@ module.exports = {
         test: /\.(jsx|js)$/i,
         exclude: /(node_modules)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
       },
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }],
       },
       {
         test: /\.png/,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
   plugins: [
     new HtmLWebpackPlugin({
-      template: path.join(__dirname, '/index.html'),
+      template: path.join(__dirname, "/index.html"),
     }),
   ],
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: [".jsx", ".js"],
   },
 };

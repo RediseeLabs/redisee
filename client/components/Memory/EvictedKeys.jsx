@@ -11,7 +11,6 @@ import {
 
 const EvictedKeys = (props) => {
   const evictedKeys = useSelector((state) => state.memory.evicted_keys);
-  console.log(evictedKeys);
   return (
     <div>
       <h3>Evicted keys</h3>

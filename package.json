@@ -7,20 +7,23 @@
     "test": "test",
     "start": "nodemon ./server/server.js",
     "build": "webpack --mode production",
-    "dev": "concurrently \"webpack serve --open --mode development\"  \"nodemon ./server/server.js\""
+    "dev": "concurrently \"webpack serve --open --mode development\" \"nodemon ./server/server.js\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
+    "axios": "^1.3.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
+    "recharts": "^2.4.1",
     "redis": "^4.6.4",
     "redis-info": "^3.1.0",
+    "styled-components": "^5.3.6",
     "webpack": "^5.75.0"
   },
   "devDependencies": {

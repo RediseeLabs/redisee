@@ -1,10 +1,13 @@
 import React from "react";
-import Form from "./components/form";
+// import Form from "./components/form";
+import MemoryPage from "./components/Memory/MemoryPage";
+// import TestGraph from "./TestGraph.jsx";
 const App = (props) => {
   return (
     <div>
       <h1>myApp</h1>
-      <Form/>
+      <MemoryPage />
+      {/* <Form /> */}
     </div>
   );
 };

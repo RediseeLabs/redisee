@@ -1,5 +1,5 @@
-const Redis = require('redis');
-const info = require('redis-info');
+const Redis = require("redis");
+const info = require("redis-info");
 const redisClient = Redis.createClient();
 redisClient.connect();
 
@@ -16,7 +16,7 @@ module.exports = {
     let latency = 0;
     const start = performance.now();
     redisClient
-      .info('stats')
+      .info("stats")
       .then((res) => {
         const end = performance.now();
         latency = end - start;
@@ -27,7 +27,6 @@ module.exports = {
         performance.latency = latency;
         performance.iope = data.instantaneous_ops_per_sec;
         performance.hitRate = data.keyspace_hits / data.keyspace_misses;
-        console.log(performance);
         res.locals.performance = performance;
         return next();
       });
@@ -40,10 +39,9 @@ module.exports = {
         return info.parse(res);
       })
       .then((data) => {
-        console.log(data);
         const memory = {};
         memory.usedMemory = data.used_memory;
-        memory.mem_fragmentation_ratio = data.mem_fragmentation_ratio;
+        memory.memFragmentationRatio = data.mem_fragmentation_ratio;
         //Evicted_keys is part of 'info stats' instead of memory
         memory.evictedKeys = data.evicted_keys;
         res.locals.memory = memory;
@@ -70,7 +68,7 @@ module.exports = {
   },
   persistence: (req, res, next) => {
     redisClient
-      .info('persistence')
+      .info("persistence")
       .then((res) => {
         return info.parse(res);
       })
@@ -84,7 +82,7 @@ module.exports = {
   },
   error: (req, res, next) => {
     redisClient
-      .info('stats')
+      .info("stats")
       .then((res) => {
         return info.parse(res);
       })

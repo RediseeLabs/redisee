@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fillGraph } from "../helperFunctions";
-import axios from "axios";
+import { createSlice } from '@reduxjs/toolkit';
+import { fillGraph } from '../helperFunctions';
+import axios from 'axios';
 
 const initialState = {
   used_memory: Array(15).fill({}),
@@ -21,18 +21,18 @@ export const fetchData = () => (dispatch) => {
 };
 
 const memorySlice = createSlice({
-  name: "memory",
+  name: 'memory',
   initialState: initialState,
   reducers: {
     // fetch reducer that add new data to each array of memory state
     addToGraph: (state, action) => {
-      fillGraph(state.used_memory, "t", action.payload.usedMemory);
+      fillGraph(state.used_memory, 't', action.payload.usedMemory);
       fillGraph(
         state.mem_fragmentation_ratio,
-        "t",
+        't',
         action.payload.memFragmentationRatio
       );
-      fillGraph(state.evicted_keys, "t", action.payload.evictedKeys);
+      fillGraph(state.evicted_keys, 't', action.payload.evictedKeys);
     },
   },
 });

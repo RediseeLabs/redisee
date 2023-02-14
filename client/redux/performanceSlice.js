@@ -3,6 +3,7 @@ import { fillGraph } from "../helperFunctions";
 import axios from "axios";
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 const initialState = {
   latency: Array(15).fill({}),
   iops: Array(15).fill({}),
@@ -13,6 +14,8 @@ const initialState = {
   ],
   ratio: "0%",
 =======
+=======
+>>>>>>> Stashed changes
 const initialState = {//graph filled by store values so it can display - action aleays changes the stores
   latency: [],
   iops: [],
@@ -40,6 +43,7 @@ const performanceSlice = createSlice({
   initialState: initialState,
   reducers: {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     addToGraph: (state, action) => {
       fillGraph(state.latency, "latency", action.payload.latency);
       fillGraph(state.iops, "iops", action.payload.iops);
@@ -48,6 +52,8 @@ const performanceSlice = createSlice({
       console.log(action.payload);
       state.ratio = `${action.payload.hitRate.ratio.toFixed(3)}%`;
 =======
+=======
+>>>>>>> Stashed changes
     enqueue: (state, action) => {//updating graphs 
       //   state.latency = [...state.latency, action.payload.latency];
       state.latency = [

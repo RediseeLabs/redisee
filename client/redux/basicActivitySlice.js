@@ -1,25 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fillGraph } from '../helperFunctions';
 import axios from 'axios';
 
 const initialState = {
   connected_clients: Array(15).fill({}),
   connected_slaves: Array(15).fill({}),
   keyspace: Array(15).fill({}),
-};
-
-const fillGraph = (graphArr, XaxisName, value) => {
-  let flag = false;
-  for (let i = 0; i < graphArr.length; i++) {
-    if (JSON.stringify(graphArr[i]) === '{}') {
-      graphArr[i] = { time: XaxisName, value: value };
-      flag = true;
-      break;
-    }
-  }
-  if (!flag) {
-    graphArr.shift();
-    graphArr.push({ time: XaxisName, value: value });
-  }
 };
 
 export const fetchBasicActivity = () => (dispatch) => {
@@ -39,14 +25,16 @@ const basicActivitySlice = createSlice({
       fillGraph(
         state.connected_clients,
         'clients',
-        action.payload.connected_clients
+        action.payload.connected_clients,
+        'connected_clients'
       );
       fillGraph(
         state.connected_slaves,
         'slaves',
-        action.payload.connected_slaves
+        action.payload.connected_slaves,
+        'connected_slaves'
       );
-      fillGraph(state.keyspace, 'clients', action.payload.keyspace);
+      fillGraph(state.keyspace, 'clients', action.payload.keyspace, 'keyspace');
     },
   },
 });

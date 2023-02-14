@@ -12,15 +12,15 @@ import {
 } from 'recharts';
 
 export default function Rcslt() {
-  const rlst = useSelector((state) => state.persistence.rlst);
+  const rcslt = useSelector((state) => state.persistence.rcslt);
   return (
-    <BarChart width={730} height={250} data={rlst}>
+    <BarChart width={730} height={250} data={rcslt}>
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='time' />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='Rdb change since last save time' fill='#8884d8' />
+      <Bar dataKey='rcslt' fill='#8884d8' />
     </BarChart>
   );
 }

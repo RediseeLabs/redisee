@@ -21,7 +21,7 @@ export default function Latency() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='Total Keyspaces' fill='#8884d8' />
+      <Bar dataKey='keyspace' fill='#8884d8' />
     </BarChart>
   );
 }

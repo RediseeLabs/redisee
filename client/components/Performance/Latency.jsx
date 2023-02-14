@@ -13,6 +13,7 @@ import {
 
 export default function Latency() {
   const latency = useSelector((state) => state.performance.latency);
+  console.log(latency);
   return (
     <BarChart width={730} height={250} data={latency}>
       <CartesianGrid strokeDasharray='3 3' />
@@ -20,7 +21,7 @@ export default function Latency() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='Live Redis Latency' fill='#8884d8' />
+      <Bar dataKey='Live_Redis_latency' fill='#8884d8' />
     </BarChart>
   );
 }

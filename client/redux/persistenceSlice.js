@@ -1,23 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { fillGraph } from '../helperFunctions';
 
 const initialState = {
   rlst: Array(15).fill({}),
   rcslt: Array(15).fill({}),
-};
-const fillGraph = (graphArr, XaxisName, value) => {
-  let flag = false;
-  for (let i = 0; i < graphArr.length; i++) {
-    if (JSON.stringify(graphArr[i]) === '{}') {
-      graphArr[i] = { time: XaxisName, value: value };
-      flag = true;
-      break;
-    }
-  }
-  if (!flag) {
-    graphArr.shift();
-    graphArr.push({ time: XaxisName, value: value });
-  }
 };
 
 export const fectchPersistence = () => (dispatch) => {
@@ -34,8 +21,8 @@ const persistenceSlice = createSlice({
   initialState: initialState,
   reducers: {
     addToGraph: (state, action) => {
-      fillGraph(state.rlst, 'rlst', action.payload.rlst);
-      fillGraph(state.rcslt, 'rcslt', action.payload.rcslt);
+      fillGraph(state.rlst, 'rlst', action.payload.rlst, 'rlst');
+      fillGraph(state.rcslt, 'rcslt', action.payload.rcslt, 'rcslt');
     },
   },
 });

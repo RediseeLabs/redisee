@@ -32,7 +32,7 @@ const EvictedKeys = (props) => {
         <Tooltip />
         <Area
           type='monotone'
-          dataKey='value'
+          dataKey='evicted_keys'
           stroke='#8884d8'
           fillOpacity={1}
           fill='url(#colorUv)'

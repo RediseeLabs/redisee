@@ -26,13 +26,24 @@ const memorySlice = createSlice({
   reducers: {
     // fetch reducer that add new data to each array of memory state
     addToGraph: (state, action) => {
-      fillGraph(state.used_memory, 't', action.payload.usedMemory);
+      fillGraph(
+        state.used_memory,
+        't',
+        action.payload.usedMemory,
+        'used_memory'
+      );
       fillGraph(
         state.mem_fragmentation_ratio,
         't',
-        action.payload.memFragmentationRatio
+        action.payload.memFragmentationRatio,
+        'mem_fragmentation_ratio'
       );
-      fillGraph(state.evicted_keys, 't', action.payload.evictedKeys);
+      fillGraph(
+        state.evicted_keys,
+        't',
+        action.payload.evictedKeys,
+        'evicted_keys'
+      );
     },
   },
 });

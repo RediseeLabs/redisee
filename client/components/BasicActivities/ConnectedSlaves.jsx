@@ -34,7 +34,7 @@ export default function connectedSlaves() {
       <Legend />
       <Line
         type='monotone'
-        dataKey='Connected Slaves'
+        dataKey='connected_slaves'
         stroke='#8884d8'
         strokeDasharray='5 5'
       />

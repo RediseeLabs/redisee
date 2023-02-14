@@ -35,7 +35,7 @@ export default function connectedClients() {
       <Legend />
       <Line
         type='monotone'
-        dataKey='Connected Clients'
+        dataKey='connected_clients'
         stroke='#8884d8'
         strokeDasharray='5 5'
       />

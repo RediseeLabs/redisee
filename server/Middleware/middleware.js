@@ -24,17 +24,14 @@ module.exports = {
       })
       .then((data) => {
         const performance = {};
-        performance.latency = latency;
-        performance.iops = data.instantaneous_ops_per_sec;
+        performance.latency = Number(latency);
+        performance.iops = Number(data.instantaneous_ops_per_sec);
         performance.hitRate = {};
-        performance.hitRate.keyspace_hits = data.keyspace_hits;
-        performance.hitRate.keyspace_misses = data.keyspace_misses;
-        performance.hitRate.ratio =
-          (data.keyspace_hits / data.keyspace_misses + data.keyspace_hits) *
-          100;
-        performance.hitRate.ratio = performance.hitRate.ratio
-          ? performance.hitRate.ratio
-          : 0;
+        performance.hitRate.keyspace_hits = Number(data.keyspace_hits);
+        performance.hitRate.keyspace_misses = Number(data.keyspace_misses);
+        performance.hitRate.ratio = Number(
+          (data.keyspace_hits / data.keyspace_misses + data.keyspace_hits) * 100
+        );
         res.locals.performance = performance;
         return next();
       });
@@ -48,10 +45,10 @@ module.exports = {
       })
       .then((data) => {
         const memory = {};
-        memory.usedMemory = data.used_memory;
-        memory.memFragmentationRatio = data.mem_fragmentation_ratio;
+        memory.usedMemory = Number(data.used_memory);
+        memory.memFragmentationRatio = Number(data.mem_fragmentation_ratio);
         //Evicted_keys is part of 'info stats' instead of memory
-        memory.evictedKeys = data.evicted_keys;
+        memory.evictedKeys = Number(data.evicted_keys);
         res.locals.memory = memory;
         return next();
       });
@@ -64,12 +61,14 @@ module.exports = {
       })
       .then((data) => {
         const basicActivity = {};
-        basicActivity.connected_clients = data.connected_clients;
-        basicActivity.connected_slaves = data.connected_slaves
+        basicActivity.connected_clients = Number(data.connected_clients);
+        basicActivity.connected_slaves = Number(data.connected_slaves)
           ? data.connected_slaves
           : 0;
         //keyspace is part of 'info keyspace' instead of clients
-        basicActivity.keyspace = data.keyspace_hits + data.keyspace_misses;
+        basicActivity.keyspace = Number(
+          data.keyspace_hits + data.keyspace_misses
+        );
         res.locals.basicActivity = basicActivity;
         return next();
       });
@@ -82,8 +81,8 @@ module.exports = {
       })
       .then((data) => {
         const persistence = {};
-        persistence.rlst = data.rdb_last_save_time;
-        persistence.rcslt = data.rdb_changes_since_last_save;
+        persistence.rlst = Number(data.rdb_last_save_time);
+        persistence.rcslt = Number(data.rdb_changes_since_last_save);
         res.locals.persistence = persistence;
         return next();
       });
@@ -96,8 +95,8 @@ module.exports = {
       })
       .then((data) => {
         const error = {};
-        error.rejectedConnection = data.rejected_connections;
-        error.keyspaceMisses = data.keyspace_misses;
+        error.rejectedConnection = Number(data.rejected_connections);
+        error.keyspaceMisses = Number(data.keyspace_misses);
         res.locals.error = error;
         return next();
       });

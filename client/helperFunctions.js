@@ -1,15 +1,16 @@
-export const fillGraph = (graphArr, XaxisName, value) => {
+export const fillGraph = (graphArr, XaxisName, value, graphName) => {
   let flag = false;
+
   for (let i = 0; i < graphArr.length; i++) {
     if (JSON.stringify(graphArr[i]) === '{}') {
-      graphArr[i] = { time: XaxisName, value: value };
+      graphArr[i] = { time: XaxisName, [graphName]: value };
       flag = true;
       break;
     }
   }
   if (!flag) {
     graphArr.shift();
-    graphArr.push({ time: XaxisName, value: value });
+    graphArr.push({ time: XaxisName, [graphName]: value });
   }
 };
 

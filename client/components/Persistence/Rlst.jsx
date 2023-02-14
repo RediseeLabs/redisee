@@ -20,7 +20,7 @@ export default function Rlst() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='Rdb since last save time' fill='#8884d8' />
+      <Bar dataKey='rlst' fill='#8884d8' />
     </BarChart>
   );
 }

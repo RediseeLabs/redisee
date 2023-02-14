@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  rlst: [],
-  rcslt: [],
+  rlst: Array(15).fill({}),
+  rcslt: Array(15).fill({}),
 };
 
 const persistenceSlice = createSlice({

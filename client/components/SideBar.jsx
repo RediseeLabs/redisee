@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Menu,
   Button,
@@ -9,30 +9,34 @@ import {
   Logo,
   SecondaryText,
   ClusterIcon,
-} from "./StyledComponents/SideBar";
-import logo from "./StyledComponents/logo.png";
+} from './StyledComponents/SideBar';
+import logo from './StyledComponents/logo.png';
 
 const SideBar = () => {
   return (
     <Menu>
-      <Logo style={{ display: "flex" }}>
+      <Logo style={{ display: 'flex' }}>
         <img src={logo} />
         <h1>RediSee</h1>
       </Logo>
       <SecondaryText>Analytics :</SecondaryText>
-      <Button to="/memory">
+      <Button to='/memory'>
         <PerfIcon />
         Memory
       </Button>
-      <Button to="/performance">
+      <Button to='/performance'>
         <MemoryIcon />
         Performance
       </Button>
-      <Button to="/BasicActivities">
+      <Button to='/persistence'>
+        <MemoryIcon />
+        Persistence
+      </Button>
+      <Button to='/BasicActivities'>
         <BasicIcon />
         Basic activities
       </Button>
-      <Button to="/Errors">
+      <Button to='/Errors'>
         <ErrorIcon />
         Errors
       </Button>

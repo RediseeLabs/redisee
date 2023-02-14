@@ -1,19 +1,20 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import {
   UilTachometerFast,
   UilDatabase,
   UilAnalytics,
   UilExclamationOctagon,
   UilShareAlt,
-} from "@iconscout/react-unicons";
+  UilBracketsCurly,
+} from '@iconscout/react-unicons';
 
 import {
   primaryBlue,
   secondaryBlue,
   primaryGrey,
   secondaryGrey,
-} from "./variables";
+} from './variables';
 
 export const Menu = styled.div`
   padding: 20px 15px;
@@ -83,6 +84,9 @@ export const MemoryIcon = styled(UilDatabase)`
 `;
 
 export const BasicIcon = styled(UilAnalytics)`
+  margin-right: 15px;
+`;
+export const PersistenceIcon = styled(UilBracketsCurly)`
   margin-right: 15px;
 `;
 export const ErrorIcon = styled(UilExclamationOctagon)`

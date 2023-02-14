@@ -4,6 +4,7 @@ import {
   Button,
   PerfIcon,
   MemoryIcon,
+  PersistenceIcon,
   BasicIcon,
   ErrorIcon,
   Logo,
@@ -29,7 +30,7 @@ const SideBar = () => {
         Performance
       </Button>
       <Button to='/persistence'>
-        <MemoryIcon />
+        <PersistenceIcon />
         Persistence
       </Button>
       <Button to='/BasicActivities'>

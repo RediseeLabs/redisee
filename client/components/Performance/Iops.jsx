@@ -14,7 +14,6 @@ export default function Iops() {
   const iops = useSelector((state) => state.performance.iops);
   return (
     <div>
-      <h2>Instantaneous_ops_per_sec</h2>
       <AreaChart
         width={730}
         height={250}

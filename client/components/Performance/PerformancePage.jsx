@@ -18,11 +18,19 @@ const PerformancePage = () => {
 
   return (
     <>
-      <h1>PerformancePage</h1>
       <GraphGrid>
-        <Latency />
-        <Iops />
-        <HitRate />
+        <div>
+          <h3>latency</h3>
+          <Latency />
+        </div>
+        <div>
+          <h3>Instantaneous ops</h3>
+          <Iops />
+        </div>
+        <div>
+          <h3>Hit/Misses rates</h3>
+          <HitRate />
+        </div>
       </GraphGrid>
     </>
   );

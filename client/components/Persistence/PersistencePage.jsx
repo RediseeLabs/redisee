@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fectchPersistence } from '../../redux/persistenceSlice';
 import Rlst from './Rlst';
 import Rcslt from './Rcslt';
+import { GraphGrid } from '../StyledComponents/GraphGrid';
 
 const PersistencePage = () => {
   const dispatch = useDispatch();
@@ -14,11 +15,16 @@ const PersistencePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>PersistencePage</h1>
-      <Rlst />
-      <Rcslt />
-    </div>
+    <GraphGrid>
+      <div>
+        <h3>Rlst</h3>
+        <Rlst />
+      </div>
+      <div>
+        <h3>Rcslt</h3>
+        <Rcslt />
+      </div>
+    </GraphGrid>
   );
 };
 

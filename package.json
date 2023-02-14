@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@iconscout/react-unicons": "^1.1.6",
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.3.2",
     "cors": "^2.8.5",

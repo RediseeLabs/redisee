@@ -33,7 +33,7 @@ export default function Iops() {
         <Tooltip />
         <Area
           type='monotone'
-          dataKey='value'
+          dataKey='iops'
           stroke='#8884d8'
           fillOpacity={1}
           fill='url(#colorUv)'

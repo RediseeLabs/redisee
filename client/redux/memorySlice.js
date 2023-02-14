@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fillGraph } from "../helperFunctions";
-import axios from "axios";
+import { createSlice } from '@reduxjs/toolkit';
+import { fillGraph } from '../helperFunctions';
+import axios from 'axios';
 
 const initialState = {
   loading: true,
@@ -14,7 +14,7 @@ const initialState = {
 export const fetchData = () => (dispatch, getState) => {
   // check if the current state is the initial state to trigger loading action
   //propably better way to do it
-  if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
+  if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
   }
   axios
@@ -27,7 +27,7 @@ export const fetchData = () => (dispatch, getState) => {
 };
 
 const memorySlice = createSlice({
-  name: "memory",
+  name: 'memory',
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -39,13 +39,24 @@ const memorySlice = createSlice({
 
     // fetch reducer that add new data to each array of memory state
     addToGraph: (state, action) => {
-      fillGraph(state.used_memory, "UM", action.payload.usedMemory);
+      fillGraph(
+        state.used_memory,
+        't',
+        action.payload.usedMemory,
+        'used_memory'
+      );
       fillGraph(
         state.mem_fragmentation_ratio,
-        "MF",
-        action.payload.memFragmentationRatio
+        't',
+        action.payload.memFragmentationRatio,
+        'mem_fragmentation_ratio'
       );
-      fillGraph(state.evicted_keys, "EK", action.payload.evictedKeys);
+      fillGraph(
+        state.evicted_keys,
+        't',
+        action.payload.evictedKeys,
+        'evicted_keys'
+      );
     },
   },
 });

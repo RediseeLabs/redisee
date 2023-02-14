@@ -11,17 +11,16 @@ import {
   Legend,
 } from 'recharts';
 
-export default function Latency() {
-  const latency = useSelector((state) => state.performance.latency);
-  console.log(latency);
+export default function Rcslt() {
+  const rcslt = useSelector((state) => state.persistence.rcslt);
   return (
-    <BarChart width={730} height={250} data={latency}>
+    <BarChart width={730} height={250} data={rcslt}>
       <CartesianGrid strokeDasharray='3 3' />
       <XAxis dataKey='time' />
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='Live_Redis_latency' fill='#8884d8' />
+      <Bar dataKey='rcslt' fill='#8884d8' />
     </BarChart>
   );
 }

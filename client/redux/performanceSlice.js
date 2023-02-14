@@ -13,11 +13,6 @@ const initialState = {
   ratio: "0%",
 };
 
-const reChartsTemplate = {
-  name: "example",
-  uv: 1000,
-};
-
 export const fetchPerformanceData = () => (dispatch) =>
   [
     axios
@@ -32,13 +27,15 @@ const performanceSlice = createSlice({
   name: "performance",
   initialState: initialState,
   reducers: {
-    addToGraph: (state, action) => {
-      fillGraph(state.latency, "latency", action.payload.latency);
-      fillGraph(state.iops, "iops", action.payload.iops);
-      state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
-      state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
-      console.log(action.payload);
-      state.ratio = `${action.payload.hitRate.ratio.toFixed(3)}%`;
+    enqueue: (state, action) => {
+      //updating graphs
+      //   state.latency = [...state.latency, action.payload.latency];
+      state.latency = [
+        ...state.latency,
+        { ...reChartsTemplate, name: "latency", uv: action.payload.latency },
+      ];
+      state.iops = [...state.iops, action.payload.iops];
+      state.hitRate = [...state.hitRate, action.payload.hitRate];
     },
   },
 });

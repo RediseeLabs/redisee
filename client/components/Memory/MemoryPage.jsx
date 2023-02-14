@@ -5,9 +5,14 @@ import FragRatioGraph from './FragRatioGraph';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from '../../redux/memorySlice';
+import LoadingGraphPage from "../LoadingGraphPage";
 
 const MemoryPage = (props) => {
   const dispatch = useDispatch();
+
+  const loading = useSelector (state => state.memory.loading);
+
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,11 +23,13 @@ const MemoryPage = (props) => {
 
   return (
     <>
-      <GraphGrid>
+    {loading ? <LoadingGraphPage /> :      
+        <GraphGrid>
         <UsedMemoryGraph />
         <FragRatioGraph />
         <EvictedKeys />
-      </GraphGrid>
+      </GraphGrid>}
+
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import ActivitiesPage from "./components/BasicActivities/ActivitiesPage";
@@ -8,6 +8,7 @@ import PerformancePage from "./components/Performance/PerformancePage";
 import PersistencePage from "./components/Persistence/PersistencePage";
 
 const App = (props) => {
+  
   return (
     <div style={{ display: "flex" }}>
       <SideBar />

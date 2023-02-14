@@ -47,7 +47,10 @@ module.exports = {
         const memory = {};
         memory.usedMemory = Number(data.used_memory);
         memory.memFragmentationRatio = Number(data.mem_fragmentation_ratio);
+        memory.usedMemory = Number(data.used_memory);
+        memory.memFragmentationRatio = Number(data.mem_fragmentation_ratio);
         //Evicted_keys is part of 'info stats' instead of memory
+        memory.evictedKeys = Number(data.evicted_keys);
         memory.evictedKeys = Number(data.evicted_keys);
         res.locals.memory = memory;
         return next();

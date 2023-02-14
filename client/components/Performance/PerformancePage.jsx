@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { fetchPerformanceData } from '../../redux/performanceSlice';
-import Latency from './Latency';
-import Iops from './Iops';
-import HitRate from './HitRate';
-import GraphGrid from '../StyledComponents/GraphGrid';
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchPerformanceData } from "../../redux/performanceSlice";
+import Latency from "./Latency";
+import Iops from "./Iops";
+import HitRate from "./HitRate";
+import { GraphGrid } from "../StyledComponents/GraphGrid";
 
 const PerformancePage = () => {
   const dispatch = useDispatch();

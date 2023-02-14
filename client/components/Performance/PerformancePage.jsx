@@ -4,6 +4,7 @@ import { fetchPerformanceData } from '../../redux/performanceSlice';
 import Latency from './Latency';
 import Iops from './Iops';
 import HitRate from './HitRate';
+import GraphGrid from '../StyledComponents/GraphGrid';
 
 const PerformancePage = () => {
   const dispatch = useDispatch();
@@ -18,9 +19,11 @@ const PerformancePage = () => {
   return (
     <>
       <h1>PerformancePage</h1>
-      <Latency />
-      <Iops />
-      <HitRate />
+      <GraphGrid>
+        <Latency />
+        <Iops />
+        <HitRate />
+      </GraphGrid>
     </>
   );
 };

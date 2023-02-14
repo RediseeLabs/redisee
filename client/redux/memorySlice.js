@@ -37,5 +37,4 @@ const memorySlice = createSlice({
   },
 });
 
-export const {} = memorySlice.actions;
 export default memorySlice.reducer;

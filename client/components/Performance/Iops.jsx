@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
 import {
   AreaChart,
   Area,
@@ -9,15 +10,15 @@ import {
   Tooltip,
 } from 'recharts';
 
-const EvictedKeys = (props) => {
-  const evictedKeys = useSelector((state) => state.memory.evicted_keys);
+export default function Iops() {
+  const iops = useSelector((state) => state.performance.iops);
   return (
     <div>
-      <h3>Evicted keys</h3>
+      <h2>Instantaneous_ops_per_sec</h2>
       <AreaChart
         width={730}
         height={250}
-        data={evictedKeys}
+        data={iops}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
       >
         <defs>
@@ -40,6 +41,4 @@ const EvictedKeys = (props) => {
       </AreaChart>
     </div>
   );
-};
-
-export default EvictedKeys;
+}

@@ -1,5 +1,5 @@
-const Redis = require("redis");
-const info = require("redis-info");
+const Redis = require('redis');
+const info = require('redis-info');
 const redisClient = Redis.createClient();
 redisClient.connect();
 
@@ -16,7 +16,7 @@ module.exports = {
     let latency = 0;
     const start = performance.now();
     redisClient
-      .info("stats")
+      .info('stats')
       .then((res) => {
         const end = performance.now();
         latency = end - start;
@@ -25,8 +25,13 @@ module.exports = {
       .then((data) => {
         const performance = {};
         performance.latency = latency;
-        performance.iope = data.instantaneous_ops_per_sec;
-        performance.hitRate = data.keyspace_hits / data.keyspace_misses;
+        performance.iops = data.instantaneous_ops_per_sec;
+        performance.hitRate = {};
+        performance.hitRate.keyspace_hits = data.keyspace_hits;
+        performance.hitRate.keyspace_misses = data.keyspace_misses;
+        performance.hitRate.ratio =
+          (data.keyspace_hits / (data.keyspace_misses + data.keyspace_hits)) *
+          100;
         res.locals.performance = performance;
         return next();
       });
@@ -68,7 +73,7 @@ module.exports = {
   },
   persistence: (req, res, next) => {
     redisClient
-      .info("persistence")
+      .info('persistence')
       .then((res) => {
         return info.parse(res);
       })
@@ -82,7 +87,7 @@ module.exports = {
   },
   error: (req, res, next) => {
     redisClient
-      .info("stats")
+      .info('stats')
       .then((res) => {
         return info.parse(res);
       })

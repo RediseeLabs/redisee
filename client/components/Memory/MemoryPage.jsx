@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import EvictedKeys from "./EvictedKeys";
-import UsedMemoryGraph from "./UsedMemoryGraph";
-import FragRatioGraph from "./FragRatioGraph";
-import { GraphGrid } from "../StyledComponents/GraphGrid";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchData } from "../../redux/memorySlice";
+import React, { useEffect } from 'react';
+import EvictedKeys from './EvictedKeys';
+import UsedMemoryGraph from './UsedMemoryGraph';
+import FragRatioGraph from './FragRatioGraph';
+import { GraphGrid } from '../StyledComponents/GraphGrid';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from '../../redux/memorySlice';
 
 const MemoryPage = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const MemoryPage = (props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchData());
-    }, 200);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 

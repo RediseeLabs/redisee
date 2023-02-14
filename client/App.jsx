@@ -7,6 +7,7 @@ import MemoryPage from "./components/Memory/MemoryPage";
 import PerformancePage from "./components/Performance/PerformancePage";
 import PersistencePage from "./components/Persistence/PersistencePage";
 
+
 const App = (props) => {
   return (
     <div style={{ display: "flex" }}>

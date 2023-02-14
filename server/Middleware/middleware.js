@@ -48,10 +48,10 @@ module.exports = {
       })
       .then((data) => {
         const memory = {};
-        memory.usedMemory = data.used_memory;
-        memory.memFragmentationRatio = data.mem_fragmentation_ratio;
+        memory.usedMemory = Number(data.used_memory);
+        memory.memFragmentationRatio = Number(data.mem_fragmentation_ratio);
         //Evicted_keys is part of 'info stats' instead of memory
-        memory.evictedKeys = data.evicted_keys;
+        memory.evictedKeys = Number(data.evicted_keys);
         res.locals.memory = memory;
         return next();
       });
@@ -98,7 +98,7 @@ module.exports = {
         const error = {};
         error.rejectedConnection = data.rejected_connections;
         error.keyspaceMisses = data.keyspace_misses;
-        console.log('keyspaceMisses',keyspaceMisses )
+        console.log("keyspaceMisses", keyspaceMisses);
         res.locals.error = error;
         return next();
       });

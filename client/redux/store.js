@@ -4,9 +4,11 @@ import memory from './memorySlice';
 import basicActivity from './basicActivitySlice';
 import persistence from './persistenceSlice';
 import error from './errorSlice';
+import global from './globalSlice';
 
 export const store = configureStore({
   reducer: {
+    global,
     performance,
     memory,
     basicActivity,

@@ -98,6 +98,7 @@ module.exports = {
         const error = {};
         error.rejectedConnection = data.rejected_connections;
         error.keyspaceMisses = data.keyspace_misses;
+        console.log('keyspaceMisses',keyspaceMisses )
         res.locals.error = error;
         return next();
       });

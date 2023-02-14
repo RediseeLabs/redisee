@@ -11,7 +11,7 @@ import {
   Legend,
 } from 'recharts';
 
-export default function rlst() {
+export default function Rlst() {
   const rlst = useSelector((state) => state.persistence.rlst);
   return (
     <BarChart width={730} height={250} data={rlst}>
@@ -20,7 +20,7 @@ export default function rlst() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='value' fill='#8884d8' />
+      <Bar dataKey='Rdb since last save time' fill='#8884d8' />
     </BarChart>
   );
 }

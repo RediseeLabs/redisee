@@ -13,6 +13,7 @@ import {
 
 export default function Latency() {
   const keyspace = useSelector((state) => state.basicActivity.keyspace);
+  console.log(keyspace);
   return (
     <BarChart width={730} height={250} data={keyspace}>
       <CartesianGrid strokeDasharray='3 3' />
@@ -20,7 +21,7 @@ export default function Latency() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='value' fill='#8884d8' />
+      <Bar dataKey='Total Keyspaces' fill='#8884d8' />
     </BarChart>
   );
 }

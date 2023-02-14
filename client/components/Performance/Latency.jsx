@@ -20,7 +20,7 @@ export default function Latency() {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Bar dataKey='value' fill='#8884d8' />
+      <Bar dataKey='Live Redis Latency' fill='#8884d8' />
     </BarChart>
   );
 }

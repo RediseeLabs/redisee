@@ -34,7 +34,7 @@ const memorySlice = createSlice({
       state.loading = true;
     },
     stopLoading: (state, action) => {
-      state.loading = true;
+      state.loading = false;
     },
 
     // fetch reducer that add new data to each array of memory state

@@ -17,5 +17,5 @@ const globalSlice = createSlice({
   },
 });
 
-//export const { startLoading, stopLoading } = globalSlice.actions;
+export const { startLoading, stopLoading } = globalSlice.actions;
 export default globalSlice.reducer;

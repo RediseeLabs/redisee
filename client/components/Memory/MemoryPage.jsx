@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
-import EvictedKeys from './EvictedKeys';
-import UsedMemoryGraph from './UsedMemoryGraph';
-import FragRatioGraph from './FragRatioGraph';
-import { GraphGrid } from '../StyledComponents/GraphGrid';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../../redux/memorySlice';
+import React, { useEffect } from "react";
+import EvictedKeys from "./EvictedKeys";
+import UsedMemoryGraph from "./UsedMemoryGraph";
+import FragRatioGraph from "./FragRatioGraph";
+import { GraphGrid } from "../StyledComponents/GraphGrid";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../../redux/memorySlice";
 import LoadingGraphPage from "../LoadingGraphPage";
 
 const MemoryPage = (props) => {
   const dispatch = useDispatch();
-
-  const loading = useSelector (state => state.memory.loading);
-
-  
-
+  const loading = useSelector((state) => state.memory.loading);
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchData());
@@ -23,13 +19,15 @@ const MemoryPage = (props) => {
 
   return (
     <>
-    {loading ? <LoadingGraphPage /> :      
+      {loading ? (
+        <LoadingGraphPage />
+      ) : (
         <GraphGrid>
-        <UsedMemoryGraph />
-        <FragRatioGraph />
-        <EvictedKeys />
-      </GraphGrid>}
-
+          <UsedMemoryGraph />
+          <FragRatioGraph />
+          <EvictedKeys />
+        </GraphGrid>
+      )}
     </>
   );
 };

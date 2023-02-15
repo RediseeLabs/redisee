@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 import {
   UilTachometerFast,
   UilDatabase,
@@ -7,22 +7,22 @@ import {
   UilExclamationOctagon,
   UilShareAlt,
   UilBracketsCurly,
-} from '@iconscout/react-unicons';
+} from "@iconscout/react-unicons";
 
 import {
   primaryBlue,
   secondaryBlue,
   primaryGrey,
   secondaryGrey,
-} from './variables';
+} from "./variables";
 
 export const Menu = styled.div`
   padding: 20px 15px;
-  position: sticky;
+  position: fixed;
   margin-right: 50px;
   left: 0;
   width: 250px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.12);

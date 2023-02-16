@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 function Form() {
-  const [userName, typeUserName] = useState('');
+  const [redisName, typeRedisName] = useState('');
   const [password, typePassword] = useState('');
   const [port, typePort] = useState('');
   const [host, typeHost] = useState('');
-  const userNameChange = (e) => {
-    typeUserName(e.target.value);
+  const redisNameChange = (e) => {
+    typeRedisName(e.target.value);
   };
   const passwordChange = (e) => {
     typePassword(e.target.value);
@@ -28,7 +28,7 @@ function Form() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName,
+        redisName,
         password,
         port,
         host
@@ -39,7 +39,7 @@ function Form() {
       console.log('data came back')
     })
     .catch(err => console.log(err))
-    typeUserName('');
+    typeRedisName('');
     typePassword('');
     typePort('');
     typeHost('');
@@ -59,7 +59,7 @@ function Form() {
           value={userName}
           required
           onChange={(e) => {
-            userNameChange(e);
+            redisNameChange(e);
           }}
         />
         <br />

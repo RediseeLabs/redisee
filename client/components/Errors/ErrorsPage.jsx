@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import KeyspaceMisses from './KeyspaceMisses';
 import RejectedConnections from './RejectedConnections';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../../redux/memorySlice';
+import { errorFetch } from '../../redux/errorSlice';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import LoadingGraphPage from "../LoadingGraphPage";
 
@@ -13,7 +13,7 @@ const ErrorsPage = (props) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(fetchData());
+      dispatch(errorFetch());
       
     }, 1000);
     return () => clearInterval(interval);

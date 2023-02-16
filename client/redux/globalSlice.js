@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import axios from "axios";
 
 const initialState = {
+  clients: [],
+  selectedClient: "",
   loading: true,
+  showForm: false,
+};
+export const fetchClients = () => (dispatch, getState) => {
+  axios
+    .get(`http://localhost:3000/connect`)
+    .then((res) => res.data)
+    .then((data) => {
+      dispatch(globalSlice.actions.getClients(data));
+    });
 };
 
 const globalSlice = createSlice({
@@ -14,6 +25,18 @@ const globalSlice = createSlice({
     },
     stopLoading: (state, action) => {
       state.loading = false;
+    },
+    getClients: (state, action) => {
+      state.clients = action.payload;
+    },
+    selectClient: (state, action) => {
+      state.selectedClient = action.payload;
+    },
+    showForm: (state, action) => {
+      state.showForm = true;
+    },
+    closeForm: (state, action) => {
+      showForm = false;
     },
   },
 });

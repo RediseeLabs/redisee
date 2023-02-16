@@ -31,6 +31,18 @@ const errorSlice = createSlice({
     stopLoading: (state, action) => {
       state.loading = false;
     },
+    addToGraph: (state, action) => {
+      fillGraph(
+        state.latency,
+        "latency",
+        action.payload.latency,
+        "Live_Redis_latency"
+      );
+      fillGraph(state.iops, "iops", action.payload.iops, "iops");
+      state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
+      state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
+      state.ratio = `${Number(action.payload.hitRate.ratio).toFixed(3)}%`;
+    },
   },
 });
 export const { startLoading, stopLoading } = errorSlice.actions;

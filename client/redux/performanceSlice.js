@@ -32,7 +32,6 @@ export const fetchPerformanceData = () => (dispatch, getState) => {
 
 const performanceSlice = createSlice({
   name: "performance",
-  name: "performance",
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {

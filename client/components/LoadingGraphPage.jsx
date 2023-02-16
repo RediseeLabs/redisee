@@ -1,34 +1,36 @@
-import React from 'react';
-import { GraphGrid } from './StyledComponents/GraphGrid';
-import { MockGraph ,MockTitle} from './StyledComponents/GraphGrid';
+import React from "react";
+import {
+  GraphGrid,
+  GraphBox,
+  MockGraph,
+  MockTitle,
+} from "./StyledComponents/GraphGrid";
 
 const LoadingGraphPage = () => {
-return (
-  <>
-  {
-  <GraphGrid>
-    <div>
-    <MockTitle/>
-    <MockGraph />
-    </div>
-    <div>
-    <MockTitle/>
-    <MockGraph />
-    </div>
-    <div>
-    <MockTitle/>
-    <MockGraph />
-    </div>
-    <div>
-    <MockTitle/>
-    <MockGraph />
-    </div>
-  </GraphGrid>
-  
-}
-</>
- 
-);
+  return (
+    <>
+      {
+        <GraphGrid>
+          <GraphBox>
+            <MockTitle />
+            <MockGraph />
+          </GraphBox>
+          <GraphBox>
+            <MockTitle />
+            <MockGraph />
+          </GraphBox>
+          <GraphBox>
+            <MockTitle />
+            <MockGraph />
+          </GraphBox>
+          <GraphBox>
+            <MockTitle />
+            <MockGraph />
+          </GraphBox>
+        </GraphGrid>
+      }
+    </>
+  );
 };
 
 export default LoadingGraphPage;

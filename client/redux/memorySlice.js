@@ -16,6 +16,7 @@ export const fetchData = () => (dispatch, getState) => {
   // check if the current state is the initial state to trigger loading action
   //propably better way to do it
   if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
+  if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
     dispatch(memorySlice.actions.startLoading());
   }
   axios
@@ -28,6 +29,7 @@ export const fetchData = () => (dispatch, getState) => {
 };
 
 const memorySlice = createSlice({
+  name: "memory",
   name: "memory",
   initialState: initialState,
   reducers: {
@@ -42,19 +44,25 @@ const memorySlice = createSlice({
       fillGraph(
         state.used_memory,
         "t",
+        "t",
         action.payload.usedMemory,
+        "used_memory"
         "used_memory"
       );
       fillGraph(
         state.mem_fragmentation_ratio,
         "t",
+        "t",
         action.payload.memFragmentationRatio,
+        "mem_fragmentation_ratio"
         "mem_fragmentation_ratio"
       );
       fillGraph(
         state.evicted_keys,
         "t",
+        "t",
         action.payload.evictedKeys,
+        "evicted_keys"
         "evicted_keys"
       );
     },

@@ -11,7 +11,10 @@ const initialState = {
   hitRate: [
     { name: "keyspace_hits", value: 0, fill: "#00C49F" },
     { name: "keyspace_misses", value: 0, fill: "#FF8042" },
+    { name: "keyspace_hits", value: 0, fill: "#00C49F" },
+    { name: "keyspace_misses", value: 0, fill: "#FF8042" },
   ],
+  ratio: "0%",
   ratio: "0%",
 };
 
@@ -35,6 +38,7 @@ export const fetchPerformanceData = () => (dispatch, getState) => {
 
 const performanceSlice = createSlice({
   name: "performance",
+  name: "performance",
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -47,9 +51,12 @@ const performanceSlice = createSlice({
       fillGraph(
         state.latency,
         "latency",
+        "latency",
         action.payload.latency,
         "Live_Redis_latency"
+        "Live_Redis_latency"
       );
+      fillGraph(state.iops, "iops", action.payload.iops, "iops");
       fillGraph(state.iops, "iops", action.payload.iops, "iops");
       state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
       state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);

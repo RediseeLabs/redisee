@@ -1,5 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { GraphBox } from "../StyledComponents/GraphGrid";
+import { useSelector } from "react-redux";
 
 import {
   LineChart,
@@ -9,35 +10,38 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from 'recharts';
+} from "recharts";
 
 export default function connectedSlaves() {
   const connectedSlaves = useSelector(
     (state) => state.basicActivity.connected_slaves
   );
   return (
-    <LineChart
-      width={500}
-      height={300}
-      data={connectedSlaves}
-      margin={{
-        top: 5,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray='3 3' />
-      <XAxis dataKey='time' />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type='monotone'
-        dataKey='connected_slaves'
-        stroke='#8884d8'
-        strokeDasharray='5 5'
-      />
-    </LineChart>
+    <GraphBox>
+      <h3>Connected slaves</h3>
+      <LineChart
+        width={500}
+        height={300}
+        data={connectedSlaves}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="connected_slaves"
+          stroke="#8884d8"
+          strokeDasharray="5 5"
+        />
+      </LineChart>
+    </GraphBox>
   );
 }

@@ -22,7 +22,9 @@ console.log(loading)
 
   return (
     <>
-    {loading ? <LoadingGraphPage /> :      
+      {loading ? (
+        <LoadingGraphPage />
+      ) : (
         <GraphGrid>
         <EvictedKeys />
         <UsedMemoryGraph />

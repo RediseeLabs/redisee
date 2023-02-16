@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fillGraph } from "../helperFunctions.js";
 import axios from "axios";
 
-
 const initialState = {
   loading: true,
   latency: Array(15).fill({}),
@@ -17,11 +16,6 @@ const initialState = {
   ratio: "0%",
   ratio: "0%",
 };
-
-// const reChartsTemplate = {
-//   name: 'example',
-//   uv: 1000,
-// };
 
 export const fetchPerformanceData = () => (dispatch, getState) => {
   if (JSON.stringify(getState().performance.latency[0]) === "{}") {
@@ -51,23 +45,17 @@ const performanceSlice = createSlice({
       fillGraph(
         state.latency,
         "latency",
-        "latency",
         action.payload.latency,
         "Live_Redis_latency"
-        "Live_Redis_latency"
       );
-      fillGraph(state.iops, "iops", action.payload.iops, "iops");
       fillGraph(state.iops, "iops", action.payload.iops, "iops");
       state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
       state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
-      console.log(
-        "action.payload.hitRate.ratio",
-        Number(action.payload.hitRate.ratio)
-      );
       state.ratio = `${Number(action.payload.hitRate.ratio).toFixed(3)}%`;
     },
   },
 });
+
 export const { startLoading, stopLoading } = performanceSlice.actions;
 
 export default performanceSlice.reducer;

@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { fillGraph } from '../helperFunctions';
+import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { fillGraph } from "../helperFunctions";
 
 const initialState = {
   loading: true,
@@ -13,7 +13,7 @@ export const fectchPersistence = () => (dispatch, getState) => {
     dispatch(persistenceSlice.actions.startLoading());
   }
   axios
-    .get('http://localhost:3000/persistence')
+    .get("http://localhost:3000/persistence")
     .then((res) => res.data)
     .then((data) => {
       dispatch(persistenceSlice.actions.addToGraph(data));
@@ -22,7 +22,7 @@ export const fectchPersistence = () => (dispatch, getState) => {
 };
 
 const persistenceSlice = createSlice({
-  name: 'persistence',
+  name: "persistence",
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -32,8 +32,8 @@ const persistenceSlice = createSlice({
       state.loading = false;
     },
     addToGraph: (state, action) => {
-      fillGraph(state.rlst, 'rlst', action.payload.rlst, 'rlst');
-      fillGraph(state.rcslt, 'rcslt', action.payload.rcslt, 'rcslt');
+      fillGraph(state.rlst, "rlst", action.payload.rlst, "rlst");
+      fillGraph(state.rcslt, "rcslt", action.payload.rcslt, "rcslt");
     },
   },
 });

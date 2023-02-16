@@ -21,9 +21,9 @@ export default function App() {
             outerRadius={80}
             label
           />
-          <div>{ratio}</div>
         </PieChart>
       </ResponsiveContainer>
+      <div>{ratio}</div>
     </GraphBox>
   );
 }

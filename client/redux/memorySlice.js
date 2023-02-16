@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { fillGraph } from "../helperFunctions";
 import axios from "axios";
 
-
 const initialState = {
   loading: true,
   used_memory: Array(15).fill({}),
@@ -16,24 +15,23 @@ export const fetchData = () => (dispatch, getState) => {
   // check if the current state is the initial state to trigger loading action
   //propably better way to do it
   if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
-  if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
-    dispatch(memorySlice.actions.startLoading());
+    if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
+      dispatch(memorySlice.actions.startLoading());
+    }
+    axios
+      .get(`http://localhost:3000/memory`)
+      .then((res) => res.data)
+      .then((data) => {
+        dispatch(memorySlice.actions.addToGraph(data));
+        dispatch(memorySlice.actions.stopLoading());
+      });
   }
-  axios
-    .get(`http://localhost:3000/memory`)
-    .then((res) => res.data)
-    .then((data) => {
-      dispatch(memorySlice.actions.addToGraph(data));
-      dispatch(memorySlice.actions.stopLoading());
-    });
 };
 
 const memorySlice = createSlice({
   name: "memory",
-  name: "memory",
   initialState: initialState,
   reducers: {
-    // fetch reducer that add new data to each array of memory state
     startLoading: (state, action) => {
       state.loading = true;
     },
@@ -44,25 +42,19 @@ const memorySlice = createSlice({
       fillGraph(
         state.used_memory,
         "t",
-        "t",
         action.payload.usedMemory,
-        "used_memory"
         "used_memory"
       );
       fillGraph(
         state.mem_fragmentation_ratio,
         "t",
-        "t",
         action.payload.memFragmentationRatio,
-        "mem_fragmentation_ratio"
         "mem_fragmentation_ratio"
       );
       fillGraph(
         state.evicted_keys,
         "t",
-        "t",
         action.payload.evictedKeys,
-        "evicted_keys"
         "evicted_keys"
       );
     },

@@ -12,6 +12,7 @@ import {
   ClusterIcon,
 } from './StyledComponents/SideBar';
 import logo from './StyledComponents/logo.png';
+import InstanceBar from './InstanceBar/InstanceBar';
 
 const SideBar = () => {
   return (
@@ -20,16 +21,17 @@ const SideBar = () => {
         <img src={logo} />
         <h1>RediSee</h1>
       </Logo>
+      <InstanceBar />
       <SecondaryText>Analytics :</SecondaryText>
-      <Button to='/memory'>
+      <Button to='/Memory'>
         <PerfIcon />
         Memory
       </Button>
-      <Button to='/performance'>
+      <Button to='/Performance'>
         <MemoryIcon />
         Performance
       </Button>
-      <Button to='/persistence'>
+      <Button to='/Persistence'>
         <PersistenceIcon />
         Persistence
       </Button>

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 function Form() {
-  const [userName, typeUserName] = useState("");
-  const [password, typePassword] = useState("");
-  const [port, typePort] = useState("");
-  const [host, typeHost] = useState("");
+  const [userName, typeUserName] = useState('');
+  const [password, typePassword] = useState('');
+  const [port, typePort] = useState('');
+  const [host, typeHost] = useState('');
 
   const userNameChange = (e) => {
     typeUserName(e.target.value);
@@ -23,13 +23,13 @@ function Form() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000", {
-      method: "POST",
+    fetch('http://localhost:3000', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName,
+        redisName,
         password,
         port,
         host,
@@ -37,13 +37,13 @@ function Form() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("data came back");
+        console.log('data came back');
       })
       .catch((err) => console.log(err));
-    typeUserName("");
-    typePassword("");
-    typePort("");
-    typeHost("");
+    typeUserName('');
+    typePassword('');
+    typePort('');
+    typeHost('');
   };
   return (
     <div className="form">
@@ -59,7 +59,7 @@ function Form() {
           value={userName}
           required
           onChange={(e) => {
-            userNameChange(e);
+            redisNameChange(e);
           }}
         />
         <br />

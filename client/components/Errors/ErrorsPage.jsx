@@ -1,20 +1,34 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import KeyspaceMisses from './KeyspaceMisses';
+import RejectedConnections from './RejectedConnections';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from '../../redux/memorySlice';
+import { GraphGrid } from '../StyledComponents/GraphGrid';
+import LoadingGraphPage from "../LoadingGraphPage";
 
-const ErrorsPage = () => {
+
+const ErrorsPage = (props) => {
   const dispatch = useDispatch();
+  const loading = useSelector (state => state.error.loading);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     dispatch(fetchErrorData());
-  //   }, 1000)
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(fetchData());
+      
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div>
-      {/* <h1>ErrorsPage</h1> */}
-    </div>
+    <>
+    {loading ? <LoadingGraphPage /> :      
+        <GraphGrid>
+        <KeyspaceMisses />
+        <RejectedConnections />
+      </GraphGrid>}
+    </>
   );
 };
+
 
 export default ErrorsPage;

@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fectchPersistence } from '../../redux/persistenceSlice';
 import Rlst from './Rlst';
 import Rcslt from './Rcslt';
+import { GraphGrid } from '../StyledComponents/GraphGrid';
+import LoadingGraphPage from "../LoadingGraphPage";
 
 const PersistencePage = () => {
   const dispatch = useDispatch();
+
+  const loading = useSelector (state => state.persistence.loading);
+
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fectchPersistence());
@@ -14,11 +19,13 @@ const PersistencePage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>PersistencePage</h1>
+    <>
+    {loading ? <LoadingGraphPage /> :
+    <GraphGrid>
       <Rlst />
       <Rcslt />
-    </div>
+      </GraphGrid>}
+     </>
   );
 };
 

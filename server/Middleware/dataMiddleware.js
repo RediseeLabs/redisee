@@ -13,6 +13,8 @@ module.exports = {
     //   });
     // }
     // setInterval(testLatency, 10);
+    const { redisName } = req.params;
+    const redisClient = require(`../redisClients/${redisName}.js`)
     let latency = 0;
     const start = performance.now();
     redisClient
@@ -24,6 +26,7 @@ module.exports = {
       })
       .then((data) => {
         const performance = {};
+        console.log(data)
         performance.latency = Number(latency);
         performance.iops = Number(data.instantaneous_ops_per_sec);
         performance.hitRate = {};
@@ -41,6 +44,8 @@ module.exports = {
   },
 
   memory: (req, res, next) => {
+    const { redisName } = req.params;
+    const redisClient = require(`../redisClients/${redisName}.js`)
     redisClient
       .info()
       .then((res) => {
@@ -60,6 +65,8 @@ module.exports = {
       });
   },
   basicActivity: (req, res, next) => {
+    const { redisName } = req.params;
+    const redisClient = require(`../redisClients/${redisName}.js`)
     redisClient
       .info()
       .then((res) => {
@@ -80,6 +87,8 @@ module.exports = {
       });
   },
   persistence: (req, res, next) => {
+    const { redisName } = req.params;
+    const redisClient = require(`../redisClients/${redisName}.js`)
     redisClient
       .info("persistence")
       .then((res) => {
@@ -94,6 +103,8 @@ module.exports = {
       });
   },
   error: (req, res, next) => {
+    const { redisName } = req.params;
+    const redisClient = require(`../redisClients/${redisName}.js`)
     redisClient
       .info("stats")
       .then((res) => {

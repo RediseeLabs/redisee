@@ -6,6 +6,7 @@ function Form() {
   const [password, typePassword] = useState('');
   const [port, typePort] = useState('');
   const [host, typeHost] = useState('');
+
   const userNameChange = (e) => {
     typeUserName(e.target.value);
   };
@@ -21,32 +22,31 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     fetch('http://localhost:3000', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName,
+        redisName,
         password,
         port,
-        host
+        host,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('data came back');
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log('data came back')
-    })
-    .catch(err => console.log(err))
+      .catch((err) => console.log(err));
     typeUserName('');
     typePassword('');
     typePort('');
     typeHost('');
-    
-  }
+  };
   return (
-    <div className='form'>
+    <div className="form">
       <form
         onSubmit={(e) => {
           handleSubmit(e);
@@ -55,11 +55,11 @@ function Form() {
         <label>userName:</label>
         <br />
         <input
-          type='text'
+          type="text"
           value={userName}
           required
           onChange={(e) => {
-            userNameChange(e);
+            redisNameChange(e);
           }}
         />
         <br />
@@ -67,7 +67,7 @@ function Form() {
         <label>password:</label>
         <br />
         <input
-          type='text'
+          type="text"
           value={password}
           required
           onChange={(e) => {
@@ -76,15 +76,22 @@ function Form() {
         />
         <br />
 
-        <label >
-          port:
-        </label><br/>
-        <input type="number" value={port} required onChange={(e) => {portChange(e)}} /><br/>
+        <label>port:</label>
+        <br />
+        <input
+          type="number"
+          value={port}
+          required
+          onChange={(e) => {
+            portChange(e);
+          }}
+        />
+        <br />
 
         <label>host:</label>
         <br />
         <input
-          type='text'
+          type="text"
           value={host}
           required
           onChange={(e) => {
@@ -93,7 +100,7 @@ function Form() {
         />
         <br />
 
-        <input type='submit' value='Submit' />
+        <input type="submit" value="Submit" />
       </form>
     </div>
   );

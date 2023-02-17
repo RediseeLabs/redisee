@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const router = require('./Routers/router.js');
-
+const dataRouter = require('./Routers/dataRouter.js');
+const connectionRouter = require('./Routers/connectionRouter.js')
 // import router here
 
 const app = express();
@@ -20,7 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 //use router here
 
 //app.use("/", );
-app.use('/', router);
+app.use('/', dataRouter);
+app.use('/connection', connectionRouter);
 
 app.use('*', (req, res) => {
   res.status(500).json('Wrong route');

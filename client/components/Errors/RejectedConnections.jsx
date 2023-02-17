@@ -1,26 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { GraphBox } from "../StyledComponents/GraphGrid";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { 
+  AreaChart, 
+  Area, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  ResponsiveContainer 
+} from 'recharts';
 
-const EvictedKeys = (props) => {
-  const evictedKeys = useSelector((state) => state.memory.evicted_keys);
+export default function RejectedConnections () {
+  const rejectedConnections = useSelector(
+    (state) => state.error.rejectedConnection
+  );
   return (
     <GraphBox>
-      <h3>Evicted Keys</h3>
+      <h3>Rejected Connections</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
           width={730}
           height={250}
-          data={evictedKeys}
+          data={rejectedConnections}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>
@@ -30,20 +32,21 @@ const EvictedKeys = (props) => {
             </linearGradient>
           </defs>
           <XAxis dataKey="time" />
-          <YAxis padding={{ top: 20 }} />
-          <CartesianGrid strokeDasharray="3 3" />
+          <YAxis />
           <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="evicted_keys"
-            stroke="#8884d8"
+          <CartesianGrid strokeDasharray="3 3" />
+          <Area 
+            type="monotone" 
+            dataKey="uv" 
+            stroke="#8884d8" 
             fillOpacity={1}
-            fill="url(#colorUv)"
-          />
-        </AreaChart>
+            fill="#8884d8" 
+            />
+          </AreaChart>
       </ResponsiveContainer>
     </GraphBox>
-  );
-};
+    );
+  }
 
-export default EvictedKeys;
+
+

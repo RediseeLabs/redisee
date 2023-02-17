@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { fetchBasicActivity } from '../../redux/basicActivitySlice';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import ConnectedClient from './ConnectedClient';
 import ConnectedSlaves from './ConnectedSlaves';
 import Keyspace from './Keyspace';
+import { GraphGrid } from '../StyledComponents/GraphGrid';
+import LoadingGraphPage from '../LoadingGraphPage';
 
 const ActivitiesPage = () => {
   const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.basicActivity.loading);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,20 +21,17 @@ const ActivitiesPage = () => {
   }, []);
 
   return (
-    <GraphGrid>
-      <div>
-        <h3>Connected Clients</h3>
-        <ConnectedClient />
-      </div>
-      <div>
-        <h3>Connected Slaves</h3>
-        <ConnectedSlaves />
-      </div>
-      <div>
-        <h3>Keyspace</h3>
-        <Keyspace />
-      </div>
-    </GraphGrid>
+    <>
+      {loading ? (
+        <LoadingGraphPage />
+      ) : (
+        <GraphGrid>
+          <ConnectedClient />
+          <ConnectedSlaves />
+          <Keyspace />
+        </GraphGrid>
+      )}
+    </>
   );
 };
 

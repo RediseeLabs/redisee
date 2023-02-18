@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const initialState = {
   clients: [],
-  selectedClient: '',
+  selectClient: '',
   loading: true,
   showForm: false,
 };
@@ -20,17 +20,17 @@ const globalSlice = createSlice({
   name: 'global',
   initialState: initialState,
   reducers: {
-    startLoading: (state, action) => {
-      state.loading = true;
-    },
-    stopLoading: (state, action) => {
-      state.loading = false;
-    },
+    // startLoading: (state, action) => {
+    //   state.loading = true;
+    // },
+    // stopLoading: (state, action) => {
+    //   state.loading = false;
+    // },
     getClients: (state, action) => {
       state.clients.push(action.payload);
     },
     selectClient: (state, action) => {
-      state.selectedClient = action.payload;
+      state.selectClient = action.payload;
     },
     showForm: (state, action) => {
       state.showForm = true;

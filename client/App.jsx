@@ -20,6 +20,7 @@ const App = (props) => {
         <Route path='/Memory' element={<MemoryPage />} />
         <Route path='/Performance' element={<PerformancePage />} />
         <Route path='/Persistence' element={<PersistencePage />} />
+        <Route path='/:instanceName' />
       </Routes>
     </div>
   );

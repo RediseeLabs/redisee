@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const createFileContent = (host, port) => {
   return `var redis = require("redis"),
-  client = redis.createClient(${port}, ${host});
+  client = redis.createClient('${port}', '${host}');
   client.connect()
 module.exports = client;`;
 };
@@ -12,7 +12,6 @@ module.exports = {
     //need to add logic to check if redis instance with passed-in port and host is available
     res.locals.redisName = redisName;
 
-    console.log('hit connection router' + redisName);
     fs.writeFileSync(
       path.resolve(__dirname, `../redisClients/${redisName}.js`),
       createFileContent(host, port),

@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fillGraph } from "../helperFunctions";
-import axios from "axios";
+import { useSelector } from 'react-redux';
+import { createSlice } from '@reduxjs/toolkit';
+import { fillGraph } from '../helperFunctions';
+import axios from 'axios';
 
 const initialState = {
   loading: true,
@@ -9,27 +10,34 @@ const initialState = {
   evicted_keys: Array(15).fill({}),
 };
 
+let cache;
 // redux thunk that make a call to server at memory route and call fetch reducer
 //data expected : {usedMemory : number, memFragmentationRatio: number, evictedKeys: number}
-export const fetchData = () => (dispatch, getState) => {
+export const fetchData = (api) => (dispatch, getState) => {
+  console.log('this is Cache' + cache);
+  if (api !== cache) {
+    dispatch(memorySlice.actions.clearState());
+  }
   // check if the current state is the initial state to trigger loading action
   //propably better way to do it
-  if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
-    if (JSON.stringify(getState().memory.used_memory[0]) === "{}") {
-      dispatch(memorySlice.actions.startLoading());
-    }
-    axios
-      .get(`http://localhost:3000/memory`)
-      .then((res) => res.data)
-      .then((data) => {
-        dispatch(memorySlice.actions.addToGraph(data));
-        dispatch(memorySlice.actions.stopLoading());
-      });
+  // if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
+  // }
+  if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
+    dispatch(memorySlice.actions.startLoading());
   }
+  axios
+    .get(api)
+    .then((res) => res.data)
+    .then((data) => {
+      console.log('loaded');
+      dispatch(memorySlice.actions.addToGraph(data));
+      dispatch(memorySlice.actions.stopLoading());
+    });
+  cache = api;
 };
 
 const memorySlice = createSlice({
-  name: "memory",
+  name: 'memory',
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -41,22 +49,28 @@ const memorySlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.used_memory,
-        "t",
+        't',
         action.payload.usedMemory,
-        "used_memory"
+        'used_memory'
       );
       fillGraph(
         state.mem_fragmentation_ratio,
-        "t",
+        't',
         action.payload.memFragmentationRatio,
-        "mem_fragmentation_ratio"
+        'mem_fragmentation_ratio'
       );
       fillGraph(
         state.evicted_keys,
-        "t",
+        't',
         action.payload.evictedKeys,
-        "evicted_keys"
+        'evicted_keys'
       );
+    },
+    clearState: (state, action) => {
+      state.loading = true;
+      state.used_memory = Array(15).fill({});
+      state.mem_fragmentation_ratio = Array(15).fill({});
+      state.evicted_keys = Array(15).fill({});
     },
   },
 });

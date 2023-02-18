@@ -1,5 +1,5 @@
-const Redis = require("redis");
-const info = require("redis-info");
+const Redis = require('redis');
+const info = require('redis-info');
 const redisClient = Redis.createClient();
 redisClient.connect();
 
@@ -14,11 +14,11 @@ module.exports = {
     // }
     // setInterval(testLatency, 10);
     const { redisName } = req.params;
-    const redisClient = require(`../redisClients/${redisName}.js`)
+    const redisClient = require(`../redisClients/${redisName}.js`);
     let latency = 0;
     const start = performance.now();
     redisClient
-      .info("stats")
+      .info('stats')
       .then((res) => {
         const end = performance.now();
         latency = end - start;
@@ -26,7 +26,7 @@ module.exports = {
       })
       .then((data) => {
         const performance = {};
-        console.log(data)
+        console.log(data);
         performance.latency = Number(latency);
         performance.iops = Number(data.instantaneous_ops_per_sec);
         performance.hitRate = {};
@@ -45,7 +45,8 @@ module.exports = {
 
   memory: (req, res, next) => {
     const { redisName } = req.params;
-    const redisClient = require(`../redisClients/${redisName}.js`)
+    console.log('Server hearing on instance:' + redisName);
+    const redisClient = require(`../redisClients/${redisName}.js`);
     redisClient
       .info()
       .then((res) => {
@@ -60,13 +61,14 @@ module.exports = {
         //Evicted_keys is part of 'info stats' instead of memory
         memory.evictedKeys = Number(data.evicted_keys);
         memory.evictedKeys = Number(data.evicted_keys);
+        console.log(memory);
         res.locals.memory = memory;
         return next();
       });
   },
   basicActivity: (req, res, next) => {
     const { redisName } = req.params;
-    const redisClient = require(`../redisClients/${redisName}.js`)
+    const redisClient = require(`../redisClients/${redisName}.js`);
     redisClient
       .info()
       .then((res) => {
@@ -88,9 +90,9 @@ module.exports = {
   },
   persistence: (req, res, next) => {
     const { redisName } = req.params;
-    const redisClient = require(`../redisClients/${redisName}.js`)
+    const redisClient = require(`../redisClients/${redisName}.js`);
     redisClient
-      .info("persistence")
+      .info('persistence')
       .then((res) => {
         return info.parse(res);
       })
@@ -104,9 +106,9 @@ module.exports = {
   },
   error: (req, res, next) => {
     const { redisName } = req.params;
-    const redisClient = require(`../redisClients/${redisName}.js`)
+    const redisClient = require(`../redisClients/${redisName}.js`);
     redisClient
-      .info("stats")
+      .info('stats')
       .then((res) => {
         return info.parse(res);
       })

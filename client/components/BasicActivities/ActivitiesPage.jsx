@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchBasicActivity } from '../../redux/basicActivitySlice';
-import { GraphGrid } from '../StyledComponents/GraphGrid';
 import ConnectedClient from './ConnectedClient';
 import ConnectedSlaves from './ConnectedSlaves';
 import Keyspace from './Keyspace';

@@ -12,8 +12,8 @@ import InstanceBar from './components/InstanceBar/InstanceBar';
 const App = (props) => {
   return (
     <div style={{ display: 'flex' }}>
-      {/* <Form /> */}
       <SideBar />
+      {/* <Form /> */}
       <Routes>
         <Route path='/BasicActivities' element={<ActivitiesPage />} />
         <Route path='/Errors' element={<ErrorsPage />} />

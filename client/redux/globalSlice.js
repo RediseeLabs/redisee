@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   clients: [],
-  selectedClient: "",
+  selectedClient: '',
   loading: true,
   showForm: false,
 };
@@ -17,7 +17,7 @@ export const fetchClients = () => (dispatch, getState) => {
 };
 
 const globalSlice = createSlice({
-  name: "global",
+  name: 'global',
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -27,7 +27,7 @@ const globalSlice = createSlice({
       state.loading = false;
     },
     getClients: (state, action) => {
-      state.clients = action.payload;
+      state.clients.push(action.payload);
     },
     selectClient: (state, action) => {
       state.selectedClient = action.payload;
@@ -41,6 +41,13 @@ const globalSlice = createSlice({
   },
 });
 
-//export const { startLoading, stopLoading } = globalSlice.actions;
+export const {
+  startLoading,
+  stopLoading,
+  getClients,
+  selectClient,
+  showForm,
+  closeForm,
+} = globalSlice.actions;
 
 export default globalSlice.reducer;

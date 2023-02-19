@@ -14,7 +14,6 @@ let cache;
 // redux thunk that make a call to server at memory route and call fetch reducer
 //data expected : {usedMemory : number, memFragmentationRatio: number, evictedKeys: number}
 export const fetchData = (api) => (dispatch, getState) => {
-  console.log('this is Cache' + cache);
   if (api !== cache) {
     dispatch(memorySlice.actions.clearState());
   }

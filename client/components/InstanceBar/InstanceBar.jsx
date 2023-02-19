@@ -15,7 +15,6 @@ const InstanceBar = () => {
   const show = useSelector((state) => state.global.showForm);
   const selectInstance = useSelector((state) => state.global.selectedClient);
   console.log('Global SelectClint ' + selectInstance);
-  console.log(show);
 
   let allInstance = [];
 
@@ -34,7 +33,6 @@ const InstanceBar = () => {
         key={instances[i]}
         onClick={() => {
           dispatch(selectClient(instances[i]));
-          console.log('Clicked' + instances[i]);
         }}
       >
         {instances[i]}

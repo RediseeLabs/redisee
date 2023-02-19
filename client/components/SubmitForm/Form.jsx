@@ -32,6 +32,11 @@ function Form() {
       })
       .then((res) => dispatch(getClients(res.data)))
       .catch((err) => console.log(err));
+    // axios
+    //   .get('http://localhost:3000/connection', {})
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
+
     typeRedisName('');
     typePort('');
     typeHost('');

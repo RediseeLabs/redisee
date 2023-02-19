@@ -27,7 +27,7 @@ const globalSlice = createSlice({
     //   state.loading = false;
     // },
     getClients: (state, action) => {
-      state.clients.push(action.payload);
+      state.clients = action.payload;
     },
     selectClient: (state, action) => {
       state.selectClient = action.payload;

@@ -4,11 +4,19 @@ import { getClients, showForm, selectClient } from '../../redux/globalSlice';
 import Form from '../SubmitForm/Form';
 import { Button } from '../StyledComponents/SideBar';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const InstanceBar = () => {
-  useEffect(() => {});
   const dispatch = useDispatch();
   const params = useParams();
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/connection', {})
+      .then((res) => dispatch(getClients(res.data)))
+      .catch((err) => console.log(err));
+  }, []);
+
   console.log(params);
 
   const instances = useSelector((state) => state.global.clients);

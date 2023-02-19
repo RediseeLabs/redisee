@@ -32,7 +32,7 @@ function Form() {
       })
       //Need change this function
       // .then((res) => dispatch(getClients(res.data)))
-      .then((res) => console.log(res.data))
+      .then((res) => dispatch(getClients(res.data)))
       .catch((err) => console.log(err));
     // axios
     //   .get('http://localhost:3000/connection', {})

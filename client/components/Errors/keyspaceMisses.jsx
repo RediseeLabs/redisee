@@ -1,54 +1,44 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
+import { useSelector, useDispatch } from 'react-redux';
+import { GraphBox } from '../StyledComponents/GraphGrid';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
 
-const KeyspaceMisses = (props) => {
-  console.log('keyspace loading')
+export default function KeyspaceMisses() {
+  console.log('keyspace loading');
 
-  const keyspaceMisses = useSelector(
-    (state) => 
-   state.error.keyspaceMisses
+  const keyspaceMisses = useSelector((state) => state.error.keyspace_missed);
 
-  );
-
-  //console.log('KeyspaceMisses', keyspaceMisses)
-
-
-
+  console.log(`KEYSPACEMISSES: ${keyspaceMisses[0]}`);
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <AreaChart
+    <GraphBox>
+      <h3>Keyspace Misses</h3>
+      <LineChart
         width={500}
-        height={400}
+        height={300}
         data={keyspaceMisses}
         margin={{
-          top: 10,
+          top: 5,
           right: 30,
-          left: 0,
-          bottom: 0,
+          left: 20,
+          bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" />
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='time' />
         <YAxis />
         <Tooltip />
-        <Area 
-          type="monotone" 
-          dataKey="uv" 
-          stroke="#8884d8" 
-          fill="#8884d8" />
-        </AreaChart>
-    </ResponsiveContainer>
+        <Legend />
+
+        <Line type='monotone' dataKey='keyspace_misses' stroke='#82ca9d' />
+      </LineChart>
+    </GraphBox>
   );
 }
-
-export default KeyspaceMisses;

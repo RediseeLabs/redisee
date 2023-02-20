@@ -8,12 +8,13 @@ import LoadingGraphPage from '../LoadingGraphPage';
 
 const PersistencePage = () => {
   const dispatch = useDispatch();
-
   const loading = useSelector((state) => state.persistence.loading);
+  const selectClient = useSelector((state) => state.global.selectClient);
 
+  const api = `http://localhost:3000/${selectClient}/persistence`;
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(fectchPersistence());
+      dispatch(fectchPersistence(api));
     }, 1000);
     return () => clearInterval(interval);
   }, []);

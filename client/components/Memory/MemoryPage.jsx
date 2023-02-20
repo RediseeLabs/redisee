@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from '../../redux/memorySlice';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import LoadingGraphPage from '../LoadingGraphPage';
-import { startLoading } from '../../redux/memorySlice';
 
 const MemoryPage = (props) => {
   const dispatch = useDispatch();

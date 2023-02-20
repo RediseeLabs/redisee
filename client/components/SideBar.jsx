@@ -30,19 +30,19 @@ const SideBar = () => {
         <PerfIcon />
         Memory
       </Button>
-      <Button to='/Performance'>
+      <Button to={`/Performance/${selectClient}`}>
         <MemoryIcon />
         Performance
       </Button>
-      <Button to='/Persistence'>
+      <Button to={`/Persistence/${selectClient}`}>
         <PersistenceIcon />
         Persistence
       </Button>
-      <Button to='/BasicActivities'>
+      <Button to={`/BasicActivities/${selectClient}`}>
         <BasicIcon />
         Basic activities
       </Button>
-      <Button to='/Errors'>
+      <Button to={`/Error/${selectClient}`}>
         <ErrorIcon />
         Errors
       </Button>

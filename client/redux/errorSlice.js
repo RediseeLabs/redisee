@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fillGraph } from "../helperFunctions";
-import axios from "axios";
+import { createSlice } from '@reduxjs/toolkit';
+import { fillGraph } from '../helperFunctions';
+import axios from 'axios';
 
 const initialState = {
   loading: true,
@@ -8,21 +8,28 @@ const initialState = {
   keyspace_missed: Array(15).fill({}),
 };
 
-export const errorFetch = () => (dispatch, getState) => {
-  if (JSON.stringify(getState().error.rejected_connections[0]) === "{}") {
+let cache;
+
+export const errorFetch = (api) => (dispatch, getState) => {
+  if (api !== cache) {
+    dispatch(errorSlice.actions.clearState());
+  }
+  if (JSON.stringify(getState().error.rejected_connections[0]) === '{}') {
     dispatch(errorSlice.actions.startLoading());
   }
   axios
-    .get("http://localhost:3000/error")
+    .get(api)
     .then((res) => res.data)
     .then((data) => {
+      console.log(data);
       dispatch(errorSlice.actions.addToGraph(data));
       dispatch(errorSlice.actions.stopLoading());
     });
+  cache = api;
 };
 
 const errorSlice = createSlice({
-  name: "error",
+  name: 'error',
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -33,15 +40,22 @@ const errorSlice = createSlice({
     },
     addToGraph: (state, action) => {
       fillGraph(
-        state.latency,
-        "latency",
-        action.payload.latency,
-        "Live_Redis_latency"
+        state.rejected_connections,
+        'Reject',
+        action.payload.rejectedConnection,
+        'rejected_connections'
       );
-      fillGraph(state.iops, "iops", action.payload.iops, "iops");
-      state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
-      state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
-      state.ratio = `${Number(action.payload.hitRate.ratio).toFixed(3)}%`;
+      fillGraph(
+        state.keyspace_missed,
+        'miss',
+        action.payload.keyspaceMisses,
+        'keyspace_misses'
+      );
+    },
+    clearState: (state, action) => {
+      state.loading = true;
+      state.rejected_connections = Array(15).fill({});
+      state.keyspace_missed = Array(15).fill({});
     },
   },
 });

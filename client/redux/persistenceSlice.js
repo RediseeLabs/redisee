@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { fillGraph } from "../helperFunctions";
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { fillGraph } from '../helperFunctions';
 
 const initialState = {
   loading: true,
@@ -8,21 +8,27 @@ const initialState = {
   rcslt: Array(15).fill({}),
 };
 
-export const fectchPersistence = () => (dispatch, getState) => {
-  if (JSON.stringify(getState().persistence.rlst[0]) === "{}") {
+let cache;
+
+export const fectchPersistence = (api) => (dispatch, getState) => {
+  if (api !== cache) {
+    dispatch(persistenceSlice.actions.clearState());
+  }
+  if (JSON.stringify(getState().persistence.rlst[0]) === '{}') {
     dispatch(persistenceSlice.actions.startLoading());
   }
   axios
-    .get("http://localhost:3000/persistence")
+    .get(api)
     .then((res) => res.data)
     .then((data) => {
       dispatch(persistenceSlice.actions.addToGraph(data));
       dispatch(persistenceSlice.actions.stopLoading());
     });
+  cache = api;
 };
 
 const persistenceSlice = createSlice({
-  name: "persistence",
+  name: 'persistence',
   initialState: initialState,
   reducers: {
     startLoading: (state, action) => {
@@ -32,8 +38,13 @@ const persistenceSlice = createSlice({
       state.loading = false;
     },
     addToGraph: (state, action) => {
-      fillGraph(state.rlst, "rlst", action.payload.rlst, "rlst");
-      fillGraph(state.rcslt, "rcslt", action.payload.rcslt, "rcslt");
+      fillGraph(state.rlst, 'rlst', action.payload.rlst, 'rlst');
+      fillGraph(state.rcslt, 'rcslt', action.payload.rcslt, 'rcslt');
+    },
+    clearState: (state, action) => {
+      state.loading = true;
+      state.rlst = Array(15).fill({});
+      state.rcslt = Array(15).fill({});
     },
   },
 });

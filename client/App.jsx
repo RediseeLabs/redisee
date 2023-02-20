@@ -15,11 +15,14 @@ const App = (props) => {
       <SideBar />
       {/* <Form /> */}
       <Routes>
-        <Route path='/BasicActivities' element={<ActivitiesPage />} />
-        <Route path='/Errors' element={<ErrorsPage />} />
-        <Route path='/Memory' element={<MemoryPage />} />
-        <Route path='/Performance' element={<PerformancePage />} />
-        <Route path='/Persistence' element={<PersistencePage />} />
+        <Route
+          path='/BasicActivities/:redisName'
+          element={<ActivitiesPage />}
+        />
+        <Route path='/Error/:redisName' element={<ErrorsPage />} />
+        <Route path='/Memory/:redisName' element={<MemoryPage />} />
+        <Route path='/Performance/:redisName' element={<PerformancePage />} />
+        <Route path='/Persistence/:redisName' element={<PersistencePage />} />
         <Route path='/:instanceName' />
       </Routes>
     </div>

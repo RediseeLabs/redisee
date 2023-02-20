@@ -11,10 +11,12 @@ const PerformancePage = () => {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.performance.loading);
+  const selectClient = useSelector((state) => state.global.selectClient);
 
+  const api = `http://localhost:3000/${selectClient}/performance`;
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(fetchPerformanceData());
+      dispatch(fetchPerformanceData(api));
     }, 1000);
     return () => clearInterval(interval);
   }, []);

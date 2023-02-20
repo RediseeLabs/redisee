@@ -13,8 +13,11 @@ import {
 } from './StyledComponents/SideBar';
 import logo from './StyledComponents/logo.png';
 import InstanceBar from './InstanceBar/InstanceBar';
+import { useSelector } from 'react-redux';
 
 const SideBar = () => {
+  const selectClient = useSelector((state) => state.global.selectClient);
+
   return (
     <Menu>
       <Logo style={{ display: 'flex' }}>
@@ -23,7 +26,7 @@ const SideBar = () => {
       </Logo>
       <InstanceBar />
       <SecondaryText>Analytics :</SecondaryText>
-      <Button to='/Memory'>
+      <Button to={`/Memory/${selectClient}`}>
         <PerfIcon />
         Memory
       </Button>

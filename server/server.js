@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dataRouter = require('./Routers/dataRouter.js');
-const connectionRouter = require('./Routers/connectionRouter.js')
+const connectionRouter = require('./Routers/connectionRouter.js');
 // import router here
 
 const app = express();

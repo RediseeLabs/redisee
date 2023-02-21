@@ -12,32 +12,37 @@ import {
   ClusterIcon,
 } from './StyledComponents/SideBar';
 import logo from './StyledComponents/logo.png';
+import InstanceBar from './InstanceBar/InstanceBar';
+import { useSelector } from 'react-redux';
 
 const SideBar = () => {
+  const selectClient = useSelector((state) => state.global.selectClient);
+
   return (
     <Menu>
       <Logo style={{ display: 'flex' }}>
         <img src={logo} />
         <h1>RediSee</h1>
       </Logo>
+      <InstanceBar />
       <SecondaryText>Analytics :</SecondaryText>
-      <Button to='/memory'>
+      <Button to={`/Memory/${selectClient}`}>
         <PerfIcon />
         Memory
       </Button>
-      <Button to='/performance'>
+      <Button to={`/Performance/${selectClient}`}>
         <MemoryIcon />
         Performance
       </Button>
-      <Button to='/persistence'>
+      <Button to={`/Persistence/${selectClient}`}>
         <PersistenceIcon />
         Persistence
       </Button>
-      <Button to='/BasicActivities'>
+      <Button to={`/BasicActivities/${selectClient}`}>
         <BasicIcon />
         Basic activities
       </Button>
-      <Button to='/Errors'>
+      <Button to={`/Error/${selectClient}`}>
         <ErrorIcon />
         Errors
       </Button>

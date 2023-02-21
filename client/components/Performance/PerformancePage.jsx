@@ -5,28 +5,33 @@ import Latency from './Latency';
 import Iops from './Iops';
 import HitRate from './HitRate';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
-import LoadingGraphPage from "../LoadingGraphPage";
+import LoadingGraphPage from '../LoadingGraphPage';
 
 const PerformancePage = () => {
   const dispatch = useDispatch();
 
-  const loading = useSelector (state => state.performance.loading);
+  const loading = useSelector((state) => state.performance.loading);
+  const selectClient = useSelector((state) => state.global.selectClient);
 
+  const api = `http://localhost:3000/${selectClient}/performance`;
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(fetchPerformanceData());
+      dispatch(fetchPerformanceData(api));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <>
-      {loading ? <LoadingGraphPage /> :
-      <GraphGrid>
-        <Latency />
-        <Iops />
-        <HitRate />
-      </GraphGrid>}
+      {loading ? (
+        <LoadingGraphPage />
+      ) : (
+        <GraphGrid>
+          <Latency />
+          <Iops />
+          <HitRate />
+        </GraphGrid>
+      )}
     </>
   );
 };

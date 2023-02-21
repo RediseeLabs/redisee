@@ -1,52 +1,42 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { GraphBox } from "../StyledComponents/GraphGrid";
-import { 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  ResponsiveContainer 
+import { useSelector, useDispatch } from 'react-redux';
+import { GraphBox } from '../StyledComponents/GraphGrid';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
 } from 'recharts';
 
-export default function RejectedConnections () {
+export default function RejectedConnections() {
   const rejectedConnections = useSelector(
-    (state) => state.error.rejectedConnection
+    (state) => state.error.rejected_connections
   );
   return (
     <GraphBox>
       <h3>Rejected Connections</h3>
-      <ResponsiveContainer width="90%" height={300}>
-        <AreaChart
-          width={730}
-          height={250}
-          data={rejectedConnections}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <XAxis dataKey="time" />
-          <YAxis />
-          <Tooltip />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Area 
-            type="monotone" 
-            dataKey="uv" 
-            stroke="#8884d8" 
-            fillOpacity={1}
-            fill="#8884d8" 
-            />
-          </AreaChart>
-      </ResponsiveContainer>
+      <LineChart
+        width={500}
+        height={300}
+        data={rejectedConnections}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='time' />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+
+        <Line type='monotone' dataKey='rejected_connections' stroke='#82ca9d' />
+      </LineChart>
     </GraphBox>
-    );
-  }
-
-
-
+  );
+}

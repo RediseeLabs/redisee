@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
+import { getClients } from '../../redux/globalSlice';
+import axios from 'axios';
 
 function Form() {
-  const [userName, typeUserName] = useState('');
-  const [password, typePassword] = useState('');
+  const [redisName, typeRedisName] = useState('');
   const [port, typePort] = useState('');
   const [host, typeHost] = useState('');
+  console.log(redisName + port + host);
+  const dispatch = useDispatch();
 
-  const userNameChange = (e) => {
-    typeUserName(e.target.value);
-  };
-  const passwordChange = (e) => {
-    typePassword(e.target.value);
+  const redisNameChange = (e) => {
+    typeRedisName(e.target.value);
   };
   const portChange = (e) => {
     typePort(e.target.value);
@@ -22,41 +23,38 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetch('http://localhost:3000', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+    console.log('hanled');
+    axios
+      .post('http://localhost:3000/connection', {
         redisName,
-        password,
         port,
         host,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('data came back');
       })
+      //Need change this function
+      // .then((res) => dispatch(getClients(res.data)))
+      .then((res) => dispatch(getClients(res.data)))
       .catch((err) => console.log(err));
-    typeUserName('');
-    typePassword('');
+    // axios
+    //   .get('http://localhost:3000/connection', {})
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
+
+    typeRedisName('');
     typePort('');
     typeHost('');
   };
   return (
-    <div className="form">
+    <div className='form'>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <label>userName:</label>
+        <label>Redis Name:</label>
         <br />
         <input
-          type="text"
-          value={userName}
+          type='text'
+          value={redisName}
           required
           onChange={(e) => {
             redisNameChange(e);
@@ -64,22 +62,10 @@ function Form() {
         />
         <br />
 
-        <label>password:</label>
-        <br />
-        <input
-          type="text"
-          value={password}
-          required
-          onChange={(e) => {
-            passwordChange(e);
-          }}
-        />
-        <br />
-
         <label>port:</label>
         <br />
         <input
-          type="number"
+          type='number'
           value={port}
           required
           onChange={(e) => {
@@ -91,7 +77,7 @@ function Form() {
         <label>host:</label>
         <br />
         <input
-          type="text"
+          type='text'
           value={host}
           required
           onChange={(e) => {
@@ -100,7 +86,7 @@ function Form() {
         />
         <br />
 
-        <input type="submit" value="Submit" />
+        <input type='submit' value='Submit' />
       </form>
     </div>
   );

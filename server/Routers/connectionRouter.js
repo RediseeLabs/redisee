@@ -15,8 +15,20 @@ connectionRouter.get('/', connectionMiddleware.getInstances, (req, res) => {
   res.status(200).json(res.locals.instancesArr);
 });
 
-connectionRouter.delete('/', connectionMiddleware.disconnect, (req, res) => {
-  res.status(200).json(`deleted ${req.body.redisName}`);
-});
+connectionRouter.delete(
+  '/:redisName',
+  connectionMiddleware.disconnect,
+  (req, res) => {
+    res.status(200).json();
+  }
+);
+
+// connectionRouter.delete(
+//   '/clearAll',
+//   connectionMiddleware.disconnectAll,
+//   (req, res) => {
+//     res.status(200).json('deleted all instances');
+//   }
+// );
 
 module.exports = connectionRouter;

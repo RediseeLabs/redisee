@@ -8,7 +8,7 @@ import {
   fetchClients,
 } from '../../redux/globalSlice';
 import Form from '../SubmitForm/Form';
-import { Button } from '../StyledComponents/SideBar';
+import { Button, MiniButton } from '../StyledComponents/SideBar';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -35,28 +35,25 @@ const InstanceBar = () => {
 
   for (let i = 0; i < instances.length; i++) {
     allInstance.push(
-      // <div id={i} key={i}>
-      //   {instances[i]}
-      // </div>
-      <>
+      <div style={{ display: 'flex' }}>
         <Button
           to={`/${instances[i]}`}
-          key={'k' + instances[i]}
+          key={'instance' + instances[i]}
           onClick={() => {
             dispatch(selectClient(instances[i]));
           }}
         >
           {instances[i]}
         </Button>
-        <Button
-          key={instances[i]}
+        <MiniButton
+          key={'button' + instances[i]}
           onClick={() => {
             dispatch(deleteOne(instances[i]));
           }}
         >
-          -
-        </Button>
-      </>
+          delete
+        </MiniButton>
+      </div>
     );
   }
 

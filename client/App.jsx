@@ -8,6 +8,7 @@ import PerformancePage from './components/Performance/PerformancePage';
 import PersistencePage from './components/Persistence/PersistencePage';
 import Form from './components/SubmitForm/Form';
 import InstanceBar from './components/InstanceBar/InstanceBar';
+import { ThemeButton, SunIcon } from './components/StyledComponents/SideBar';
 
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './components/Darkmode/GlobalStyle';
@@ -24,7 +25,10 @@ const App = (props) => {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
         <GlobalStyle />
-        <button onClick={themeToggle}>Light/Dark</button>
+        <ThemeButton onClick={themeToggle}>
+          <SunIcon />
+          Light/Dark
+        </ThemeButton>
         <div style={{ display: 'flex' }}>
           <SideBar />
           <Routes>

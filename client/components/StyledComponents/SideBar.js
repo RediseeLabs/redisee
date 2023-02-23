@@ -7,6 +7,7 @@ import {
   UilExclamationOctagon,
   UilShareAlt,
   UilBracketsCurly,
+  UilSun,
 } from '@iconscout/react-unicons';
 
 import {
@@ -75,6 +76,15 @@ export const Button = styled(Link)`
   }
 `;
 
+export const ThemeButton = styled.button`
+  border-radius: 15px 8px;
+  padding: 10px;
+  font-size: 1em;
+  font
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+`;
+
 export const MiniButton = styled(Link)`
   display: flex;
   align-items: center;
@@ -101,6 +111,10 @@ export const MiniButton = styled(Link)`
 `;
 
 export const Title = styled.h1``;
+
+export const SunIcon = styled(UilSun)`
+  margin-right: 15px;
+`;
 
 export const PerfIcon = styled(UilTachometerFast)`
   margin-right: 15px;

@@ -80,9 +80,7 @@ export const ThemeButton = styled.button`
   border-radius: 15px 8px;
   padding: 10px;
   font-size: 1em;
-  font
   background-color: rgba(0, 0, 0, 0);
-  text-decoration: none;
 `;
 
 export const MiniButton = styled(Link)`

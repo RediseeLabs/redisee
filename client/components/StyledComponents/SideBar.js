@@ -14,6 +14,8 @@ import {
   secondaryBlue,
   primaryGrey,
   secondaryGrey,
+  primaryRed,
+  secondaryRed,
 } from './variables';
 
 export const Menu = styled.div`
@@ -87,12 +89,13 @@ export const MiniButton = styled(Link)`
   color: ${primaryGrey};
   font-weight: 500;
   text-decoration: none;
+  // background-color: ${primaryRed}
   &:hover {
-    background-color: ${secondaryBlue};
-    color: ${primaryBlue};
+    background-color: ${primaryRed};
+    color: white;
   }
   &:active {
-    background-color: ${primaryBlue};
+    background-color: ${secondaryRed};
     color: white;
   }
 `;

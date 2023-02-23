@@ -18,11 +18,19 @@ export const fetchClients = () => (dispatch, getState) => {
 
 export const deleteOne = (value) => (dispatch, getState) => {
   console.log(value);
-  axios.delete(`http://localhost:3000/connection/${value}`).then((res) => {
-    //get updated clients back and update clients in globalSlice
-    // dispatch(globalSlice.actions.getClients());
-    console.log('Delete hit here');
-    dispatch(globalSlice.actions.deleteOne(value));
+  axios
+    .delete(`http://localhost:3000/connection/deleteOne/${value}`)
+    .then((res) => {
+      //get updated clients back and update clients in globalSlice
+      // dispatch(globalSlice.actions.getClients());
+      console.log('Delete hit here');
+      dispatch(globalSlice.actions.deleteOne(value));
+    });
+};
+
+export const deleteMany = (value) => (dispatch, getState) => {
+  axios.delete(`http://localhost:3000/connection/deleteMany`).then((res) => {
+    console.log(res.data);
   });
 };
 

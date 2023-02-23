@@ -25,6 +25,7 @@ module.exports = {
         }
       }
     );
+
     next();
   },
   getInstances: (req, res, next) => {
@@ -42,7 +43,7 @@ module.exports = {
     );
   },
 
-  disconnect: (req, res, next) => {
+  disconnectOne: (req, res, next) => {
     const { redisName } = req.params;
     fs.unlink(
       path.resolve(__dirname, `../redisClients/${redisName}.js`),
@@ -59,8 +60,7 @@ module.exports = {
       next();
   },
 
-  disconnectAll: (req, res, next) => {
-    console.log('his clearAll in middleware');
+  disconnectMany: (req, res, next) => {
     fs.readdir(path.resolve(__dirname, '../redisClients'), (err, files) => {
       if (err) {
         next({
@@ -69,12 +69,11 @@ module.exports = {
           message: { err },
         });
       }
-      for (const file of files) {
+      console.log(files);
+      for (let file of files) {
         fs.unlink(
-          path.join(path.resolve(__dirname, '../redisClients'), file),
-          file
-        ),
-          (err) => {
+          path.resolve(__dirname, `../redisClients/${file}`),
+          function (err) {
             if (err) {
               next({
                 log: 'error while deleting file in connectionMiddleware',
@@ -82,7 +81,8 @@ module.exports = {
                 message: { err },
               });
             }
-          };
+          }
+        );
       }
     });
 

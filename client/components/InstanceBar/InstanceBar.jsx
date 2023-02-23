@@ -5,6 +5,7 @@ import {
   showForm,
   selectClient,
   deleteOne,
+  deleteMany,
   fetchClients,
 } from '../../redux/globalSlice';
 import Form from '../SubmitForm/Form';
@@ -25,13 +26,6 @@ const InstanceBar = () => {
   const selectInstance = useSelector((state) => state.global.selectedClient);
 
   let allInstance = [];
-
-  // function handleClearAll() {
-  //   console.log('Clicked workded');
-  //   axios
-  //     .delete('http://localhost:3000/clearAll/clearAll', {})
-  //     .then((res) => console.log(res.data));
-  // }
 
   for (let i = 0; i < instances.length; i++) {
     allInstance.push(
@@ -65,7 +59,7 @@ const InstanceBar = () => {
       {show ? <Form /> : null}
       <button
         onClick={() => {
-          handleClearAll();
+          dispatch(deleteMany());
         }}
       >
         Clear All

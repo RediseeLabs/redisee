@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import {
   UilTachometerFast,
   UilDatabase,
@@ -7,14 +7,14 @@ import {
   UilExclamationOctagon,
   UilShareAlt,
   UilBracketsCurly,
-} from "@iconscout/react-unicons";
+} from '@iconscout/react-unicons';
 
 import {
   primaryBlue,
   secondaryBlue,
   primaryGrey,
   secondaryGrey,
-} from "./variables";
+} from './variables';
 
 export const Menu = styled.div`
   padding: 20px 15px;
@@ -56,7 +56,27 @@ export const Logo = styled.div`
 export const Button = styled(Link)`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 80%;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 1.1em;
+  color: ${primaryGrey};
+  font-weight: 500;
+  text-decoration: none;
+  &:hover {
+    background-color: ${secondaryBlue};
+    color: ${primaryBlue};
+  }
+  &:active {
+    background-color: ${primaryBlue};
+    color: white;
+  }
+`;
+
+export const MiniButton = styled(Link)`
+  display: flex;
+  align-items: center;
+  width: 10%;
   border-radius: 10px;
   padding: 12px;
   font-size: 1.1em;

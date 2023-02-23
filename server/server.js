@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 //app.use("/", );
 app.use('/', dataRouter);
 app.use('/connection', connectionRouter);
+// app.use('/clearAll', connectionRouter);
 
 app.use('*', (req, res) => {
   res.status(500).json('Wrong route');

@@ -31,6 +31,7 @@ export const deleteOne = (value) => (dispatch, getState) => {
 export const deleteMany = (value) => (dispatch, getState) => {
   axios.delete(`http://localhost:3000/connection/deleteMany`).then((res) => {
     console.log(res.data);
+    dispatch(globalSlice.actions.deleteMany());
   });
 };
 
@@ -60,6 +61,9 @@ const globalSlice = createSlice({
       state.clients = state.clients.filter(
         (client) => client !== action.payload
       );
+    },
+    deleteMany: (state, action) => {
+      state.clients = [];
     },
   },
 });

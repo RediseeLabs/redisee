@@ -56,7 +56,7 @@ export const Logo = styled.div`
 export const Button = styled(Link)`
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 70%;
   border-radius: 10px;
   padding: 12px;
   font-size: 1.1em;
@@ -76,9 +76,13 @@ export const Button = styled(Link)`
 export const MiniButton = styled(Link)`
   display: flex;
   align-items: center;
-  width: 10%;
+  text-align: center;
+  width: 22%;
   border-radius: 10px;
-  padding: 12px;
+  border-style: solid;
+  border-color: gray;
+  border-width: thick;
+  padding: 15px;
   font-size: 1.1em;
   color: ${primaryGrey};
   font-weight: 500;

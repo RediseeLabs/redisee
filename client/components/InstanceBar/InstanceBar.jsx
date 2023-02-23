@@ -51,7 +51,7 @@ const InstanceBar = () => {
             dispatch(deleteOne(instances[i]));
           }}
         >
-          -
+          delete
         </MiniButton>
       </div>
     );

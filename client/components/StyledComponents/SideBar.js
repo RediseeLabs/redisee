@@ -77,10 +77,18 @@ export const Button = styled(Link)`
 `;
 
 export const ThemeButton = styled.button`
+  align-items: center;
   border-radius: 15px 8px;
   padding: 10px;
   font-size: 1em;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ${(props) => {
+    return props.theme === 'light' ? 'black' : 'white';
+  }};
+  &:active {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+  }
 `;
 
 export const MiniButton = styled(Link)`

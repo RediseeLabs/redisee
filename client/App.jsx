@@ -6,9 +6,6 @@ import ErrorsPage from './components/Errors/ErrorsPage';
 import MemoryPage from './components/Memory/MemoryPage';
 import PerformancePage from './components/Performance/PerformancePage';
 import PersistencePage from './components/Persistence/PersistencePage';
-import Form from './components/SubmitForm/Form';
-import InstanceBar from './components/InstanceBar/InstanceBar';
-import { ThemeButton, SunIcon } from './components/StyledComponents/SideBar';
 
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './components/Darkmode/GlobalStyle';
@@ -20,36 +17,23 @@ const App = (props) => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
 
-  console.log(theme);
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <>
+      <div>
         <GlobalStyle />
-        <ThemeButton onClick={themeToggle}>
-          <SunIcon />
-          Light/Dark
-        </ThemeButton>
-        <div style={{ display: 'flex' }}>
-          <SideBar />
-          <Routes>
-            <Route
-              path='/BasicActivities/:redisName'
-              element={<ActivitiesPage />}
-            />
-            <Route path='/Error/:redisName' element={<ErrorsPage />} />
-            <Route path='/Memory/:redisName' element={<MemoryPage />} />
-            <Route
-              path='/Performance/:redisName'
-              element={<PerformancePage />}
-            />
-            <Route
-              path='/Persistence/:redisName'
-              element={<PersistencePage />}
-            />
-            <Route path='/:instanceName' />
-          </Routes>
-        </div>
-      </>
+        <SideBar themeToggle={themeToggle} theme={theme} />
+        <Routes>
+          <Route
+            path='/BasicActivities/:redisName'
+            element={<ActivitiesPage />}
+          />
+          <Route path='/Error/:redisName' element={<ErrorsPage />} />
+          <Route path='/Memory/:redisName' element={<MemoryPage />} />
+          <Route path='/Performance/:redisName' element={<PerformancePage />} />
+          <Route path='/Persistence/:redisName' element={<PersistencePage />} />
+          <Route path='/:instanceName' />
+        </Routes>
+      </div>
     </ThemeProvider>
   );
 };

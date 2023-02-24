@@ -10,12 +10,14 @@ import {
   Logo,
   SecondaryText,
   ClusterIcon,
+  ThemeButton,
+  SunIcon,
 } from './StyledComponents/SideBar';
 import logo from './StyledComponents/logo.png';
 import InstanceBar from './InstanceBar/InstanceBar';
 import { useSelector } from 'react-redux';
 
-const SideBar = () => {
+const SideBar = (props) => {
   const selectClient = useSelector((state) => state.global.selectClient);
 
   return (
@@ -24,6 +26,10 @@ const SideBar = () => {
         <img src={logo} />
         <h1>RediSee</h1>
       </Logo>
+      <ThemeButton onClick={props.themeToggle} theme={props.theme}>
+        <SunIcon />
+        Light/Dark
+      </ThemeButton>
       <InstanceBar />
       <SecondaryText>Analytics :</SecondaryText>
       <Button to={`/Memory/${selectClient}`}>

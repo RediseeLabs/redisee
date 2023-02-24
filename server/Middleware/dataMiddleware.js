@@ -26,7 +26,6 @@ module.exports = {
       })
       .then((data) => {
         const performance = {};
-        console.log(data);
         performance.latency = Number(latency);
         performance.iops = Number(data.instantaneous_ops_per_sec);
         performance.hitRate = {};
@@ -45,7 +44,6 @@ module.exports = {
 
   memory: (req, res, next) => {
     const { redisName } = req.params;
-    console.log('Server hearing on instance:' + redisName);
     const redisClient = require(`../redisClients/${redisName}.js`);
     redisClient
       .info()
@@ -61,7 +59,6 @@ module.exports = {
         //Evicted_keys is part of 'info stats' instead of memory
         memory.evictedKeys = Number(data.evicted_keys);
         memory.evictedKeys = Number(data.evicted_keys);
-        console.log(memory);
         res.locals.memory = memory;
         return next();
       });

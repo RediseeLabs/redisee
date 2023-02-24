@@ -1,32 +1,44 @@
 const fs = require('fs');
 const path = require('path');
+const redis = require('redis');
 const createFileContent = (host, port) => {
   return `var redis = require("redis"),
   client = redis.createClient('${port}', '${host}');
   client.connect()
 module.exports = client;`;
 };
+
 module.exports = {
-  connect: (req, res, next) => {
+  connect: async (req, res, next) => {
     const { redisName, port, host } = req.body;
-    //need to add logic to check if redis instance with passed-in port and host is available
-    res.locals.redisName = redisName;
 
-    fs.writeFileSync(
-      path.resolve(__dirname, `../redisClients/${redisName}.js`),
-      createFileContent(host, port),
-      function (err) {
-        if (err) {
-          next({
-            log: 'error while creating file in connectionMiddleware',
-            status: 500,
-            message: { err },
-          });
+    try {
+      const Client = await redis.createClient({
+        socket: {
+          host: host,
+          port: port,
+        },
+        // enable_offline_queue: false,
+      });
+      await Client.connect();
+
+      fs.writeFileSync(
+        path.resolve(__dirname, `../redisClients/${redisName}.js`),
+        createFileContent(host, port),
+        function (err) {
+          throw 'error while creating file';
         }
-      }
-    );
+      );
 
-    next();
+      res.locals.redisName = redisName;
+      next();
+    } catch (err) {
+      next({
+        log: 'Error when validate redis instance in connection Middleware',
+        status: 500,
+        message: { err: err },
+      });
+    }
   },
   getInstances: (req, res, next) => {
     fs.readdir(
@@ -69,7 +81,6 @@ module.exports = {
           message: { err },
         });
       }
-      console.log(files);
       for (let file of files) {
         fs.unlink(
           path.resolve(__dirname, `../redisClients/${file}`),

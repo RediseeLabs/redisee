@@ -14,7 +14,6 @@ import { Button } from './GlobalStyle';
 import { primaryBlue } from './variables';
 
 export const Menu = styled.div`
-  overflow: scroll;
   padding: 20px 15px;
   position: fixed;
   margin-right: 50px;
@@ -24,6 +23,12 @@ export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.12);
+  padding-bottom: 50px;
+  .wrapper {
+    overflow: scroll;
+    height: 100%;
+    margin-bottom: 40px;
+  }
 `;
 
 export const SecondaryText = styled.h2`
@@ -94,11 +99,12 @@ export const ClearAllButton = styled(Button)`
 
 export const DarkModeToggler = styled.div`
   position: relative;
+  margin-left: 12px;
   width: 59px;
   left: 10px;
   label {
     position: absolute;
-    width: 100%;
+    width: 59px;
     height: 30px;
     background-color: #28292c;
     border-radius: 50px;
@@ -131,7 +137,7 @@ export const DarkModeToggler = styled.div`
 
     .slider {
       position: absolute;
-      width: 100%;
+      width: 59px;
       height: 100%;
       border-radius: 50px;
       transition: 0.3s;

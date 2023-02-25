@@ -6,6 +6,7 @@ const initialState = {
   selectClient: '',
   loading: true,
   showForm: false,
+  theme: 'light',
 };
 export const fetchClients = () => (dispatch, getState) => {
   axios
@@ -21,9 +22,6 @@ export const deleteOne = (value) => (dispatch, getState) => {
   axios
     .delete(`http://localhost:3000/connection/deleteOne/${value}`)
     .then((res) => {
-      //get updated clients back and update clients in globalSlice
-      // dispatch(globalSlice.actions.getClients());
-      console.log('Delete hit here');
       dispatch(globalSlice.actions.deleteOne(value));
     });
 };
@@ -62,6 +60,11 @@ const globalSlice = createSlice({
         (client) => client !== action.payload
       );
     },
+    themeToggle: (state, action) => {
+      state.theme === 'light'
+        ? (state.theme = 'dark')
+        : (state.theme = 'light');
+    },
     deleteMany: (state, action) => {
       state.clients = [];
     },
@@ -75,6 +78,7 @@ export const {
   selectClient,
   showForm,
   closeForm,
+  themeToggle,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

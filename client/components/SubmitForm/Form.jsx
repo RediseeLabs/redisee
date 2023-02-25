@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { getClients } from '../../redux/globalSlice';
+import { FormModal } from '../StyledComponents/SideBar';
 import axios from 'axios';
 
 function Form() {
@@ -44,7 +45,7 @@ function Form() {
     typeHost('');
   };
   return (
-    <div className='form'>
+    <FormModal>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
@@ -53,7 +54,7 @@ function Form() {
         <label>Redis Name:</label>
         <br />
         <input
-          type='text'
+          type="text"
           value={redisName}
           required
           onChange={(e) => {
@@ -65,7 +66,7 @@ function Form() {
         <label>port:</label>
         <br />
         <input
-          type='number'
+          type="number"
           value={port}
           required
           onChange={(e) => {
@@ -77,7 +78,7 @@ function Form() {
         <label>host:</label>
         <br />
         <input
-          type='text'
+          type="text"
           value={host}
           required
           onChange={(e) => {
@@ -86,9 +87,9 @@ function Form() {
         />
         <br />
 
-        <input type='submit' value='Submit' />
+        <input type="submit" value="Submit" />
       </form>
-    </div>
+    </FormModal>
   );
 }
 

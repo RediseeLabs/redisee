@@ -28,34 +28,37 @@ const SideBar = (props) => {
         <img src={theme === 'light' ? logo : logoDark} />
         <h1>RediSee</h1>
       </Logo>
-      <InstanceBar />
-      <SecondaryText>Analytics :</SecondaryText>
-      <Button to={`/Memory/${selectClient}`}>
-        <PerfIcon />
-        Memory
-      </Button>
-      <Button to={`/Performance/${selectClient}`}>
-        <MemoryIcon />
-        Performance
-      </Button>
-      <Button to={`/Persistence/${selectClient}`}>
-        <PersistenceIcon />
-        Persistence
-      </Button>
-      <Button to={`/BasicActivities/${selectClient}`}>
-        <BasicIcon />
-        Basic activities
-      </Button>
-      <Button to={`/Error/${selectClient}`}>
-        <ErrorIcon />
-        Errors
-      </Button>
-      <SecondaryText>Cluster Mode :</SecondaryText>
-      <Button>
-        <ClusterIcon />
-        Cluster
-      </Button>
-      <Toggler />
+      <div className="wrapper">
+        <InstanceBar />
+        <SecondaryText>Analytics :</SecondaryText>
+        <Button to={`/Memory/${selectClient}`}>
+          <PerfIcon />
+          Memory
+        </Button>
+        <Button to={`/Performance/${selectClient}`}>
+          <MemoryIcon />
+          Performance
+        </Button>
+        <Button to={`/Persistence/${selectClient}`}>
+          <PersistenceIcon />
+          Persistence
+        </Button>
+        <Button to={`/BasicActivities/${selectClient}`}>
+          <BasicIcon />
+          Basic activities
+        </Button>
+        <Button to={`/Error/${selectClient}`}>
+          <ErrorIcon />
+          Errors
+        </Button>
+        <SecondaryText>Cluster Mode :</SecondaryText>
+        <Button>
+          <ClusterIcon />
+          Cluster
+        </Button>
+
+        <Toggler />
+      </div>
     </Menu>
   );
 };

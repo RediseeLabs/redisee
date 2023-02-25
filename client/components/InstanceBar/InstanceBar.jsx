@@ -9,7 +9,13 @@ import {
   fetchClients,
 } from '../../redux/globalSlice';
 import Form from '../SubmitForm/Form';
-import { Button, MiniButton } from '../StyledComponents/SideBar';
+import {
+  Button,
+  DeleteButton,
+  DeleteIcon,
+  SecondaryText,
+  AddButton,
+} from '../StyledComponents/SideBar';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -29,7 +35,7 @@ const InstanceBar = () => {
 
   for (let i = 0; i < instances.length; i++) {
     allInstance.push(
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <Button
           to={`/${instances[i]}`}
           key={'instance' + instances[i]}
@@ -39,23 +45,23 @@ const InstanceBar = () => {
         >
           {instances[i]}
         </Button>
-        <MiniButton
+        <DeleteButton
           key={'button' + instances[i]}
           onClick={() => {
             dispatch(deleteOne(instances[i]));
           }}
         >
-          delete
-        </MiniButton>
+          <DeleteIcon />
+        </DeleteButton>
       </div>
     );
   }
 
   return (
     <>
-      <h3>Your Redis Instances</h3>
+      <SecondaryText>My Redis :</SecondaryText>
       {allInstance}
-      <button onClick={() => dispatch(showForm())}>+</button>
+      <AddButton onClick={() => dispatch(showForm())}>+</AddButton>
       {show ? <Form /> : null}
       <button
         onClick={() => {

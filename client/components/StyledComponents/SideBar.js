@@ -8,6 +8,7 @@ import {
   UilShareAlt,
   UilBracketsCurly,
   UilSun,
+  UilMinusCircle,
 } from '@iconscout/react-unicons';
 
 import {
@@ -20,6 +21,7 @@ import {
 } from './variables';
 
 export const Menu = styled.div`
+  overflow: scroll;
   padding: 20px 15px;
   position: fixed;
   margin-right: 50px;
@@ -40,10 +42,10 @@ export const SecondaryText = styled.h2`
 
 export const Logo = styled.div`
   display: flex;
-  width: 100%;
   justify-content: flex-start;
+  width: 100%;
   align-items: center;
-  margin-left: 15px;
+  margin-bottom: 15px;
   h1 {
     font-size: 2em;
     font-weight: 800;
@@ -52,7 +54,7 @@ export const Logo = styled.div`
   img {
     width: 60px;
     object-fit: fill;
-    margin-right: 15px;
+    margin-right: 25px;
   }
 `;
 
@@ -66,6 +68,8 @@ export const Button = styled(Link)`
   color: ${primaryGrey};
   font-weight: 500;
   text-decoration: none;
+  margin: 10px 0;
+  transition: 0.2s ease-out;
   &:hover {
     background-color: ${secondaryBlue};
     color: ${primaryBlue};
@@ -76,17 +80,24 @@ export const Button = styled(Link)`
   }
 `;
 
-export const ThemeButton = styled.button`
+export const DeleteButton = styled(Button)`
+  width: 35px;
+  display: flex;
   align-items: center;
-  border-radius: 15px 8px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: ${(props) => {
-    return props.theme === 'light' ? 'black' : 'white';
-  }};
-  &:active {
-    background-color: rgba(0, 0, 0, 0.3);
+  justify-content: center;
+  &:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+  }
+`;
+
+export const AddButton = styled(Button)`
+  background-color: ${secondaryBlue};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  :hover {
+    background-color: ${primaryBlue};
     color: white;
   }
 `;
@@ -116,6 +127,65 @@ export const MiniButton = styled(Link)`
   }
 `;
 
+export const FormModal = styled.div`
+  width: 30%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+`;
+
+export const DarkModeToggler = styled.div`
+  position: relative;
+  width: 59px;
+  left: 10px;
+  label {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #28292c;
+    border-radius: 50px;
+    cursor: pointer;
+    input {
+      position: absolute;
+      display: none;
+    }
+    input:checked ~ .slider {
+      background-color: #d8dbe0;
+    }
+    .slider::before {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      box-shadow: inset 8px -1px 0px 0px #d8dbe0;
+      background-color: #28292c;
+      transition: 0.3s;
+    }
+
+    input:checked ~ .slider::before {
+      transform: translateX(26px);
+      background-color: ${primaryBlue};
+      box-shadow: none;
+    }
+
+    .slider {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+  }
+`;
+
 export const Title = styled.h1``;
 
 export const SunIcon = styled(UilSun)`
@@ -141,4 +211,12 @@ export const ErrorIcon = styled(UilExclamationOctagon)`
 `;
 export const ClusterIcon = styled(UilShareAlt)`
   margin-right: 15px;
+`;
+
+export const DeleteIcon = styled(UilMinusCircle)`
+  width: 45px;
+  color: #cc0000;
+  &:hover {
+    color: #ff0000;
+  }
 `;

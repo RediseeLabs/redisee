@@ -1,12 +1,15 @@
 export const lightTheme = {
-  body: '#FFF',
-  text: '#363537',
-  toggleBorder: '#FFF',
-  background: '#363537',
+  primary: '#fff',
+  secondary: '#ebf0fe',
+  textPrimary: '#6f759e',
+  textSecondary: '#a7abcf',
+  highlight: '#5174ed',
 };
+
 export const darkTheme = {
-  body: '#363537',
-  text: '#FAFAFA',
-  toggleBorder: '#6B8096',
-  background: '#999',
+  primary: '#1a1c1e',
+  secondary: '#2f3234',
+  textPrimary: '#adb0b6',
+  textSecondary: '#6b6e70',
+  highlight: '#f7f9f9',
 };

@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { GraphBox } from "../StyledComponents/GraphGrid";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { GraphBox } from '../StyledComponents/GraphGrid';
 import {
   AreaChart,
   Area,
@@ -9,7 +9,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
 
 const EvictedKeys = (props) => {
   const evictedKeys = useSelector((state) => state.memory.evicted_keys);
@@ -18,7 +18,7 @@ const EvictedKeys = (props) => {
       <h3>Evicted Keys</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
-          width={730}
+          width={600}
           height={250}
           data={evictedKeys}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}

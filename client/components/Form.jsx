@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import ReactDOM from 'react-dom';
-import { getClients } from '../../redux/globalSlice';
-import { FormModal } from '../StyledComponents/SideBar';
+import { useDispatch } from 'react-redux';
+import { getClients, closeForm } from '../redux/globalSlice';
+import { FormModal, Input, SubmitBtn } from './StyledComponents/Form';
+import { Button } from './StyledComponents/GlobalStyle';
 import axios from 'axios';
 
 function Form() {
   const [redisName, typeRedisName] = useState('');
   const [port, typePort] = useState('');
   const [host, typeHost] = useState('');
-  console.log(redisName + port + host);
   const dispatch = useDispatch();
 
   const redisNameChange = (e) => {
@@ -24,36 +23,30 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('hanled');
     axios
       .post('http://localhost:3000/connection', {
         redisName,
         port,
         host,
       })
-      //Need change this function
-      // .then((res) => dispatch(getClients(res.data)))
       .then((res) => dispatch(getClients(res.data)))
       .catch((err) => console.log(err));
-    // axios
-    //   .get('http://localhost:3000/connection', {})
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => console.log(err));
-
     typeRedisName('');
     typePort('');
     typeHost('');
   };
+
   return (
-    <FormModal>
+    <FormModal onClick={() => dispatch(closeForm())}>
       <form
-        onSubmit={(e) => {
-          handleSubmit(e);
+        onClick={(e) => {
+          e.stopPropagation();
         }}
       >
+        <h2>Connect with your Redis</h2>
         <label>Redis Name:</label>
         <br />
-        <input
+        <Input
           type="text"
           value={redisName}
           required
@@ -63,9 +56,9 @@ function Form() {
         />
         <br />
 
-        <label>port:</label>
+        <label>Port:</label>
         <br />
-        <input
+        <Input
           type="number"
           value={port}
           required
@@ -75,9 +68,9 @@ function Form() {
         />
         <br />
 
-        <label>host:</label>
+        <label>Host:</label>
         <br />
-        <input
+        <Input
           type="text"
           value={host}
           required
@@ -86,8 +79,13 @@ function Form() {
           }}
         />
         <br />
-
-        <input type="submit" value="Submit" />
+        <SubmitBtn
+          onClick={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          Submit
+        </SubmitBtn>
       </form>
     </FormModal>
   );

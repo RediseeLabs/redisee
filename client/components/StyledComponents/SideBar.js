@@ -10,15 +10,8 @@ import {
   UilSun,
   UilMinusCircle,
 } from '@iconscout/react-unicons';
-
-import {
-  primaryBlue,
-  secondaryBlue,
-  primaryGrey,
-  secondaryGrey,
-  primaryRed,
-  secondaryRed,
-} from './variables';
+import { Button } from './GlobalStyle';
+import { primaryBlue } from './variables';
 
 export const Menu = styled.div`
   overflow: scroll;
@@ -35,48 +28,28 @@ export const Menu = styled.div`
 
 export const SecondaryText = styled.h2`
   margin-left: 15px;
-  color: ${secondaryGrey};
+  color: ${({ theme }) => theme.textSecondary};
   font-size: 1em;
   font-weight: 400;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   display: flex;
   justify-content: flex-start;
   width: 100%;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  text-decoration: none;
   h1 {
     font-size: 2em;
     font-weight: 800;
-    color: ${primaryBlue};
+    color: ${({ theme }) => theme.highlight};
   }
   img {
-    width: 60px;
+    width: 50px;
     object-fit: fill;
-    margin-right: 25px;
-  }
-`;
-
-export const Button = styled(Link)`
-  display: flex;
-  align-items: center;
-  width: 70%;
-  border-radius: 10px;
-  padding: 12px;
-  font-size: 1.1em;
-  color: ${primaryGrey};
-  font-weight: 500;
-  text-decoration: none;
-  margin: 10px 0;
-  transition: 0.2s ease-out;
-  &:hover {
-    background-color: ${secondaryBlue};
-    color: ${primaryBlue};
-  }
-  &:active {
-    background-color: ${primaryBlue};
-    color: white;
+    margin-right: 15px;
   }
 `;
 
@@ -85,58 +58,38 @@ export const DeleteButton = styled(Button)`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 5px;
   &:hover {
     background-color: rgba(255, 77, 77, 0.1);
   }
 `;
 
 export const AddButton = styled(Button)`
-  background-color: ${secondaryBlue};
+  background-color: ${({ theme }) => theme.secondary};
   display: flex;
   align-items: center;
   justify-content: center;
   width: 90%;
+  font-size: 1.5em;
+  margin-bottom: 5px;
   :hover {
-    background-color: ${primaryBlue};
-    color: white;
+    background-color: ${({ theme }) => theme.highlight};
+    color: ${({ theme }) => theme.primary};
   }
 `;
-
-export const MiniButton = styled(Link)`
+export const ClearAllButton = styled(Button)`
+  background-color: #cc0000;
+  width: 90%;
+  padding: 6px 12px;
+  color: white;
+  font-size: 0.7em;
+  margin-top: 5px;
   display: flex;
-  align-items: center;
-  text-align: center;
-  width: 22%;
-  border-radius: 10px;
-  border-style: solid;
-  border-color: gray;
-  border-width: thick;
-  padding: 15px;
-  font-size: 1.1em;
-  color: ${primaryGrey};
-  font-weight: 500;
-  text-decoration: none;
-  // background-color: ${primaryRed}
-  &:hover {
-    background-color: ${primaryRed};
-    color: white;
-  }
-  &:active {
-    background-color: ${secondaryRed};
-    color: white;
-  }
-`;
-
-export const FormModal = styled.div`
-  width: 30%;
-  position: fixed;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
+  :hover {
+    background-color: #ff0000;
+    color: white;
+  }
 `;
 
 export const DarkModeToggler = styled.div`

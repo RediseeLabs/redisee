@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Menu,
-  Button,
   PerfIcon,
   MemoryIcon,
   PersistenceIcon,
@@ -10,27 +9,25 @@ import {
   Logo,
   SecondaryText,
   ClusterIcon,
-  ThemeButton,
-  SunIcon,
 } from './StyledComponents/SideBar';
+
+import { Button } from './StyledComponents/GlobalStyle';
 import logo from './StyledComponents/logo.svg';
+import logoDark from './StyledComponents/logoDarkMode.svg';
 import InstanceBar from './InstanceBar/InstanceBar';
 import { useSelector } from 'react-redux';
 import Toggler from './Toggler';
 
 const SideBar = (props) => {
   const selectClient = useSelector((state) => state.global.selectClient);
+  const theme = useSelector((state) => state.global.theme);
 
   return (
     <Menu>
-      <Logo style={{ display: 'flex' }}>
-        <img src={logo} />
+      <Logo to="/">
+        <img src={theme === 'light' ? logo : logoDark} />
         <h1>RediSee</h1>
       </Logo>
-      {/* <ThemeButton onClick={props.themeToggle} theme={props.theme}>
-        <SunIcon />
-        Light/Dark
-      </ThemeButton> */}
       <InstanceBar />
       <SecondaryText>Analytics :</SecondaryText>
       <Button to={`/Memory/${selectClient}`}>

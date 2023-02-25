@@ -53,7 +53,7 @@ const globalSlice = createSlice({
       state.showForm = true;
     },
     closeForm: (state, action) => {
-      showForm = false;
+      state.showForm = false;
     },
     deleteOne: (state, action) => {
       state.clients = state.clients.filter(

@@ -7,8 +7,8 @@ import MemoryPage from './components/Memory/MemoryPage';
 import PerformancePage from './components/Performance/PerformancePage';
 import PersistencePage from './components/Persistence/PersistencePage';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle } from './components/Darkmode/GlobalStyle';
-import { lightTheme, darkTheme } from './components/Darkmode/Themes';
+import { GlobalStyle } from './components/StyledComponents/GlobalStyle';
+import { lightTheme, darkTheme } from './components/StyledComponents/Themes';
 import { useSelector } from 'react-redux';
 
 const App = () => {

@@ -1,23 +1,22 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  getClients,
   showForm,
   selectClient,
   deleteOne,
   deleteMany,
   fetchClients,
 } from '../../redux/globalSlice';
-import Form from '../SubmitForm/Form';
+import Form from '../Form';
 import {
-  Button,
   DeleteButton,
   DeleteIcon,
   SecondaryText,
   AddButton,
+  ClearAllButton,
 } from '../StyledComponents/SideBar';
+import { Button } from '../StyledComponents/GlobalStyle';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 
 const InstanceBar = () => {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const InstanceBar = () => {
 
   const instances = useSelector((state) => state.global.clients);
   const show = useSelector((state) => state.global.showForm);
-  const selectInstance = useSelector((state) => state.global.selectedClient);
+  const selectedClient = useSelector((state) => state.global.selectClient);
 
   let allInstance = [];
 
@@ -42,6 +41,7 @@ const InstanceBar = () => {
           onClick={() => {
             dispatch(selectClient(instances[i]));
           }}
+          active={selectedClient === instances[i] ? true : false}
         >
           {instances[i]}
         </Button>
@@ -63,13 +63,13 @@ const InstanceBar = () => {
       {allInstance}
       <AddButton onClick={() => dispatch(showForm())}>+</AddButton>
       {show ? <Form /> : null}
-      <button
+      <ClearAllButton
         onClick={() => {
           dispatch(deleteMany());
         }}
       >
         Clear All
-      </button>
+      </ClearAllButton>
     </>
   );
 };

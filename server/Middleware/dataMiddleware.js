@@ -1,18 +1,7 @@
-const Redis = require('redis');
 const info = require('redis-info');
-const redisClient = Redis.createClient();
-redisClient.connect();
 
 module.exports = {
   performance: (req, res, next) => {
-    // function testLatency() {
-    //   const start = performance.now();
-    //   redisClient.info().then((res) => {
-    //     const end = performance.now();
-    //     console.log(end - start);
-    //   });
-    // }
-    // setInterval(testLatency, 10);
     const { redisName } = req.params;
     const redisClient = require(`../redisClients/${redisName}.js`);
     let latency = 0;
@@ -39,6 +28,15 @@ module.exports = {
 
         res.locals.performance = performance;
         return next();
+      })
+      .catch((err) => {
+        next({
+          log: 'error while fetching info of redis database in performance middleware',
+          status: 500,
+          message: {
+            err: "can't fetch performance data on redis, make sure your redis is running",
+          },
+        });
       });
   },
 
@@ -61,6 +59,15 @@ module.exports = {
         memory.evictedKeys = Number(data.evicted_keys);
         res.locals.memory = memory;
         return next();
+      })
+      .catch((err) => {
+        next({
+          log: 'error while fetching info of redis database in memory middleware',
+          status: 500,
+          message: {
+            err: "can't fetch memory data on redis, make sure your redis is running",
+          },
+        });
       });
   },
   basicActivity: (req, res, next) => {
@@ -83,6 +90,15 @@ module.exports = {
         );
         res.locals.basicActivity = basicActivity;
         return next();
+      })
+      .catch((err) => {
+        next({
+          log: 'error while fetching info of redis database in basicActivities middleware',
+          status: 500,
+          message: {
+            err: "can't fetch basic Activities data on redis, make sure your redis is running",
+          },
+        });
       });
   },
   persistence: (req, res, next) => {
@@ -99,6 +115,15 @@ module.exports = {
         persistence.rcslt = Number(data.rdb_changes_since_last_save);
         res.locals.persistence = persistence;
         return next();
+      })
+      .catch((err) => {
+        next({
+          log: 'error while fetching info of redis database in persistence middleware',
+          status: 500,
+          message: {
+            err: "can't fetch persistence data on redis, make sure your redis is running",
+          },
+        });
       });
   },
   error: (req, res, next) => {

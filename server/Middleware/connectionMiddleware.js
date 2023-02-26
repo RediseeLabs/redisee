@@ -18,7 +18,6 @@ module.exports = {
           host: host,
           port: port,
         },
-        // enable_offline_queue: false,
       });
       await Client.connect();
 
@@ -26,7 +25,7 @@ module.exports = {
         path.resolve(__dirname, `../redisClients/${redisName}.js`),
         createFileContent(host, port),
         function (err) {
-          throw 'error while creating file';
+          throw 'error while creating client';
         }
       );
 
@@ -34,9 +33,11 @@ module.exports = {
       next();
     } catch (err) {
       next({
-        log: 'Error when validate redis instance in connection Middleware',
+        log: 'Error when validating redis instance in connection Middleware',
         status: 500,
-        message: { err: err },
+        message: {
+          err: 'error while connection to redis, please check port and host',
+        },
       });
     }
   },
@@ -45,8 +46,15 @@ module.exports = {
       path.resolve(__dirname, '../redisClients'),
       { withFileTypes: false },
       (err, files) => {
-        if (err) console.log(err);
-        else {
+        if (err) {
+          next({
+            log: 'Error when reading all redis instances in getInstances Middleware',
+            status: 500,
+            message: {
+              err: "couldn't fetch all please retry",
+            },
+          });
+        } else {
           files = files.map((file) => file.slice(0, -3));
           res.locals.instancesArr = files;
           next();
@@ -64,7 +72,9 @@ module.exports = {
           next({
             log: 'error while deleting file in connectionMiddleware',
             status: 500,
-            message: { err },
+            message: {
+              err: 'could not find redis client to delete, please retry',
+            },
           });
         }
       }
@@ -76,9 +86,11 @@ module.exports = {
     fs.readdir(path.resolve(__dirname, '../redisClients'), (err, files) => {
       if (err) {
         next({
-          log: 'error while deleting file in connectionMiddleware',
+          log: 'error while deleting all files in disconnectMany Middleware',
           status: 500,
-          message: { err },
+          message: {
+            err: 'could not find redis clients to delete, please retry',
+          },
         });
       }
       for (let file of files) {
@@ -87,9 +99,11 @@ module.exports = {
           function (err) {
             if (err) {
               next({
-                log: 'error while deleting file in connectionMiddleware',
+                log: 'error while deleting file in disconnectMany Middleware',
                 status: 500,
-                message: { err },
+                message: {
+                  err: 'could not find redis clients to delete, please retry',
+                },
               });
             }
           }

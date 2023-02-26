@@ -6,7 +6,7 @@ import ErrorsPage from './components/Errors/ErrorsPage';
 import MemoryPage from './components/Memory/MemoryPage';
 import PerformancePage from './components/Performance/PerformancePage';
 import PersistencePage from './components/Persistence/PersistencePage';
-import HomePage from './components/Home/HomePage';
+import HomePage from './components/HomePage';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './components/StyledComponents/GlobalStyle';
 import { lightTheme, darkTheme } from './components/StyledComponents/Themes';
@@ -22,14 +22,14 @@ const App = () => {
         <SideBar />
         <Routes>
           <Route
-            path='/BasicActivities/:redisName'
+            path="/BasicActivities/:redisName"
             element={<ActivitiesPage />}
           />
-          <Route path='/' element={<HomePage />} />
-          <Route path='/Error/:redisName' element={<ErrorsPage />} />
-          <Route path='/Memory/:redisName' element={<MemoryPage />} />
-          <Route path='/Performance/:redisName' element={<PerformancePage />} />
-          <Route path='/Persistence/:redisName' element={<PersistencePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Error/:redisName" element={<ErrorsPage />} />
+          <Route path="/Memory/:redisName" element={<MemoryPage />} />
+          <Route path="/Performance/:redisName" element={<PerformancePage />} />
+          <Route path="/Persistence/:redisName" element={<PersistencePage />} />
         </Routes>
       </ThemeProvider>
     </div>

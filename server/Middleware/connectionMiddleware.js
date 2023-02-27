@@ -89,11 +89,16 @@ module.exports = {
             log: 'Error when reading all redis instances in getInstances Middleware',
             status: 500,
             message: {
-              err: "couldn't fetch all please retry",
+              err: "couldn't fetch Clients please retry",
             },
           });
         } else {
-          files = files.map((file) => file.slice(0, -3));
+          files = files.reduce((result, file) => {
+            if (file !== '.gitkeep') {
+              result.push(file.slice(0, -3));
+            }
+            return result;
+          }, []);
           res.locals.instancesArr = files;
           next();
         }

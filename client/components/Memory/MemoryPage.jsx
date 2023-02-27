@@ -7,6 +7,11 @@ import { fetchData } from '../../redux/memorySlice';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import LoadingGraphPage from '../LoadingGraphPage';
 
+/*    - when mounted, this component will trigger server 
+        call every second and store new data in memory redux store
+      - when loading displays skeleton page
+*/
+
 const MemoryPage = (props) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.memory.loading);

@@ -12,6 +12,11 @@ import {
   Legend,
 } from "recharts";
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 export default function connectedClients() {
   const connectedClient = useSelector(
     (state) => state.basicActivity.connected_clients

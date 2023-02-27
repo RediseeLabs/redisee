@@ -18,6 +18,12 @@ import InstanceBar from './InstanceBar/InstanceBar';
 import { useSelector } from 'react-redux';
 import Toggler from './Toggler';
 
+/*    - this is the sidebar, it serves as navigation
+      - it holds the component instance bar that will display all running clients
+      - plus button adds a new client 
+      - buttons to switch pages: memory, performance, etc... 
+*/ 
+
 const SideBar = (props) => {
   const selectClient = useSelector((state) => state.global.selectClient);
   const theme = useSelector((state) => state.global.theme);
@@ -30,7 +36,8 @@ const SideBar = (props) => {
       </Logo>
       <div className="wrapper">
         <InstanceBar />
-        <SecondaryText>Analytics :</SecondaryText>
+        <SecondaryText>Analytics :</SecondaryText> 
+        {/* - provide selected client from Redux state to the route so we can data from the selected client */}
         <Button to={`/Memory/${selectClient}`}>
           <PerfIcon />
           Memory

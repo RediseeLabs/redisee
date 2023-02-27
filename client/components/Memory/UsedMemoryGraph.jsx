@@ -12,6 +12,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 const UsedMemoryGraph = () => {
   const usedMemory = useSelector((state) => state.memory.used_memory);
   return (

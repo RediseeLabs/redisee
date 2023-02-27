@@ -13,6 +13,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 export default function Latency() {
   const latency = useSelector((state) => state.performance.latency);
   console.log(latency);

@@ -1,0 +1,38 @@
+//if clients stored in server, it will automatically 
+//need to have redis client running
+//default port 6379
+//host: 127.0.0.1
+//delete individual instance
+//feature to delete every instance we have
+//in plus button- add text "connect"
+//remove cluster page
+//if hit memory - will rigger sideBar.jsx button - use react router -> app.jsx 42 -> goes to path and renders MemoryPage.jsx
+//in MemorryPage set inetval function triggers and iside fetch data to route/memory passed as parameter endpointon MemortPage.jsx 15
+//axios sends fetch request to server
+//on server side - server.js 
+//now got ot dataRouter.js
+//goes to memory end poin -> then middleware memory dataMiddleware.js
+//make string to object
+//make new object-> store data we want in new object. res.local.memory we send back 
+//back to front end on memorySlice- res.local.memory becomes data 
+//helper function helperFunction.js- from Redis we ger string, recharts only takes in arrays with functions 
+//converts data from redis and gives it to the state, graph is contantly looking at arrays
+//go to usedMemoryGraph - from store grab memory (import mememory form memory sllice) 
+//usedMemory - implement rechart library line 24 in UsedMemorryGraph pass used memory to data, 
+//recharts takes that data and makes it to charts
+
+
+//for next team
+// add setting button - for dark/light mode
+//request to add time stamp on server side- add feature to change 
+//frequency of charts - add timestamp for the data to pass from server
+//
+
+
+//to Fix
+//fix sconds time on each graph
+//enter placeholders on the from
+//css property on form
+//on basic activities remove word slaves
+//redirect from unknown rout to home page
+//dataMiddleware - double copy of memory and mem_fragmentation on the object we parse from Redis

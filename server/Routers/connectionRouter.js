@@ -19,7 +19,7 @@ connectionRouter.delete(
   '/deleteOne/:redisName',
   connectionMiddleware.disconnectOne,
   (req, res) => {
-    res.status(200).json('Successfully deleted to redis database');
+    res.status(200).json('Client successfully deleted');
   }
 );
 
@@ -27,7 +27,7 @@ connectionRouter.delete(
   '/deleteMany',
   connectionMiddleware.disconnectMany,
   (req, res) => {
-    res.status(200).json('Successfully deleted all instances');
+    res.status(200).json('All clients successfully deleted ');
   }
 );
 

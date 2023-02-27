@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const backgroundRed = '#fad1e0';
-const backgroundBlue = '#228765';
+const backgroundBlue = '#caf0f8';
 const backgroundOrange = '#fad1e0';
 
 const textRed = '#7c183d';

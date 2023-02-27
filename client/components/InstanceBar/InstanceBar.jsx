@@ -18,10 +18,15 @@ import {
 import { Button } from '../StyledComponents/GlobalStyle';
 import { useParams } from 'react-router-dom';
 
+/*    - it displays all clients running 
+      - inside this component we can delete one or clear all instances of clients running
+*/ 
+
 const InstanceBar = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
+  //  - when component mounts fetch all running clients server side
   useEffect(() => {
     dispatch(fetchClients());
   }, []);

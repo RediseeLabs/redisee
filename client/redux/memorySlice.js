@@ -4,6 +4,8 @@ import { fillGraph } from '../helperFunctions';
 import { setMessage } from './globalSlice';
 import axios from 'axios';
 
+/*    - slice of store that store memory related data and actions */
+
 const initialState = {
   loading: true,
   used_memory: Array(15).fill({}),
@@ -11,9 +13,13 @@ const initialState = {
   evicted_keys: Array(15).fill({}),
 };
 
-// redux thunk that make a call to server at memory route and call fetch reducer
-//data expected : {usedMemory : number, memFragmentationRatio: number, evictedKeys: number}
+/*    - because reducer doesn't allow async action, we use redux thunk
+      - redux thunk that make a call to server at memory route and call fetch reducer
+      - data expected : { usedMemory : number, memFragmentationRatio: number, evictedKeys: number }
+      - then dispatch add to graph action with returned data
+*/
 export const fetchData = (api) => (dispatch, getState) => {
+  /*  - check if its the first call, if it is change the loading state to be true */
   if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
   }
@@ -41,6 +47,7 @@ const memorySlice = createSlice({
       state.loading = false;
     },
     addToGraph: (state, action) => {
+      /*    - use helper function to change stored data that will be read by the graph */
       fillGraph(
         state.used_memory,
         't',

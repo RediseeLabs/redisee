@@ -14,12 +14,21 @@ import { GlobalStyle } from './components/StyledComponents/GlobalStyle';
 import { lightTheme, darkTheme } from './components/StyledComponents/Themes';
 import { useSelector, useDispatch } from 'react-redux';
 
+/*  - this is top level component, it displays sidebar and pages
+    - it uses React Router to render different component for each route
+    - components will be pages containing graphs
+    - sidebar will always remain on screen
+    - if message needs to be displayed, app will render message model component
+    - used theme provider from style component library to provide styling variable 
+      to all components 
+*/
+
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
   const message = useSelector((state) => state.global.message);
   const dispatch = useDispatch();
 
-  //cleat message box after 3s
+/*   - clears message box after 3s, if status is successful */
   useEffect(() => {
     if (message && message.type === 'succeed') {
       setTimeout(() => dispatch(clearMessage()), 2500);

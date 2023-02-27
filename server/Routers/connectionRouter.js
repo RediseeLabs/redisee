@@ -2,6 +2,8 @@ const express = require('express');
 const connectionRouter = express.Router();
 const connectionMiddleware = require('../Middleware/connectionMiddleware');
 
+/*    - connection router handle all endpoints related to clients, such as delelete, add, and create */
+
 connectionRouter.post(
   '/',
   connectionMiddleware.validate,

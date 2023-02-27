@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+/*    - global slice stores all states that will be used everywhere in the app, 
+        such as loading, theme, clients, selectClient
+      - it controlls the display of form and message modal windows
+      
+*/
+
 const initialState = {
   clients: [],
   selectClient: '',
@@ -10,6 +16,10 @@ const initialState = {
   message: null,
 };
 
+/*    - Redux thunk that posts values from form inputs to create new client
+      - when the server is done, it displays success message, close form, 
+        and get new array of running clients 
+*/
 export const addOneRedis = (form) => (dispatch, getState) => {
   axios
     .post(`http://localhost:3000/connection`, form)
@@ -23,7 +33,9 @@ export const addOneRedis = (form) => (dispatch, getState) => {
       dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };
-
+/*    - Redux thunc that fetch all running clients from the server, it returns an
+        array of clients names
+*/
 export const fetchClients = () => (dispatch, getState) => {
   axios
     .get(`http://localhost:3000/connection`)
@@ -35,7 +47,7 @@ export const fetchClients = () => (dispatch, getState) => {
       dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };
-
+/*    - deletes one client and success message */
 export const deleteOne = (value) => (dispatch, getState) => {
   axios
     .delete(`http://localhost:3000/connection/deleteOne/${value}`)

@@ -1,6 +1,10 @@
 const info = require('redis-info');
 
 module.exports = {
+  /*  - middleware that will get the client from file in redisClients folder
+      - ask for data to the Redis database, parse it, and only return the needed properties
+      - all middleware below does the same thing, just with different data points
+  */
   performance: (req, res, next) => {
     const { redisName } = req.params;
     const redisClient = require(`../redisClients/${redisName}.js`);

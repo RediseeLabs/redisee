@@ -11,6 +11,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 const FragRatioGraph = (props) => {
   const memFragmentation = useSelector(
     (state) => state.memory.mem_fragmentation_ratio

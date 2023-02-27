@@ -3,6 +3,11 @@ import { useSelector } from "react-redux";
 import { GraphBox } from "../StyledComponents/GraphGrid";
 import { ResponsiveContainer, PieChart, Pie } from "recharts";
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 export default function App() {
   const hitRate = useSelector((state) => state.performance.hitRate);
   const ratio = useSelector((state) => state.performance.ratio);

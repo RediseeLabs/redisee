@@ -2,6 +2,8 @@ const express = require("express");
 const dataRouter = express.Router();
 const dataMiddleware = require("../Middleware/dataMiddleware");
 
+/*  - serve all endpoints related to data */
+
 
 dataRouter.get("/:redisName/performance", dataMiddleware.performance, (req, res) => {
   res.status(200).json(res.locals.performance);

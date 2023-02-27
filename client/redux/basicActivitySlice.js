@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
 import axios from 'axios';
+import { setMessage } from './globalSlice';
 
 const initialState = {
   loading: true,
@@ -12,9 +13,6 @@ const initialState = {
 let cache;
 
 export const fetchBasicActivity = (api) => (dispatch, getState) => {
-  if (api !== cache) {
-    dispatch(basicActivitySlice.actions.clearState());
-  }
   if (JSON.stringify(getState().basicActivity.connected_clients[0]) === '{}') {
     dispatch(basicActivitySlice.actions.startLoading());
   }
@@ -24,8 +22,10 @@ export const fetchBasicActivity = (api) => (dispatch, getState) => {
     .then((data) => {
       dispatch(basicActivitySlice.actions.addToGraph(data));
       dispatch(basicActivitySlice.actions.stopLoading());
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
-  cache = api;
 };
 
 const basicActivitySlice = createSlice({

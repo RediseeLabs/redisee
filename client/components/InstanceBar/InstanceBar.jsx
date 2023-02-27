@@ -41,7 +41,7 @@ const InstanceBar = () => {
           onClick={() => {
             dispatch(selectClient(instances[i]));
           }}
-          active={selectedClient === instances[i] ? true : false}
+          $active={selectedClient === instances[i] && true}
         >
           {instances[i]}
         </Button>

@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   GraphGrid,
   GraphBox,
   MockGraph,
   MockTitle,
-} from "./StyledComponents/GraphGrid";
+} from './StyledComponents/GraphGrid';
 
 const LoadingGraphPage = () => {
   return (

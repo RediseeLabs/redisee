@@ -7,34 +7,57 @@ const initialState = {
   loading: true,
   showForm: false,
   theme: 'light',
-  error: {
-    type: null,
-    message: null,
-  },
+  message: null,
 };
+
+export const addOneRedis = (form) => (dispatch, getState) => {
+  axios
+    .post(`http://localhost:3000/connection`, form)
+    .then((res) => {
+      const { setMessage, closeForm } = globalSlice.actions;
+      dispatch(setMessage({ type: 'succeed', content: res.data }));
+      dispatch(closeForm());
+      dispatch(fetchClients());
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
+    });
+};
+
 export const fetchClients = () => (dispatch, getState) => {
   axios
     .get(`http://localhost:3000/connection`)
     .then((res) => res.data)
     .then((data) => {
       dispatch(globalSlice.actions.getClients(data));
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };
 
 export const deleteOne = (value) => (dispatch, getState) => {
-  console.log(value);
   axios
     .delete(`http://localhost:3000/connection/deleteOne/${value}`)
     .then((res) => {
       dispatch(globalSlice.actions.deleteOne(value));
+      dispatch(setMessage({ type: 'succeed', content: res.data }));
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };
 
 export const deleteMany = (value) => (dispatch, getState) => {
-  axios.delete(`http://localhost:3000/connection/deleteMany`).then((res) => {
-    console.log(res.data);
-    dispatch(globalSlice.actions.deleteMany());
-  });
+  axios
+    .delete(`http://localhost:3000/connection/deleteMany`)
+    .then((res) => {
+      dispatch(globalSlice.actions.deleteMany());
+      dispatch(setMessage({ type: 'succeed', content: res.data }));
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'errors', content: err.response.data }));
+    });
 };
 
 const globalSlice = createSlice({
@@ -72,20 +95,20 @@ const globalSlice = createSlice({
     deleteMany: (state, action) => {
       state.clients = [];
     },
-    setError: (state, action) => {
-      state.error.type = action.payload.type;
-      state.error.message = action.payload.message;
+    setMessage: (state, action) => {
+      state.message = {};
+      state.message.type = action.payload.type;
+      state.message.content = action.payload.content;
     },
-    clearError: (state, action) => {
-      state.error = {
-        type: null,
-        message: null,
-      };
+    clearMessage: (state, action) => {
+      state.message = null;
     },
   },
 });
 
 export const {
+  setMessage,
+  clearMessage,
   startLoading,
   stopLoading,
   getClients,

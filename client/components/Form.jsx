@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getClients, closeForm } from '../redux/globalSlice';
+import {
+  getClients,
+  closeForm,
+  setError,
+  addOneRedis,
+} from '../redux/globalSlice';
 import { FormModal, Input, SubmitBtn } from './StyledComponents/Form';
 import { Button } from './StyledComponents/GlobalStyle';
 import axios from 'axios';
@@ -23,17 +28,13 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post('http://localhost:3000/connection', {
+    dispatch(
+      addOneRedis({
         redisName,
         port,
         host,
       })
-      .then((res) => 'test')
-      .catch((err) => console.log(err));
-    typeRedisName('');
-    typePort('');
-    typeHost('');
+    );
   };
 
   return (
@@ -59,7 +60,6 @@ function Form() {
         <label>Port:</label>
         <br />
         <Input
-          type="number"
           value={port}
           required
           onChange={(e) => {

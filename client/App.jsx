@@ -14,7 +14,6 @@ import { useSelector } from 'react-redux';
 
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
-  console.log(theme);
   return (
     <div>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>

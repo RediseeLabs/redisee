@@ -7,6 +7,10 @@ const initialState = {
   loading: true,
   showForm: false,
   theme: 'light',
+  error: {
+    type: null,
+    message: null,
+  },
 };
 export const fetchClients = () => (dispatch, getState) => {
   axios
@@ -37,12 +41,12 @@ const globalSlice = createSlice({
   name: 'global',
   initialState: initialState,
   reducers: {
-    // startLoading: (state, action) => {
-    //   state.loading = true;
-    // },
-    // stopLoading: (state, action) => {
-    //   state.loading = false;
-    // },
+    startLoading: (state, action) => {
+      state.loading = true;
+    },
+    stopLoading: (state, action) => {
+      state.loading = false;
+    },
     getClients: (state, action) => {
       state.clients = action.payload;
     },
@@ -67,6 +71,16 @@ const globalSlice = createSlice({
     },
     deleteMany: (state, action) => {
       state.clients = [];
+    },
+    setError: (state, action) => {
+      state.error.type = action.payload.type;
+      state.error.message = action.payload.message;
+    },
+    clearError: (state, action) => {
+      state.error = {
+        type: null,
+        message: null,
+      };
     },
   },
 });

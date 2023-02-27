@@ -29,7 +29,7 @@ function Form() {
         port,
         host,
       })
-      .then((res) => dispatch(getClients(res.data)))
+      .then((res) => 'test')
       .catch((err) => console.log(err));
     typeRedisName('');
     typePort('');

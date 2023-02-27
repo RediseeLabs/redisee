@@ -9,6 +9,44 @@ module.exports = client;`;
 };
 
 module.exports = {
+  validate: (req, res, next) => {
+    const { host, port, redisName } = req.body;
+    const excludeRegex = /^[<>!@#\$%\^\&*\)\(+=._-]+$/g;
+    const numberRegex = /[0-9]/g;
+
+    let error = {
+      log: 'Error triggered in validate middleware',
+      status: 500,
+      message: {
+        err: '',
+      },
+    };
+
+    for (let key in req.body) {
+      if (key.length <= 0) {
+        next({
+          ...error,
+          message: { err: `${key} must not be empty` },
+        });
+      }
+    }
+    if (typeof redisName !== 'string')
+      next({ ...error, message: { err: 'Name must not be a Number' } });
+    if (excludeRegex.test(redisName)) {
+      next({
+        ...error,
+        message: { err: 'Name must no contain any special character' },
+      });
+    }
+    if (!numberRegex.test(port))
+      next({ ...error, message: { err: 'Port must contain only Numbers' } });
+    if (redisName.length >= 15)
+      next({
+        ...error,
+        message: { err: 'name must be less than 15 characters' },
+      });
+    next();
+  },
   connect: async (req, res, next) => {
     const { redisName, port, host } = req.body;
 

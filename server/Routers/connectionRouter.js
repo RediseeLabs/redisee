@@ -4,10 +4,10 @@ const connectionMiddleware = require('../Middleware/connectionMiddleware');
 
 connectionRouter.post(
   '/',
+  connectionMiddleware.validate,
   connectionMiddleware.connect,
-  connectionMiddleware.getInstances,
   (req, res) => {
-    res.status(200).json(res.locals.instancesArr);
+    res.status(200).json('Successfully connected to redis database');
   }
 );
 
@@ -19,7 +19,7 @@ connectionRouter.delete(
   '/deleteOne/:redisName',
   connectionMiddleware.disconnectOne,
   (req, res) => {
-    res.status(200).json();
+    res.status(200).json('Successfully deleted to redis database');
   }
 );
 
@@ -27,7 +27,7 @@ connectionRouter.delete(
   '/deleteMany',
   connectionMiddleware.disconnectMany,
   (req, res) => {
-    res.status(200).json('deleted all instances');
+    res.status(200).json('Successfully deleted all instances');
   }
 );
 

@@ -23,7 +23,7 @@ module.exports = {
     };
 
     for (let key in req.body) {
-      if (key.length <= 0) {
+      if (req.body[key].length <= 0) {
         next({
           ...error,
           message: { err: `${key} must not be empty` },

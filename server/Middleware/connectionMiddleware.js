@@ -1,6 +1,6 @@
-const fs = require("fs");
-const path = require("path");
-const redis = require("redis");
+const fs = require('fs');
+const path = require('path');
+const redis = require('redis');
 
 /*    - helper function that returns the contents 
         for newly created file will be used to create client
@@ -23,39 +23,42 @@ module.exports = {
     const numberRegex = /[0-9]/g;
 
     let error = {
-      log: "Error triggered in validate middleware",
+      log: 'Error triggered in validate middleware',
       status: 500,
       message: {
-        err: "",
+        err: '',
       },
     };
     /*  - checking if field is empty */
     for (let key in req.body) {
       if (req.body[key].length <= 0) {
-        next({
+        return next({
           ...error,
           message: { err: `${key} must not be empty` },
         });
       }
     }
-    if (typeof redisName !== "string")
-      next({ ...error, message: { err: "Name must not be a Number" } });
+    if (typeof redisName !== 'string')
+      return next({ ...error, message: { err: 'Name must not be a Number' } });
     /*  - check if Redis name input contain any special character */
     if (excludeRegex.test(redisName)) {
-      next({
+      return next({
         ...error,
-        message: { err: "Name must no contain any special character" },
+        message: { err: 'Name must no contain any special character' },
       });
     }
     /*  - check if input port contains any character other than number  */
     if (!numberRegex.test(port))
-      next({ ...error, message: { err: "Port must contain only Numbers" } });
-    if (redisName.length >= 15)
-      next({
+      return next({
         ...error,
-        message: { err: "name must be less than 15 characters" },
+        message: { err: 'Port must contain only Numbers' },
       });
-    next();
+    if (redisName.length >= 15)
+      return next({
+        ...error,
+        message: { err: 'name must be less than 15 characters' },
+      });
+    return next();
   },
   /*  - this middleware will take info from the form, create client, and connect it to Redis database */
   connect: async (req, res, next) => {
@@ -76,7 +79,7 @@ module.exports = {
         path.resolve(__dirname, `../redisClients/${redisName}.js`),
         createFileContent(host, port),
         function (err) {
-          throw "error while creating client";
+          throw 'error while creating client';
         }
       );
 
@@ -84,10 +87,10 @@ module.exports = {
       next();
     } catch (err) {
       next({
-        log: "Error when validating redis instance in connection Middleware",
+        log: 'Error when validating redis instance in connection Middleware',
         status: 500,
         message: {
-          err: "error while connection to redis, please check port and host",
+          err: 'error while connection to redis, please check port and host',
         },
       });
     }
@@ -95,12 +98,12 @@ module.exports = {
   /*  - middleware that gets all files stored in redisClients folder, and returns an array of client names */
   getInstances: (req, res, next) => {
     fs.readdir(
-      path.resolve(__dirname, "../redisClients"),
+      path.resolve(__dirname, '../redisClients'),
       { withFileTypes: false },
       (err, files) => {
         if (err) {
           next({
-            log: "Error when reading all redis instances in getInstances Middleware",
+            log: 'Error when reading all redis instances in getInstances Middleware',
             status: 500,
             message: {
               err: "couldn't fetch Clients please retry",
@@ -108,7 +111,7 @@ module.exports = {
           });
         } else {
           files = files.reduce((result, file) => {
-            if (file !== ".gitkeep") {
+            if (file !== '.gitkeep') {
               result.push(file.slice(0, -3));
             }
             return result;
@@ -127,10 +130,10 @@ module.exports = {
       function (err) {
         if (err) {
           next({
-            log: "error while deleting file in connectionMiddleware",
+            log: 'error while deleting file in connectionMiddleware',
             status: 500,
             message: {
-              err: "could not find redis client to delete, please retry",
+              err: 'could not find redis client to delete, please retry',
             },
           });
         }
@@ -140,13 +143,13 @@ module.exports = {
   },
   /*  - middleware that will delete all files */
   disconnectMany: (req, res, next) => {
-    fs.readdir(path.resolve(__dirname, "../redisClients"), (err, files) => {
+    fs.readdir(path.resolve(__dirname, '../redisClients'), (err, files) => {
       if (err) {
         next({
-          log: "error while deleting all files in disconnectMany Middleware",
+          log: 'error while deleting all files in disconnectMany Middleware',
           status: 500,
           message: {
-            err: "could not find redis clients to delete, please retry",
+            err: 'could not find redis clients to delete, please retry',
           },
         });
       }
@@ -156,10 +159,10 @@ module.exports = {
           function (err) {
             if (err) {
               next({
-                log: "error while deleting file in disconnectMany Middleware",
+                log: 'error while deleting file in disconnectMany Middleware',
                 status: 500,
                 message: {
-                  err: "could not find redis clients to delete, please retry",
+                  err: 'could not find redis clients to delete, please retry',
                 },
               });
             }

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
+import { setMessage } from './globalSlice';
 import axios from 'axios';
 
 const initialState = {
@@ -10,17 +11,9 @@ const initialState = {
   evicted_keys: Array(15).fill({}),
 };
 
-let cache;
 // redux thunk that make a call to server at memory route and call fetch reducer
 //data expected : {usedMemory : number, memFragmentationRatio: number, evictedKeys: number}
 export const fetchData = (api) => (dispatch, getState) => {
-  if (api !== cache) {
-    dispatch(memorySlice.actions.clearState());
-  }
-  // check if the current state is the initial state to trigger loading action
-  //propably better way to do it
-  // if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
-  // }
   if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
   }
@@ -31,8 +24,10 @@ export const fetchData = (api) => (dispatch, getState) => {
       console.log('loaded');
       dispatch(memorySlice.actions.addToGraph(data));
       dispatch(memorySlice.actions.stopLoading());
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
-  cache = api;
 };
 
 const memorySlice = createSlice({

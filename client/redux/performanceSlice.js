@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions.js';
+import { setMessage } from './globalSlice.js';
 import axios from 'axios';
 
 const initialState = {
@@ -17,12 +18,7 @@ const initialState = {
   ratio: '0%',
 };
 
-let cache;
-
 export const fetchPerformanceData = (api) => (dispatch, getState) => {
-  if (api !== cache) {
-    dispatch(performanceSlice.actions.clearState());
-  }
   if (JSON.stringify(getState().performance.latency[0]) === '{}') {
     dispatch(performanceSlice.actions.startLoading());
   }
@@ -32,8 +28,10 @@ export const fetchPerformanceData = (api) => (dispatch, getState) => {
     .then((data) => {
       dispatch(performanceSlice.actions.addToGraph(data));
       dispatch(performanceSlice.actions.stopLoading());
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
-  cache = api;
 };
 
 const performanceSlice = createSlice({

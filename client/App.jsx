@@ -6,16 +6,29 @@ import ErrorsPage from './components/Errors/ErrorsPage';
 import MemoryPage from './components/Memory/MemoryPage';
 import PerformancePage from './components/Performance/PerformancePage';
 import PersistencePage from './components/Persistence/PersistencePage';
+import MessageModal from './components/MessageModal';
 import HomePage from './components/HomePage';
+import { clearMessage } from './redux/globalSlice';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './components/StyledComponents/GlobalStyle';
 import { lightTheme, darkTheme } from './components/StyledComponents/Themes';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
+  const message = useSelector((state) => state.global.message);
+  const dispatch = useDispatch();
+
+  //cleat message box after 3s
+  useEffect(() => {
+    if (message && message.type === 'succeed') {
+      setTimeout(() => dispatch(clearMessage()), 2500);
+    }
+  }, [message]);
+
   return (
     <div>
+      {message && <MessageModal />}
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyle />
         <SideBar />

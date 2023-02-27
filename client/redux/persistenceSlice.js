@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { fillGraph } from '../helperFunctions';
+import { setMessage } from './globalSlice';
 
 const initialState = {
   loading: true,
@@ -8,12 +9,7 @@ const initialState = {
   rcslt: Array(15).fill({}),
 };
 
-let cache;
-
 export const fectchPersistence = (api) => (dispatch, getState) => {
-  if (api !== cache) {
-    dispatch(persistenceSlice.actions.clearState());
-  }
   if (JSON.stringify(getState().persistence.rlst[0]) === '{}') {
     dispatch(persistenceSlice.actions.startLoading());
   }
@@ -23,8 +19,10 @@ export const fectchPersistence = (api) => (dispatch, getState) => {
     .then((data) => {
       dispatch(persistenceSlice.actions.addToGraph(data));
       dispatch(persistenceSlice.actions.stopLoading());
+    })
+    .catch((err) => {
+      dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
-  cache = api;
 };
 
 const persistenceSlice = createSlice({

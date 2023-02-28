@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, redirect } from 'react-router-dom';
+import { Routes, Route, redirect, useNavigate } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import ActivitiesPage from './components/BasicActivities/ActivitiesPage';
 import ErrorsPage from './components/Errors/ErrorsPage';
@@ -26,12 +26,17 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
   const message = useSelector((state) => state.global.message);
+  console.log(message);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-/*   - clears message box after 3s, if status is successful */
+  /*   - clears message box after 3s, if status is successful */
   useEffect(() => {
     if (message && message.type === 'succeed') {
       setTimeout(() => dispatch(clearMessage()), 2500);
+    }
+    if (message && message.content === 'Wrong route') {
+      navigate('/');
     }
   }, [message]);
 
@@ -43,14 +48,14 @@ const App = () => {
         <SideBar />
         <Routes>
           <Route
-            path="/BasicActivities/:redisName"
+            path='/BasicActivities/:redisName'
             element={<ActivitiesPage />}
           />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Error/:redisName" element={<ErrorsPage />} />
-          <Route path="/Memory/:redisName" element={<MemoryPage />} />
-          <Route path="/Performance/:redisName" element={<PerformancePage />} />
-          <Route path="/Persistence/:redisName" element={<PersistencePage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/Error/:redisName' element={<ErrorsPage />} />
+          <Route path='/Memory/:redisName' element={<MemoryPage />} />
+          <Route path='/Performance/:redisName' element={<PerformancePage />} />
+          <Route path='/Persistence/:redisName' element={<PersistencePage />} />
         </Routes>
       </ThemeProvider>
     </div>

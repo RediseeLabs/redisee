@@ -23,6 +23,8 @@ const EvictedKeys = (props) => {
       <h3>Evicted Keys</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
+          style={{ position: 'initial' }}
+          s
           width={600}
           height={250}
           data={evictedKeys}

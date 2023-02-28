@@ -1,6 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { GraphBox } from "../StyledComponents/GraphGrid";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { GraphBox } from '../StyledComponents/GraphGrid';
 
 import {
   BarChart,
@@ -10,7 +10,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts";
+} from 'recharts';
 
 /*    - graph component: displays only the graph
       - it gets the data array from the redux store every 
@@ -23,7 +23,12 @@ export default function Latency() {
   return (
     <GraphBox>
       <h3>Keyspaces</h3>
-      <BarChart width={730} height={250} data={keyspace}>
+      <BarChart
+        width={730}
+        height={250}
+        data={keyspace}
+        style={{ position: 'initial' }}
+      >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="time" />
         <YAxis padding={{ top: 20 }} />

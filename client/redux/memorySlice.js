@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
 import { setMessage } from './globalSlice';
@@ -20,6 +21,7 @@ const initialState = {
       - then dispatch add to graph action with returned data
 */
 export const fetchData = (api) => (dispatch, getState) => {
+  // const navigate = useNavigate();
   /*  - check if its the first call, if it is change the loading state to be true */
   if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
@@ -34,6 +36,7 @@ export const fetchData = (api) => (dispatch, getState) => {
       dispatch(memorySlice.actions.stopLoading());
     })
     .catch((err) => {
+      // navigate('/');
       dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };

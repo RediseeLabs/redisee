@@ -39,9 +39,11 @@ const InstanceBar = () => {
 
   for (let i = 0; i < instances.length; i++) {
     allInstance.push(
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div
+        key={'instance' + instances[i]}
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
         <Button
-          key={'instance' + instances[i]}
           onClick={() => {
             dispatch(selectClient(instances[i]));
           }}
@@ -50,7 +52,6 @@ const InstanceBar = () => {
           {instances[i]}
         </Button>
         <DeleteButton
-          key={'button' + instances[i]}
           onClick={() => {
             dispatch(deleteOne(instances[i]));
           }}

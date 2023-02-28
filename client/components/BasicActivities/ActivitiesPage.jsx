@@ -21,7 +21,7 @@ const ActivitiesPage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchBasicActivity(api));
-    }, 2000);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 

@@ -8,6 +8,7 @@ import axios from 'axios';
 /*    - slice of store that store memory related data and actions */
 
 const initialState = {
+  startedTime: null,
   loading: true,
   used_memory: Array(15).fill({}),
   mem_fragmentation_ratio: Array(15).fill({}),
@@ -23,6 +24,7 @@ export const fetchData = (api) => (dispatch, getState) => {
   /*  - check if its the first call, if it is change the loading state to be true */
   if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
+    dispatch(memorySlice.actions.setStartTime());
   }
   axios
     .get(api)
@@ -41,6 +43,9 @@ const memorySlice = createSlice({
   name: 'memory',
   initialState: initialState,
   reducers: {
+    setStartTime: (state, action) => {
+      state.startedTime = Date.now() / 1000;
+    },
     startLoading: (state, action) => {
       state.loading = true;
     },
@@ -51,19 +56,19 @@ const memorySlice = createSlice({
       /*    - use helper function to change stored data that will be read by the graph */
       fillGraph(
         state.used_memory,
-        't',
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
         action.payload.usedMemory,
         'used_memory'
       );
       fillGraph(
         state.mem_fragmentation_ratio,
-        't',
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
         action.payload.memFragmentationRatio,
         'mem_fragmentation_ratio'
       );
       fillGraph(
         state.evicted_keys,
-        't',
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
         action.payload.evictedKeys,
         'evicted_keys'
       );

@@ -20,7 +20,7 @@ import { useParams } from 'react-router-dom';
 
 /*    - it displays all clients running 
       - inside this component we can delete one or clear all instances of clients running
-*/ 
+*/
 
 const InstanceBar = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,6 @@ const InstanceBar = () => {
     allInstance.push(
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Button
-          to={`/${instances[i]}`}
           key={'instance' + instances[i]}
           onClick={() => {
             dispatch(selectClient(instances[i]));

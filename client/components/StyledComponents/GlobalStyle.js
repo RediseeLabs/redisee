@@ -22,13 +22,13 @@ export const Button = styled(Link)`
   padding: 12px;
   font-size: 1.1em;
   color: ${(props) =>
-    props.active ? props.theme.highlight : props.theme.textPrimary};
+    props.$active ? props.theme.highlight : props.theme.textPrimary};
   font-weight: 500;
   text-decoration: none;
   margin: 10px 0;
   transition: 0.2s ease-out;
   background-color: ${(props) =>
-    props.active ? props.theme.secondary : 'none'};
+    props.$active ? props.theme.secondary : 'none'};
   &:hover {
     background-color: ${({ theme }) => theme.secondary};
     color: ${({ theme }) => theme.highlight};

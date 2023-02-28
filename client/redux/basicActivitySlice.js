@@ -5,6 +5,7 @@ import { setMessage } from './globalSlice';
 
 const initialState = {
   loading: true,
+  startedTime: null,
   connected_clients: Array(15).fill({}),
   connected_slaves: Array(15).fill({}),
   keyspace: Array(15).fill({}),
@@ -15,6 +16,7 @@ let cache;
 export const fetchBasicActivity = (api) => (dispatch, getState) => {
   if (JSON.stringify(getState().basicActivity.connected_clients[0]) === '{}') {
     dispatch(basicActivitySlice.actions.startLoading());
+    dispatch(basicActivitySlice.actions.setStartTime());
   }
   axios
     .get(api)
@@ -32,6 +34,9 @@ const basicActivitySlice = createSlice({
   name: 'basicActivity',
   initialState: initialState,
   reducers: {
+    setStartTime: (state, action) => {
+      state.startedTime = Date.now() / 1000;
+    },
     startLoading: (state, action) => {
       state.loading = true;
     },
@@ -41,17 +46,22 @@ const basicActivitySlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.connected_clients,
-        'clients',
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
         action.payload.connected_clients,
         'connected_clients'
       );
       fillGraph(
         state.connected_slaves,
-        'slaves',
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
         action.payload.connected_slaves,
         'connected_slaves'
       );
-      fillGraph(state.keyspace, 'clients', action.payload.keyspace, 'keyspace');
+      fillGraph(
+        state.keyspace,
+        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        action.payload.keyspace,
+        'keyspace'
+      );
     },
     clearState: (state, action) => {
       state.loading = true;

@@ -27,6 +27,7 @@ export const addOneRedis = (form) => (dispatch, getState) => {
       const { setMessage, closeForm } = globalSlice.actions;
       dispatch(setMessage({ type: 'succeed', content: res.data }));
       dispatch(closeForm());
+      dispatch(selectClient(form.redisName));
       dispatch(fetchClients());
     })
     .catch((err) => {

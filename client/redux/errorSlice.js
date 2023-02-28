@@ -3,6 +3,7 @@ import { fillGraph } from '../helperFunctions';
 import axios from 'axios';
 
 const initialState = {
+  startedTime: null,
   loading: true,
   rejected_connections: Array(15).fill({}),
   keyspace_missed: Array(15).fill({}),
@@ -32,6 +33,9 @@ const errorSlice = createSlice({
   name: 'error',
   initialState: initialState,
   reducers: {
+    setStartTime: (state, action) => {
+      state.startedTime = Date.now() / 1000;
+    },
     startLoading: (state, action) => {
       state.loading = true;
     },

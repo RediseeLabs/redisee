@@ -7,17 +7,17 @@
 */
 
 export const fillGraph = (graphArr, XaxisName, value, graphName) => {
-/*   - flag that we switch to true if graph array is not full  */
+  /*   - flag that we switch to true if graph array is not full  */
   let flag = false;
   for (let i = 0; i < graphArr.length; i++) {
-    /* - if elelment is empty, replace it with data object */
-    if (JSON.stringify(graphArr[i]) === "{}") {
+    /* - if element is empty, replace it with data object */
+    if (JSON.stringify(graphArr[i]) === '{}') {
       graphArr[i] = { time: XaxisName, [graphName]: value ? value : 0 };
       flag = true;
       break;
     }
   }
-/*  - if array is full, shift the oldest data object and push in the incoming data */
+  /*  - if array is full, shift the oldest data object and push in the incoming data */
   if (!flag) {
     graphArr.shift();
     graphArr.push({ time: XaxisName, [graphName]: value ? value : 0 });

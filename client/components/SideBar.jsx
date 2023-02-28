@@ -64,6 +64,9 @@ const SideBar = (props) => {
           Cluster
         </Button> */}
 
+        {/* <div style={{ margin: '0px 0px 10px 15px' }}>Light/Dark</div> */}
+        <SecondaryText style={{ fontSize: '0.7em' }}>Light/Dark:</SecondaryText>
+
         <Toggler />
       </div>
     </Menu>

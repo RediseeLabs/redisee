@@ -6,9 +6,7 @@ RediSee is a light-weight web application that visualize Redis instances’ core
 <br>
 
 ## How RediSee works
-<br>
 <img src="https://svgshare.com/i/qgf.svg"  width="1500" height="600">
-<br>
 
 ## How To Use
 

@@ -36,6 +36,11 @@ function Form() {
       })
     );
   };
+  // document.onkeydown = function (e) {
+  //   if (window.event.keyCode === '13') {
+  //     console.log('Enter key');
+  //   }
+  // };
 
   return (
     <FormModal onClick={() => dispatch(closeForm())}>
@@ -43,12 +48,13 @@ function Form() {
         onClick={(e) => {
           e.stopPropagation();
         }}
+        onSubmit={handleSubmit}
       >
         <h2>Connect with your Redis</h2>
         <label>Redis Name:</label>
         <br />
         <Input
-          type="text"
+          type='text'
           value={redisName}
           required
           onChange={(e) => {
@@ -70,7 +76,7 @@ function Form() {
         <label>Host:</label>
         <br />
         <Input
-          type="text"
+          type='text'
           value={host}
           required
           onChange={(e) => {
@@ -78,13 +84,14 @@ function Form() {
           }}
         />
         <br />
-        <SubmitBtn
+        <button
           onClick={(e) => {
             handleSubmit(e);
           }}
+          type='submit'
         >
           Submit
-        </SubmitBtn>
+        </button>
       </form>
     </FormModal>
   );

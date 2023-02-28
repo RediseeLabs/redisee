@@ -26,7 +26,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
   const message = useSelector((state) => state.global.message);
-  console.log(message);
+  // console.log(message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,14 +49,14 @@ const App = () => {
         <SideBar />
         <Routes>
           <Route
-            path="/BasicActivities/:redisName"
+            path='/BasicActivities/:redisName'
             element={<ActivitiesPage />}
           />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Error/:redisName" element={<ErrorsPage />} />
-          <Route path="/Memory/:redisName" element={<MemoryPage />} />
-          <Route path="/Performance/:redisName" element={<PerformancePage />} />
-          <Route path="/Persistence/:redisName" element={<PersistencePage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/Error/:redisName' element={<ErrorsPage />} />
+          <Route path='/Memory/:redisName' element={<MemoryPage />} />
+          <Route path='/Performance/:redisName' element={<PerformancePage />} />
+          <Route path='/Persistence/:redisName' element={<PersistencePage />} />
         </Routes>
       </ThemeProvider>
     </div>

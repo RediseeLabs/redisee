@@ -144,22 +144,34 @@ module.exports = {
     next();
   },
   /*  - middleware that will delete all files */
-  disconnectMany: async (req, res, next) => {
-    // try{
-    //   let files = await fs.readdir(path.resolve(__dirname, '../redisClients')
-    //   for(let file of files) {
-    //     await fs.unlink(path.resolve(__dirname, `../redisClients/${file}`));
-    //   }
-    // }
-    // catch(err){
-    //   return next({
-    //     log: 'error while deleting file in disconnectMany Middleware',
-    //     status: 500,
-    //     message: {
-    //       err: 'could not find redis clients to delete, please retry',
-    //     },
-    //   })
-    // }
+  disconnectMany: (req, res, next) => {
+    fs.readdir(path.resolve(__dirname, '../redisClients'), (err, files) => {
+      if (err) {
+        next({
+          log: 'error while deleting all files in disconnectMany Middleware',
+          status: 500,
+          message: {
+            err: 'could not find redis clients to delete, please retry',
+          },
+        });
+      }
+      for (let file of files) {
+        fs.unlink(
+          path.resolve(__dirname, `../redisClients/${file}`),
+          function (err) {
+            if (err) {
+              next({
+                log: 'error while deleting file in disconnectMany Middleware',
+                status: 500,
+                message: {
+                  err: 'could not find redis clients to delete, please retry',
+                },
+              });
+            }
+          }
+        );
+      }
+    });
 
     next();
   },

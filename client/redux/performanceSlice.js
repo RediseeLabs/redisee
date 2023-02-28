@@ -11,10 +11,8 @@ const initialState = {
   iops: Array(15).fill({}),
   //   hitRate: Array(2).fill({}),
   hitRate: [
-    { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-    { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
-    { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-    { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
+    { name: 'keyspace_hits', value: 0, fill: '#3861ed' },
+    { name: 'keyspace_misses', value: 0, fill: '#dc143c' },
   ],
   ratio: '0%',
   ratio: '0%',

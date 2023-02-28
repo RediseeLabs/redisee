@@ -31,7 +31,12 @@ export const addOneRedis = (form) => (dispatch, getState) => {
       dispatch(fetchClients());
     })
     .catch((err) => {
-      dispatch(setMessage({ type: 'error', content: err.response.data }));
+      if (err.response.status === 500) {
+        dispatch(setMessage({ type: 'error', content: err.response.data }));
+      }
+      if (err.response.status === 400) {
+        dispatch(setMessage({ type: 'warning', content: err.response.data }));
+      }
     });
 };
 /*    - Redux thunc that fetch all running clients from the server, it returns an

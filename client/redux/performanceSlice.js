@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions.js';
 import { setMessage } from './globalSlice.js';
 import axios from 'axios';
+import { clock } from '../clockHelperFunction';
 
 const initialState = {
   startedTime: null,
@@ -55,13 +56,13 @@ const performanceSlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.latency,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.latency,
         'Live_Redis_latency'
       );
       fillGraph(
         state.iops,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.iops,
         'iops'
       );

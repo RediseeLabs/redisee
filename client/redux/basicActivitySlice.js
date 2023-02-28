@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
 import axios from 'axios';
 import { setMessage } from './globalSlice';
+import { clock } from '../clockHelperFunction';
 
 const initialState = {
   loading: true,
@@ -46,19 +47,19 @@ const basicActivitySlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.connected_clients,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.connected_clients,
         'connected_clients'
       );
       fillGraph(
         state.connected_slaves,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.connected_slaves,
         'connected_slaves'
       );
       fillGraph(
         state.keyspace,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.keyspace,
         'keyspace'
       );

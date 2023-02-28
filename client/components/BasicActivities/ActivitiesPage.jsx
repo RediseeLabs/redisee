@@ -19,10 +19,10 @@ const ActivitiesPage = () => {
   const selectClient = useSelector((state) => state.global.selectClient);
   const api = `http://localhost:3000/${selectClient}/basicActivity`;
   useEffect(() => {
-    const interval = setInterval(() => {
+    const activitiesInterval = setInterval(() => {
       dispatch(fetchBasicActivity(api));
     }, 1000);
-    return () => clearInterval(interval);
+    return () => clearInterval(activitiesInterval);
   }, []);
 
   return (

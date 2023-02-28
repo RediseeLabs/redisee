@@ -31,11 +31,12 @@ const App = () => {
   const navigate = useNavigate();
 
   /*   - clears message box after 3s, if status is successful */
+  // if its an error redirect to homepage
   useEffect(() => {
     if (message && message.type === 'succeed') {
       setTimeout(() => dispatch(clearMessage()), 2500);
     }
-    if (message && message.content === 'Wrong route') {
+    if (message && message.type === 'error') {
       navigate('/');
     }
   }, [message]);
@@ -48,14 +49,14 @@ const App = () => {
         <SideBar />
         <Routes>
           <Route
-            path='/BasicActivities/:redisName'
+            path="/BasicActivities/:redisName"
             element={<ActivitiesPage />}
           />
-          <Route path='/' element={<HomePage />} />
-          <Route path='/Error/:redisName' element={<ErrorsPage />} />
-          <Route path='/Memory/:redisName' element={<MemoryPage />} />
-          <Route path='/Performance/:redisName' element={<PerformancePage />} />
-          <Route path='/Persistence/:redisName' element={<PersistencePage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/Error/:redisName" element={<ErrorsPage />} />
+          <Route path="/Memory/:redisName" element={<MemoryPage />} />
+          <Route path="/Performance/:redisName" element={<PerformancePage />} />
+          <Route path="/Persistence/:redisName" element={<PersistencePage />} />
         </Routes>
       </ThemeProvider>
     </div>

@@ -14,8 +14,8 @@ const initialState = {
     { name: 'keyspace_hits', value: 0, fill: '#3861ed' },
     { name: 'keyspace_misses', value: 0, fill: '#dc143c' },
   ],
-  ratio: '0%',
-  ratio: '0%',
+  ratio: 0,
+  ratio: 0,
 };
 /*    - because reducer doesn't allow async action, we use redux thunk
       - redux thunk that make a call to server at memory route and call fetch reducer
@@ -66,7 +66,7 @@ const performanceSlice = createSlice({
       );
       state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
       state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
-      state.ratio = `${Number(action.payload.hitRate.ratio).toFixed(3)}%`;
+      state.ratio = Number(action.payload.hitRate.ratio).toFixed(3);
     },
     clearState: (state, action) => {
       state.loading = true;
@@ -76,8 +76,8 @@ const performanceSlice = createSlice({
         { name: 'keyspace_hits', value: 0, fill: '#3861ed' },
         { name: 'keyspace_misses', value: 0, fill: '#dc143c' },
       ];
-      state.ratio = '0%';
-      state.ratio = '0%';
+      state.ratio = 0;
+      state.ratio = 0;
     },
   },
 });

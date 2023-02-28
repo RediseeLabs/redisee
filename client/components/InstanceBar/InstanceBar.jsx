@@ -18,10 +18,15 @@ import {
 import { Button } from '../StyledComponents/GlobalStyle';
 import { useParams } from 'react-router-dom';
 
+/*    - it displays all clients running 
+      - inside this component we can delete one or clear all instances of clients running
+*/
+
 const InstanceBar = () => {
   const dispatch = useDispatch();
   const params = useParams();
 
+  //  - when component mounts fetch all running clients server side
   useEffect(() => {
     dispatch(fetchClients());
   }, []);
@@ -34,10 +39,11 @@ const InstanceBar = () => {
 
   for (let i = 0; i < instances.length; i++) {
     allInstance.push(
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div
+        key={'instance' + instances[i]}
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
         <Button
-          to={`/${instances[i]}`}
-          key={'instance' + instances[i]}
           onClick={() => {
             dispatch(selectClient(instances[i]));
           }}
@@ -46,7 +52,6 @@ const InstanceBar = () => {
           {instances[i]}
         </Button>
         <DeleteButton
-          key={'button' + instances[i]}
           onClick={() => {
             dispatch(deleteOne(instances[i]));
           }}

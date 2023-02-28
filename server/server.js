@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const dataRouter = require('./Routers/dataRouter.js');
 const connectionRouter = require('./Routers/connectionRouter.js');
-// import router here
+
+
 
 const app = express();
 const PORT = 3000;
@@ -17,16 +18,16 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//use router here
+/*    - routers */
 
-//app.use("/", );
 app.use('/', dataRouter);
 app.use('/connection', connectionRouter);
-// app.use('/clearAll', connectionRouter);
 
 app.use('*', (req, res) => {
   res.status(500).json('Wrong route');
 });
+
+/*    - global error handler */
 
 app.use((err, req, res, next) => {
   const defaultErr = {

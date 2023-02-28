@@ -7,6 +7,11 @@ import Keyspace from './Keyspace';
 import { GraphGrid } from '../StyledComponents/GraphGrid';
 import LoadingGraphPage from '../LoadingGraphPage';
 
+/*    - when mounted, this component will trigger server 
+        call every second and store new data in basicActivity redux store
+      - when loading displays skeleton page
+*/
+
 const ActivitiesPage = () => {
   const dispatch = useDispatch();
 
@@ -14,10 +19,10 @@ const ActivitiesPage = () => {
   const selectClient = useSelector((state) => state.global.selectClient);
   const api = `http://localhost:3000/${selectClient}/basicActivity`;
   useEffect(() => {
-    const interval = setInterval(() => {
+    const activitiesInterval = setInterval(() => {
       dispatch(fetchBasicActivity(api));
-    }, 2000);
-    return () => clearInterval(interval);
+    }, 1000);
+    return () => clearInterval(activitiesInterval);
   }, []);
 
   return (

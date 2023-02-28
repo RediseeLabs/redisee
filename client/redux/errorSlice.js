@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
 import axios from 'axios';
+import { clock } from '../clockHelperFunction';
 
 const initialState = {
+  startedTime: null,
   loading: true,
   rejected_connections: Array(15).fill({}),
   keyspace_missed: Array(15).fill({}),
@@ -13,6 +15,7 @@ let cache;
 export const errorFetch = (api) => (dispatch, getState) => {
   if (api !== cache) {
     dispatch(errorSlice.actions.clearState());
+    dispatch(errorSlice.actions.setStartTime());
   }
   if (JSON.stringify(getState().error.rejected_connections[0]) === '{}') {
     dispatch(errorSlice.actions.startLoading());
@@ -32,6 +35,9 @@ const errorSlice = createSlice({
   name: 'error',
   initialState: initialState,
   reducers: {
+    setStartTime: (state, action) => {
+      state.startedTime = Date.now() / 1000;
+    },
     startLoading: (state, action) => {
       state.loading = true;
     },
@@ -41,13 +47,13 @@ const errorSlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.rejected_connections,
-        'Reject',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.rejectedConnection,
         'rejected_connections'
       );
       fillGraph(
         state.keyspace_missed,
-        'miss',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.keyspaceMisses,
         'keyspace_misses'
       );

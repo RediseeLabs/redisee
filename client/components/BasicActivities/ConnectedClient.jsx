@@ -1,6 +1,6 @@
-import React from "react";
-import { GraphBox } from "../StyledComponents/GraphGrid";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { GraphBox } from '../StyledComponents/GraphGrid';
+import { useSelector } from 'react-redux';
 
 import {
   LineChart,
@@ -10,7 +10,12 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-} from "recharts";
+} from 'recharts';
+
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
 
 export default function connectedClients() {
   const connectedClient = useSelector(
@@ -20,6 +25,7 @@ export default function connectedClients() {
     <GraphBox>
       <h3>Connected Client</h3>
       <LineChart
+        style={{ position: 'initial' }}
         width={500}
         height={300}
         data={connectedClient}

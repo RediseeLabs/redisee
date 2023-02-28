@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { GraphBox } from "../StyledComponents/GraphGrid";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { GraphBox } from '../StyledComponents/GraphGrid';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   AreaChart,
   Area,
@@ -9,7 +9,12 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
+
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
 
 const FragRatioGraph = (props) => {
   const memFragmentation = useSelector(
@@ -21,6 +26,7 @@ const FragRatioGraph = (props) => {
       <h3>Memory fragmentation ratio</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
+          style={{ position: 'initial' }}
           width={450}
           height={250}
           data={memFragmentation}

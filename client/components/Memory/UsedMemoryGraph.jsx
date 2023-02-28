@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { GraphBox } from "../StyledComponents/GraphGrid";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { GraphBox } from '../StyledComponents/GraphGrid';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   AreaChart,
@@ -10,7 +10,12 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from "recharts";
+} from 'recharts';
+
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
 
 const UsedMemoryGraph = () => {
   const usedMemory = useSelector((state) => state.memory.used_memory);
@@ -19,6 +24,7 @@ const UsedMemoryGraph = () => {
       <h3>Used Memory</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
+          style={{ position: 'initial' }}
           width={450}
           height={250}
           data={usedMemory}

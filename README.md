@@ -6,7 +6,7 @@ RediSee is a light-weight web application that visualize Redis instances’ core
 
 ## How RediSee works
 
-![RediSeeFlow]https://i.ibb.co/7VBFdKy/redi-See-data-Flow-01-01.png
+![RediSeeFlow](https://i.ibb.co/7VBFdKy/redi-See-data-Flow-01-01.png)
 
 
 ## How To Use
@@ -32,9 +32,14 @@ npm run dev
 ```
 
 
+
 - After the webpage has loaded, click on either the "+" or "connect" button and fill in the name of your Redis instance, port, and host. You will notice your Redis instance added on the sidebar as soon as the form has been submitted.
 
   ![setup](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzg5OTFmMjVmOTJmYzFmNzYyZDM0YzE4ZmUxMDkxZmIwMjRjMDliNyZjdD1n/aFrVoPv9FLq8oVMGla/giphy.gif)
+
+
+
+
 
 
 - Click on any of the metrics buttons(Performance, Memory, etc) to monitor the health of your Redis instance.
@@ -42,14 +47,26 @@ npm run dev
   ![metrics](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmNiY2JkNWQ5MTE0MTE3MmQyMzRlOTZhYmM3OTk5YzhlNWUxOWMxNyZjdD1n/NJv0uLAvfRUqy7twJ9/giphy.gif)
 
 
+
+
+
+
 - You can create multiple instances and monitor them individually.
   
   ![multiple](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGQ4NWNlZDY2YTQwMWM5YTgyMDJmYmNhZWM2ODBjMDMyMjY0NzA2MSZjdD1n/l6M8B6BkOhIxI2qfvD/giphy.gif)
 
 
+
+
+
+
 - If you no longer need to monitor them, you can clear them all at once or individually.
 
   ![disconnect](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWQ4YjY1ODAzZDkxOWUxYWE5YzllZjkzNWM5OTE1ZGY2N2U1ZmE2MCZjdD1n/ejG2PPKbz0xfbPXfAn/giphy.gif)
+
+
+
+
 
 
 - Dark mode supported

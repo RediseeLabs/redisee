@@ -11,6 +11,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+/*    - graph component: displays only the graph
+      - it gets the data array from the redux store every 
+        time it changes, and renders on the graphs 
+*/
+
 const EvictedKeys = (props) => {
   const evictedKeys = useSelector((state) => state.memory.evicted_keys);
   return (
@@ -18,6 +23,8 @@ const EvictedKeys = (props) => {
       <h3>Evicted Keys</h3>
       <ResponsiveContainer width="90%" height={300}>
         <AreaChart
+          style={{ position: 'initial' }}
+          s
           width={600}
           height={250}
           data={evictedKeys}

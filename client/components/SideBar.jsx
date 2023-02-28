@@ -22,7 +22,7 @@ import Toggler from './Toggler';
       - it holds the component instance bar that will display all running clients
       - plus button adds a new client 
       - buttons to switch pages: memory, performance, etc... 
-*/ 
+*/
 
 const SideBar = (props) => {
   const selectClient = useSelector((state) => state.global.selectClient);
@@ -30,13 +30,13 @@ const SideBar = (props) => {
 
   return (
     <Menu>
-      <Logo to="/">
+      <Logo to='/'>
         <img src={theme === 'light' ? logo : logoDark} />
         <h1>RediSee</h1>
       </Logo>
-      <div className="wrapper">
+      <div className='wrapper'>
         <InstanceBar />
-        <SecondaryText>Analytics :</SecondaryText> 
+        <SecondaryText>Analytics :</SecondaryText>
         {/* - provide selected client from Redux state to the route so we can data from the selected client */}
         <Button to={`/Memory/${selectClient}`}>
           <PerfIcon />
@@ -58,11 +58,11 @@ const SideBar = (props) => {
           <ErrorIcon />
           Errors
         </Button>
-        <SecondaryText>Cluster Mode :</SecondaryText>
-        <Button>
+        <SecondaryText>Setting:</SecondaryText>
+        {/* <Button>
           <ClusterIcon />
           Cluster
-        </Button>
+        </Button> */}
 
         <Toggler />
       </div>

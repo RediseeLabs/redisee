@@ -4,6 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions';
 import { setMessage } from './globalSlice';
 import axios from 'axios';
+import { clock } from '../clockHelperFunction';
 
 /*    - slice of store that store memory related data and actions */
 
@@ -58,19 +59,19 @@ const memorySlice = createSlice({
       /*    - use helper function to change stored data that will be read by the graph */
       fillGraph(
         state.used_memory,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.usedMemory,
         'used_memory'
       );
       fillGraph(
         state.mem_fragmentation_ratio,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.memFragmentationRatio,
         'mem_fragmentation_ratio'
       );
       fillGraph(
         state.evicted_keys,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.evictedKeys,
         'evicted_keys'
       );

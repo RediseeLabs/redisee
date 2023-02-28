@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fillGraph } from '../helperFunctions.js';
 import { setMessage } from './globalSlice.js';
 import axios from 'axios';
+import { clock } from '../clockHelperFunction';
 
 const initialState = {
   startedTime: null,
@@ -10,13 +11,11 @@ const initialState = {
   iops: Array(15).fill({}),
   //   hitRate: Array(2).fill({}),
   hitRate: [
-    { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-    { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
-    { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-    { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
+    { name: 'keyspace_hits', value: 0, fill: '#3861ed' },
+    { name: 'keyspace_misses', value: 0, fill: '#dc143c' },
   ],
-  ratio: '0%',
-  ratio: '0%',
+  ratio: 0,
+  ratio: 0,
 };
 /*    - because reducer doesn't allow async action, we use redux thunk
       - redux thunk that make a call to server at memory route and call fetch reducer
@@ -55,32 +54,30 @@ const performanceSlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.latency,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.latency,
         'Live_Redis_latency'
       );
       fillGraph(
         state.iops,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.iops,
         'iops'
       );
       state.hitRate[0].value = Number(action.payload.hitRate.keyspace_hits);
       state.hitRate[1].value = Number(action.payload.hitRate.keyspace_misses);
-      state.ratio = `${Number(action.payload.hitRate.ratio).toFixed(3)}%`;
+      state.ratio = Number(action.payload.hitRate.ratio).toFixed(3);
     },
     clearState: (state, action) => {
       state.loading = true;
       state.latency = Array(15).fill({});
       state.iops = Array(15).fill({});
       state.hitRate = [
-        { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-        { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
-        { name: 'keyspace_hits', value: 0, fill: '#00C49F' },
-        { name: 'keyspace_misses', value: 0, fill: '#FF8042' },
+        { name: 'keyspace_hits', value: 0, fill: '#3861ed' },
+        { name: 'keyspace_misses', value: 0, fill: '#dc143c' },
       ];
-      state.ratio = '0%';
-      state.ratio = '0%';
+      state.ratio = 0;
+      state.ratio = 0;
     },
   },
 });

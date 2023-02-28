@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { fillGraph } from '../helperFunctions';
 import { setMessage } from './globalSlice';
+import { clock } from '../clockHelperFunction';
 
 const initialState = {
   startedTime: null,
@@ -43,13 +44,13 @@ const persistenceSlice = createSlice({
     addToGraph: (state, action) => {
       fillGraph(
         state.rlst,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.rlst,
         'rlst'
       );
       fillGraph(
         state.rcslt,
-        Math.round(Date.now() / 1000 - state.startedTime) + 's',
+        clock(Date.now() / 1000 - state.startedTime),
         action.payload.rcslt,
         'rcslt'
       );

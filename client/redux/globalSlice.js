@@ -78,7 +78,7 @@ export const deleteMany = (value) => (dispatch, getState) => {
     });
 };
 
-const globalSlice = createSlice({
+export const globalSlice = createSlice({
   name: 'global',
   initialState: initialState,
   reducers: {

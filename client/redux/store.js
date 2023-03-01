@@ -5,7 +5,6 @@ import basicActivity from './basicActivitySlice';
 import persistence from './persistenceSlice';
 import error from './errorSlice';
 import global from './globalSlice';
-// import submitForm from './submitFormSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +14,5 @@ export const store = configureStore({
     basicActivity,
     persistence,
     error,
-    // submitForm,
   },
 });

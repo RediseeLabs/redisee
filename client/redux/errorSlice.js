@@ -31,7 +31,7 @@ export const errorFetch = (api) => (dispatch, getState) => {
   cache = api;
 };
 
-const errorSlice = createSlice({
+export const errorSlice = createSlice({
   name: 'error',
   initialState: initialState,
   reducers: {

@@ -28,7 +28,7 @@ export const fectchPersistence = (api) => (dispatch, getState) => {
     });
 };
 
-const persistenceSlice = createSlice({
+export const persistenceSlice = createSlice({
   name: 'persistence',
   initialState: initialState,
   reducers: {

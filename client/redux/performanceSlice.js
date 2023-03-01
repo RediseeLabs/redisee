@@ -38,7 +38,7 @@ export const fetchPerformanceData = (api) => (dispatch, getState) => {
     });
 };
 
-const performanceSlice = createSlice({
+export const performanceSlice = createSlice({
   name: 'performance',
   initialState: initialState,
   reducers: {

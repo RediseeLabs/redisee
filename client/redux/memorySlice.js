@@ -42,7 +42,7 @@ export const fetchData = (api) => (dispatch, getState) => {
     });
 };
 
-const memorySlice = createSlice({
+export const memorySlice = createSlice({
   name: 'memory',
   initialState: initialState,
   reducers: {

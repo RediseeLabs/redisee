@@ -32,7 +32,6 @@ export const fetchData = (api) => (dispatch, getState) => {
     .get(api)
     .then((res) => res.data)
     .then((data) => {
-      console.log('loaded');
       dispatch(memorySlice.actions.addToGraph(data));
       dispatch(memorySlice.actions.stopLoading());
     })

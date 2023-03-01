@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   showForm,
   selectClient,
@@ -16,12 +17,12 @@ import {
   ClearAllButton,
 } from '../StyledComponents/SideBar';
 import { Button } from '../StyledComponents/GlobalStyle';
-import { useParams } from 'react-router-dom';
 import { clearState as clearMemory } from '../../redux/memorySlice';
 import { clearState as clearPerformance } from '../../redux/performanceSlice';
 import { clearState as clearPersistence } from '../../redux/persistenceSlice';
 import { clearState as clearBasicActivity } from '../../redux/basicActivitySlice';
 import { clearState as clearError } from '../../redux/errorSlice';
+import { setMessage } from '../../redux/globalSlice';
 
 /*    - it displays all clients running 
       - inside this component we can delete one or clear all instances of clients running
@@ -29,8 +30,7 @@ import { clearState as clearError } from '../../redux/errorSlice';
 
 const InstanceBar = () => {
   const dispatch = useDispatch();
-  const params = useParams();
-
+  const navigate = useNavigate();
   //  - when component mounts fetch all running clients server side
   useEffect(() => {
     dispatch(fetchClients());
@@ -58,6 +58,15 @@ const InstanceBar = () => {
               dispatch(clearPersistence());
               dispatch(clearBasicActivity());
               dispatch(clearError());
+              if (selectedClient !== '') {
+                dispatch(
+                  setMessage({
+                    type: 'succeed',
+                    content: 'New Client Selected, Redirect to Memory',
+                  })
+                );
+              }
+              navigate(`/Memory/${instances[i]}`);
             }
           }}
           $active={selectedClient === instances[i] && true}

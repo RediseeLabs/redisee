@@ -4,7 +4,7 @@
   "description": "OSP Codesmith nyoi2",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "start": "nodemon ./server/server.js",
     "build": "webpack --mode production",
     "dev": "concurrently \"webpack serve --open --mode development\" \"nodemon ./server/server.js\""
@@ -38,6 +38,7 @@
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^29.4.3",
     "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",

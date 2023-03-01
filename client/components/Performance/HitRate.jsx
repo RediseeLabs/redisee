@@ -13,9 +13,6 @@ export default function App() {
   const ratio = useSelector((state) => state.performance.ratio);
   const displayratio = Number(ratio).toFixed(1);
 
-  console.log(ratio);
-  console.log(displayratio);
-  console.log(hitRate);
   return (
     <GraphBox>
       <h3>Hit/Rate Ratio</h3>

@@ -129,6 +129,7 @@ Contact us on GitHub
 - Be able to clear datas
 - Sometimes redis can be protected by a password, we'll need a optionnal field in the form to handle that
 - Error page is under work, it need to be implemented
+- Implement TypeScript
 
 Testing:
 

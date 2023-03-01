@@ -96,8 +96,11 @@ npm run dev
 
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjFjNTlmZTIyYTI0ZDA0Y2U2ZTAyZmNjODA3Mzg5YTk1MzNiZWJiNiZjdD1n/ziJ2RgyLky2ibO4e65/giphy.gif"  width="700" height="350">
 <br>
+
 <br />
+
 ## RediSee v1.0 features
+
 <br />
 
 - Add, Delete, Clear redis Clients

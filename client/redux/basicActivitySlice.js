@@ -31,7 +31,7 @@ export const fetchBasicActivity = (api) => (dispatch, getState) => {
     });
 };
 
-const basicActivitySlice = createSlice({
+export const basicActivitySlice = createSlice({
   name: 'basicActivity',
   initialState: initialState,
   reducers: {

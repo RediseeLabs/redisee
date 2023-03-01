@@ -26,7 +26,6 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
   const message = useSelector((state) => state.global.message);
-  // console.log(message);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fillGraph } from '../helperFunctions';
+import { fillGraph } from '../graphHelperFunctions';
 import axios from 'axios';
 import { setMessage } from './globalSlice';
 import { clock } from '../clockHelperFunction';
@@ -11,8 +11,6 @@ const initialState = {
   connected_slaves: Array(15).fill({}),
   keyspace: Array(15).fill({}),
 };
-
-let cache;
 
 export const fetchBasicActivity = (api) => (dispatch, getState) => {
   if (JSON.stringify(getState().basicActivity.connected_clients[0]) === '{}') {
@@ -72,6 +70,7 @@ export const basicActivitySlice = createSlice({
     },
   },
 });
-export const { startLoading, stopLoading } = basicActivitySlice.actions;
+export const { startLoading, stopLoading, clearState } =
+  basicActivitySlice.actions;
 
 export default basicActivitySlice.reducer;

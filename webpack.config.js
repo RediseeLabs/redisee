@@ -63,7 +63,7 @@ module.exports = {
   },
   plugins: [
     new HtmLWebpackPlugin({
-      template: path.join(__dirname, '/index.html'),
+      template: path.join(__dirname, 'client/index.html'),
     }),
   ],
   resolve: {

@@ -3,8 +3,6 @@ const cors = require('cors');
 const dataRouter = require('./Routers/dataRouter.js');
 const connectionRouter = require('./Routers/connectionRouter.js');
 
-
-
 const app = express();
 const PORT = 3000;
 
@@ -36,7 +34,6 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
   let errorObj = { ...defaultErr, ...err };
-  console.log(errorObj.log);
   res.status(errorObj.status).json(errorObj.message.err);
 });
 

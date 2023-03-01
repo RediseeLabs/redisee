@@ -8,7 +8,6 @@ import {
   ErrorIcon,
   Logo,
   SecondaryText,
-  ClusterIcon,
 } from './StyledComponents/SideBar';
 
 import { Button } from './StyledComponents/GlobalStyle';

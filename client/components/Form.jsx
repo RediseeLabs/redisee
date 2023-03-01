@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  getClients,
-  closeForm,
-  setError,
-  addOneRedis,
-} from '../redux/globalSlice';
-import { FormModal, Input, SubmitBtn } from './StyledComponents/Form';
-import { Button } from './StyledComponents/GlobalStyle';
-import axios from 'axios';
+import { closeForm, addOneRedis } from '../redux/globalSlice';
+import { FormModal, Input } from './StyledComponents/Form';
 
 function Form() {
   const [redisName, typeRedisName] = useState('');
@@ -36,11 +29,6 @@ function Form() {
       })
     );
   };
-  // document.onkeydown = function (e) {
-  //   if (window.event.keyCode === '13') {
-  //     console.log('Enter key');
-  //   }
-  // };
 
   return (
     <FormModal onClick={() => dispatch(closeForm())}>

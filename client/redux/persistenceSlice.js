@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { fillGraph } from '../helperFunctions';
+import { fillGraph } from '../graphHelperFunctions';
 import { setMessage } from './globalSlice';
 import { clock } from '../clockHelperFunction';
 
@@ -63,6 +63,7 @@ export const persistenceSlice = createSlice({
   },
 });
 
-export const { startLoading, stopLoading } = persistenceSlice.actions;
+export const { startLoading, stopLoading, clearState } =
+  persistenceSlice.actions;
 
 export default persistenceSlice.reducer;

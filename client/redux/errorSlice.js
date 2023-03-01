@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fillGraph } from '../helperFunctions';
+import { fillGraph } from '../graphHelperFunctions';
 import axios from 'axios';
 import { clock } from '../clockHelperFunction';
 
@@ -15,16 +15,15 @@ let cache;
 export const errorFetch = (api) => (dispatch, getState) => {
   if (api !== cache) {
     dispatch(errorSlice.actions.clearState());
-    dispatch(errorSlice.actions.setStartTime());
   }
   if (JSON.stringify(getState().error.rejected_connections[0]) === '{}') {
+    dispatch(errorSlice.actions.setStartTime());
     dispatch(errorSlice.actions.startLoading());
   }
   axios
     .get(api)
     .then((res) => res.data)
     .then((data) => {
-      console.log(data);
       dispatch(errorSlice.actions.addToGraph(data));
       dispatch(errorSlice.actions.stopLoading());
     });
@@ -65,6 +64,6 @@ export const errorSlice = createSlice({
     },
   },
 });
-export const { startLoading, stopLoading } = errorSlice.actions;
+export const { startLoading, stopLoading, clearState } = errorSlice.actions;
 
 export default errorSlice.reducer;

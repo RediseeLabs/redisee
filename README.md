@@ -8,27 +8,33 @@ RediSee is a light-weight web application that visualize Redis instances’ core
 
 <br />
 <br />
-
-    You'll will need a running Redis instance on your ram in order to test RediSee
+    You'll will need a running Redis instance on your RAM in order to test RediSee
     here the steps to follow on official Redis website :
+    
+<br />
 
 ```
      https://redis.io/docs/getting-started/
 ```
 
-    run a local Redis database by using the command redis-server on your terminal
+<br />
+
+run a local Redis database by using the command redis-server on your terminal
+
+<br />
 
 ```
     $ redis-server
 ```
 
-    this will start a redis instance with the default value of :  port: 6379, host: 127.0.0.1
-
-    You are now ready to use RediSee on your newly running Redis instance.
+<br />
+this will start a redis instance with the default value of :  port: 6379, host: 127.0.0.1
+You are now ready to use RediSee on your newly running Redis instance.
+<br />
+<br />
 
 ## How to use Redisee ?
 
-<br>
 <br>
 
 - After the webpage has loaded, click on either the "+" or "connect" button and fill in the name of your Redis instance and fill port and host inputs (default value for local redis is port : 6379, host: 127.0.0.1). You will notice your Redis instance added on the sidebar as soon as the form has been submitted.

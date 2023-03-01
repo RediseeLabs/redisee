@@ -114,7 +114,9 @@ Contact us on GitHub
 <br />
 ​
 ### Feature we'd love to see implemented in the future :
-​
+
+<br />
+
 - Abilities to records all metrics for a period of time and persist it in the database
 - Interpret metrics recorded. For example, a user might want to check average latency between  March 18th  1pm and 6pm.
 - Give the user the possibility to change the interval of data being recorded (now defaults to 1s)

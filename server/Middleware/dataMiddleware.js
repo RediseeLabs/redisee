@@ -45,9 +45,7 @@ const fs = (module.exports = {
 
   memory: (req, res, next) => {
     const { redisName } = req.params;
-
     const redisClient = require(`../redisClients/${redisName}.js`);
-    console.log(redisClient);
     redisClient
       .info()
       .then((res) => {
@@ -144,7 +142,6 @@ const fs = (module.exports = {
         error.rejectedConnection = Number(data.rejected_connections);
         error.keyspaceMisses = Number(data.keyspace_misses);
         res.locals.error = error;
-        console.log(error);
         return next();
       });
   },

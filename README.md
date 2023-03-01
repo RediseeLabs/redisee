@@ -85,7 +85,7 @@ Email us at redisee@gmail.com for any inquiries.
 ### Feature we'd love to see implemented in the future :
 
 - Abilities to records all metrics for a period of time and persist it in the database
-- Interpret metrics recorded, for example: average latency from Saturday march 18 from 12 o'clock to 6pm was ...
+- Interpret metrics recorded. For example, a user might want to check average latency between  March 18th  1pm and 6pm.
 - Give the user the possibility to change the interval of data being recorded (now defaults to 1s)
 - Refactor graphs and type of metrics fetched. Right now we're not using the most optimal graphs types for displaying data.
 - Interact with Redis database by SET, PUT, DELETE keys through an interface.

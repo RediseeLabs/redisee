@@ -17,11 +17,7 @@ import {
 */
 
 export default function KeyspaceMisses() {
-  console.log('keyspace loading');
-
   const keyspaceMisses = useSelector((state) => state.error.keyspace_missed);
-
-  console.log(`KEYSPACEMISSES: ${keyspaceMisses[0]}`);
   return (
     <GraphBox>
       <h3>Keyspace Misses</h3>

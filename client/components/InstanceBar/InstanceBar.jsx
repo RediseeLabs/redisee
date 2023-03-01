@@ -17,6 +17,11 @@ import {
 } from '../StyledComponents/SideBar';
 import { Button } from '../StyledComponents/GlobalStyle';
 import { useParams } from 'react-router-dom';
+import { clearState as clearMemory } from '../../redux/memorySlice';
+import { clearState as clearPerformance } from '../../redux/performanceSlice';
+import { clearState as clearPersistence } from '../../redux/persistenceSlice';
+import { clearState as clearBasicActivity } from '../../redux/basicActivitySlice';
+import { clearState as clearError } from '../../redux/errorSlice';
 
 /*    - it displays all clients running 
       - inside this component we can delete one or clear all instances of clients running
@@ -44,8 +49,16 @@ const InstanceBar = () => {
         style={{ display: 'flex', alignItems: 'center' }}
       >
         <Button
-          onClick={() => {
-            dispatch(selectClient(instances[i]));
+          onClick={(e) => {
+            e.preventDefault();
+            if (selectedClient !== instances[i]) {
+              dispatch(selectClient(instances[i]));
+              dispatch(clearMemory());
+              dispatch(clearPerformance());
+              dispatch(clearPersistence());
+              dispatch(clearBasicActivity());
+              dispatch(clearError());
+            }
           }}
           $active={selectedClient === instances[i] && true}
         >

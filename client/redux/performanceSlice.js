@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fillGraph } from '../helperFunctions.js';
+import { fillGraph } from '../graphHelperFunctions.js';
 import { setMessage } from './globalSlice.js';
 import axios from 'axios';
 import { clock } from '../clockHelperFunction';
@@ -82,6 +82,7 @@ export const performanceSlice = createSlice({
   },
 });
 
-export const { startLoading, stopLoading } = performanceSlice.actions;
+export const { startLoading, stopLoading, clearState } =
+  performanceSlice.actions;
 
 export default performanceSlice.reducer;

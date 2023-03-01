@@ -19,7 +19,6 @@ import {
 
 export default function Latency() {
   const keyspace = useSelector((state) => state.basicActivity.keyspace);
-  console.log(keyspace);
   return (
     <GraphBox>
       <h3>Keyspaces</h3>
@@ -29,12 +28,12 @@ export default function Latency() {
         data={keyspace}
         style={{ position: 'initial' }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" />
+        <CartesianGrid strokeDasharray='3 3' />
+        <XAxis dataKey='time' />
         <YAxis padding={{ top: 20 }} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="keyspace" fill="#8884d8" />
+        <Bar dataKey='keyspace' fill='#8884d8' />
       </BarChart>
     </GraphBox>
   );

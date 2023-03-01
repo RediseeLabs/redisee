@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 import { createSlice } from '@reduxjs/toolkit';
-import { fillGraph } from '../helperFunctions';
+import { fillGraph } from '../graphHelperFunctions';
 import { setMessage } from './globalSlice';
 import axios from 'axios';
 import { clock } from '../clockHelperFunction';
@@ -21,8 +21,8 @@ const initialState = {
       - data expected : { usedMemory : number, memFragmentationRatio: number, evictedKeys: number }
       - then dispatch add to graph action with returned data
 */
+
 export const fetchData = (api) => (dispatch, getState) => {
-  // const navigate = useNavigate();
   /*  - check if its the first call, if it is change the loading state to be true */
   if (JSON.stringify(getState().memory.used_memory[0]) === '{}') {
     dispatch(memorySlice.actions.startLoading());
@@ -37,7 +37,6 @@ export const fetchData = (api) => (dispatch, getState) => {
       dispatch(memorySlice.actions.stopLoading());
     })
     .catch((err) => {
-      // navigate('/');
       dispatch(setMessage({ type: 'error', content: err.response.data }));
     });
 };
@@ -85,6 +84,6 @@ export const memorySlice = createSlice({
   },
 });
 
-export const { startLoading, stopLoading } = memorySlice.actions;
+export const { startLoading, stopLoading, clearState } = memorySlice.actions;
 
 export default memorySlice.reducer;

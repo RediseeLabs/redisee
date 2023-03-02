@@ -16,11 +16,11 @@ const HomePage = (prop) => {
         }
       }}
     >
-      <div className="container">
-        <h1 className="title">Welcome to RediSee</h1>
-        <h3 className="subtitle">
-          Get live data from your redis databe with this lightweight monitoring
-          tool
+      <div className='container'>
+        <h1 className='title'>Welcome to RediSee</h1>
+        <h3 className='subtitle'>
+          Get live data from your redis database with this lightweight
+          monitoring tool
         </h3>
         <HomeButton onClick={() => dispatch(showForm())}>
           Connect now

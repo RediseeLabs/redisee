@@ -1,7 +1,0 @@
-/*  - by default git will delete empty folder. If this happens, front-end will 
-      send an error because it is automatically looking for clients.
-      
-      ***Please Keep This File***
-      
-      In order for folder not to be deleted at every push
-*/

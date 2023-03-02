@@ -2,9 +2,12 @@ import styled from 'styled-components';
 import { Button } from './GlobalStyle';
 
 export const Page = styled.div`
-  margin-left: 300px;
+  box-sizing: border-box;
+  padding-left: 300px;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  height: 100vh;
   gap: 60px;
   .container {
     display: flex;

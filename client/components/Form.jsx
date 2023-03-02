@@ -31,7 +31,14 @@ function Form() {
   };
 
   return (
-    <FormModal onClick={() => dispatch(closeForm())}>
+    <FormModal
+      onClick={() => dispatch(closeForm())}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          dispatch(closeForm());
+        }
+      }}
+    >
       <form
         onClick={(e) => {
           e.stopPropagation();

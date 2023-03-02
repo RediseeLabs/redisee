@@ -64,37 +64,43 @@ npm run dev
 ```
 
 ​
-
 - After the webpage has loaded, click on either the "+" or "connect" button and fill in the name of your Redis instance and fill port and host inputs (default value for local redis is port : 6379, host: 127.0.0.1). You will notice your Redis instance added on the sidebar as soon as the form has been submitted.
 
-  <br />
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzg5OTFmMjVmOTJmYzFmNzYyZDM0YzE4ZmUxMDkxZmIwMjRjMDliNyZjdD1n/aFrVoPv9FLq8oVMGla/giphy.gif"  width="700" height="350">
-  <br>
-  <br>
-​
+  [![Connect](https://i.gyazo.com/17b4fb62c987a268a9ace7d607eb3e73.gif)](https://gyazo.com/17b4fb62c987a268a9ace7d607eb3e73)
+
+
+<br>
+<br>
 
 - Click on any of the metrics buttons(Performance, Memory, etc) to monitor the health of your Redis instance.
-  <br/>
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmNiY2JkNWQ5MTE0MTE3MmQyMzRlOTZhYmM3OTk5YzhlNWUxOWMxNyZjdD1n/NJv0uLAvfRUqy7twJ9/giphy.gif"  width="700" height="350">
+
+  [![metrics](https://i.gyazo.com/b875f76a7c916f44c97a0f8edcbc8998.gif)](https://gyazo.com/b875f76a7c916f44c97a0f8edcbc8998)
+
 
 <br>
 <br>
+
 ​
 - You can create multiple instances and monitor them individually.
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGQ4NWNlZDY2YTQwMWM5YTgyMDJmYmNhZWM2ODBjMDMyMjY0NzA2MSZjdD1n/l6M8B6BkOhIxI2qfvD/giphy.gif"  width="700" height="350">
-​
+
+  [![multiple](https://i.gyazo.com/6d826d6ff44b865d1610c5237c89e0d2.gif)](https://gyazo.com/6d826d6ff44b865d1610c5237c89e0d2)
+ 
+  
 <br>
 <br>
-​
+
 - If you no longer need to monitor them, you can clear them all at once or individually.
-​
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWQ4YjY1ODAzZDkxOWUxYWE5YzllZjkzNWM5OTE1ZGY2N2U1ZmE2MCZjdD1n/ejG2PPKbz0xfbPXfAn/giphy.gif"  width="700" height="350">
-​
+
+  [![clear](https://i.gyazo.com/98c2dff48b2cb3d7a9fdc0fcbbecbbe1.gif)](https://gyazo.com/98c2dff48b2cb3d7a9fdc0fcbbecbbe1)
+  
+
 <br>
 <br>
+
 - Dark mode supported
 
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMjFjNTlmZTIyYTI0ZDA0Y2U2ZTAyZmNjODA3Mzg5YTk1MzNiZWJiNiZjdD1n/ziJ2RgyLky2ibO4e65/giphy.gif"  width="700" height="350">
+  [![Image from Gyazo](https://i.gyazo.com/0914a555f0d3a69b85efb6a4badc7435.gif)](https://gyazo.com/0914a555f0d3a69b85efb6a4badc7435)
+  
 <br>
 
 <br />

@@ -1,0 +1,17 @@
+html{
+    height: auto;
+}
+
+body { 
+    height: auto;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0; 
+}
+
+.pie-row .pie-wrap > div {
+    background: red;
+    margin: 0 auto;
+}
+
+

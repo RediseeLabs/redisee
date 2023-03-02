@@ -1,13 +1,13 @@
-const express = require("express");
-const cors = require("cors");
-
-// import router here
+const express = require('express');
+const cors = require('cors');
+const dataRouter = require('./Routers/dataRouter.js');
+const connectionRouter = require('./Routers/connectionRouter.js');
 
 const app = express();
 const PORT = 3000;
 
 const corsOptions = {
-  origin: "*",
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 
@@ -16,23 +16,25 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//use router here
+/*    - routers */
 
-//app.use("/", );
+app.use('/', dataRouter);
+app.use('/connection', connectionRouter);
 
-app.use("*", (req, res) => {
-  res.status(500).json("Wrong route");
+app.use('*', (req, res) => {
+  res.status(500).json('Wrong route');
 });
+
+/*    - global error handler */
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: err.status || 500,
-    message: { err: "An error occurred" },
+    message: { err: 'An error occurred' },
   };
   let errorObj = { ...defaultErr, ...err };
-  console.log(errorObj.log);
-  res.status(errorObj.status).json(errorObj.message);
+  res.status(errorObj.status).json(errorObj.message.err);
 });
 
 app.listen(PORT, () => {

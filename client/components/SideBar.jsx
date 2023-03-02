@@ -11,8 +11,8 @@ import {
 } from './StyledComponents/SideBar';
 
 import { Button } from './StyledComponents/GlobalStyle';
-import logo from './StyledComponents/logo.svg';
-import logoDark from './StyledComponents/logoDarkMode.svg';
+import logo from '../assets/logo.svg';
+import logoDark from '../assets/logoDarkMode.svg';
 import InstanceBar from './InstanceBar/InstanceBar';
 import { useSelector } from 'react-redux';
 import Toggler from './Toggler';
@@ -29,11 +29,11 @@ const SideBar = (props) => {
 
   return (
     <Menu>
-      <Logo to='/'>
+      <Logo to="/">
         <img src={theme === 'light' ? logo : logoDark} />
         <h1>RediSee</h1>
       </Logo>
-      <div className='wrapper'>
+      <div className="wrapper">
         <InstanceBar />
         <SecondaryText>Analytics :</SecondaryText>
         {/* - provide selected client from Redux state to the route so we can data from the selected client */}

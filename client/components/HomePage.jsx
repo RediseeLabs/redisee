@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Page, HomeButton } from './StyledComponents/HomePage';
-import url from './StyledComponents/homeImage.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { showForm, closeForm } from '../redux/globalSlice';
+import animation from '../assets/animation-redisee.mp4';
+import animationDark from '../assets/animation-redisee-dark-mode.mp4';
+
 const HomePage = (prop) => {
   const dispatch = useDispatch();
+  const theme = useSelector((state) => state.global.theme);
   return (
     <Page
       onKeyDown={(e) => {
@@ -13,9 +16,9 @@ const HomePage = (prop) => {
         }
       }}
     >
-      <div className='container'>
-        <h1 className='title'>Welcome to RediSee</h1>
-        <h3 className='subtitle'>
+      <div className="container">
+        <h1 className="title">Welcome to RediSee</h1>
+        <h3 className="subtitle">
           Get live data from your redis databe with this lightweight monitoring
           tool
         </h3>
@@ -23,7 +26,14 @@ const HomePage = (prop) => {
           Connect now
         </HomeButton>
       </div>
-      <img src={url} alt='Loading' style={{ height: '95%' }} />
+
+      <video
+        style={{ margin: 'auto', height: '85vh', width: 'auto' }}
+        src={theme === 'light' ? animation : animationDark}
+        autoPlay
+        loop
+        muted
+      ></video>
     </Page>
   );
 };

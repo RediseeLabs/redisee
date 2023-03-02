@@ -23,6 +23,7 @@ import { clearState as clearPersistence } from '../../redux/persistenceSlice';
 import { clearState as clearBasicActivity } from '../../redux/basicActivitySlice';
 import { clearState as clearError } from '../../redux/errorSlice';
 import { setMessage } from '../../redux/globalSlice';
+import { closeForm } from '../../redux/globalSlice';
 
 /*    - it displays all clients running 
       - inside this component we can delete one or clear all instances of clients running
@@ -85,7 +86,13 @@ const InstanceBar = () => {
   }
 
   return (
-    <>
+    <div
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') {
+          dispatch(closeForm());
+        }
+      }}
+    >
       <SecondaryText>My Redis :</SecondaryText>
       {allInstance}
       <AddButton onClick={() => dispatch(showForm())}>+</AddButton>
@@ -97,7 +104,7 @@ const InstanceBar = () => {
       >
         Clear All
       </ClearAllButton>
-    </>
+    </div>
   );
 };
 

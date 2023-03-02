@@ -26,6 +26,8 @@ import { useSelector, useDispatch } from 'react-redux';
 const App = () => {
   const theme = useSelector((state) => state.global.theme);
   const message = useSelector((state) => state.global.message);
+  const show = useSelector((state) => state.global.showForm);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

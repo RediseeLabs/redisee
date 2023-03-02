@@ -5,7 +5,7 @@ import App from '../client/App.jsx';
 import { renderWithProviders } from '../testing-utils/renderWithProvider.js';
 
 describe('App render correctly', () => {
-  test('render app home page', () => {
+  test('RediSee text under logo successfully render', () => {
     renderWithProviders(<App />);
     const logoElement = screen.getByText('RediSee');
     expect(logoElement).toBeInTheDocument();

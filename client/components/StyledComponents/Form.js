@@ -14,8 +14,8 @@ export const FormModal = styled.div`
   background-color: rgb(0, 0, 0, 0.1);
   z-index: 2;
   form {
-    max-width: 40%;
-    max-height: 50%;
+    max-width: 45%;
+    max-height: 55%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -23,6 +23,7 @@ export const FormModal = styled.div`
     align-items: center;
     padding: 30px;
     box-sizing: border-box;
+    border-radius: 8px;
   }
 `;
 

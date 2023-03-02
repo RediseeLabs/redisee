@@ -44,6 +44,7 @@ function Form() {
         <Input
           type='text'
           value={redisName}
+          placeholder={'Enter a Name'}
           required
           onChange={(e) => {
             redisNameChange(e);
@@ -55,6 +56,7 @@ function Form() {
         <br />
         <Input
           value={port}
+          placeholder={'i.e. 6379'}
           required
           onChange={(e) => {
             portChange(e);
@@ -66,6 +68,7 @@ function Form() {
         <Input
           type='text'
           value={host}
+          placeholder={'i.e. 127.0.0.1'}
           required
           onChange={(e) => {
             hostChange(e);

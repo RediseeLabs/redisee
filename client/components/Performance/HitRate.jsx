@@ -17,14 +17,14 @@ export default function App() {
     <GraphBox>
       <h3>Hit/Rate Ratio</h3>
       <ResponsiveContainer height={300}>
-        <PieChart style={{ position: 'initial' }} width={400} height={200}>
+        <PieChart style={{ position: 'initial' }} width={400} height={400}>
           <Pie
             dataKey='value'
             startAngle={180}
             endAngle={0}
             data={hitRate}
             cy={275}
-            outerRadius={80}
+            outerRadius={120}
             label
           />
         </PieChart>

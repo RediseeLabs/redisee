@@ -72,6 +72,7 @@ module.exports = {
       });
       /*  - try to connect to database with form info */
       await Client.connect();
+
       /*  - if successfully connected, create a new JS file inside redisClients folder,
             that will contain the new client, thanks to the createFileContents helper function 
       */
@@ -97,6 +98,14 @@ module.exports = {
   },
   /*  - middleware that gets all files stored in redisClients folder, and returns an array of client names */
   getInstances: (req, res, next) => {
+    /*  - if redisClient is deleted by github because it's empty, this will create 
+      folder is named "redisClient"
+    */
+    const redisClientFolder = path.resolve(__dirname, `../redisClients`);
+    if (!fs.existsSync(redisClientFolder)) {
+      fs.mkdirSync(redisClientFolder);
+    }
+
     fs.readdir(
       path.resolve(__dirname, '../redisClients'),
       { withFileTypes: false },
@@ -110,12 +119,7 @@ module.exports = {
             },
           });
         } else {
-          files = files.reduce((result, file) => {
-            if (file !== '.gitkeep') {
-              result.push(file.slice(0, -3));
-            }
-            return result;
-          }, []);
+          files = files.map((file) => file.slice(0, -3));
           res.locals.instancesArr = files;
           next();
         }

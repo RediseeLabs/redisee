@@ -105,6 +105,11 @@ npm run dev
 
 <br />
 
+## How RediSee fetches Data
+
+![Screenshot](dataFlow-Readme.svg)
+
+
 ## RediSee v1.0 features
 
 <br />
@@ -165,4 +170,4 @@ David Koo //
 jonghyunkoo92@gmail.com
 
 
-![Screenshot](dataFlow-Readme.svg)
+

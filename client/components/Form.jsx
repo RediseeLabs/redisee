@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeForm, addOneRedis } from '../redux/globalSlice';
-import { FormModal, Input } from './StyledComponents/Form';
+import { FormModal, Input, SubmitBtn } from './StyledComponents/Form';
 
 function Form() {
   const [redisName, typeRedisName] = useState('');
@@ -36,6 +36,9 @@ function Form() {
       onKeyDown={(e) => {
         if (e.key === 'Escape') {
           dispatch(closeForm());
+        }
+        if (e.key === 'Enter') {
+          handleSubmit(e);
         }
       }}
     >
@@ -82,14 +85,14 @@ function Form() {
           }}
         />
         <br />
-        <button
+        <SubmitBtn
           onClick={(e) => {
             handleSubmit(e);
           }}
           type='submit'
         >
           Submit
-        </button>
+        </SubmitBtn>
       </form>
     </FormModal>
   );

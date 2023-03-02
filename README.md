@@ -1,51 +1,51 @@
 # RediSee - An Easy-To-Use Redis Visualizer for Developers
 
-​
+
 RediSee is a light-weight web application that visualize Redis instances’ core metrics in a user-friendly manner. Our open-source tool is available for free and allows developers to easily monitor essential metrics such as memory usage, keyspace cache/hit ratio, evicted keys, as well as latency and throughput data.
 <br>
 <br>
-​
+
 
 ## How Install Redis on your computer
 
-​
+
 <br />
-​
+
 You'll will need a running Redis instance on your RAM in order to test RediSee
 here the steps to follow on official Redis website :
-​
+
 <br />
-​
+
 
 ```
      https://redis.io/docs/getting-started/
 ```
 
-​
+
 <br />
-​
+
 run a local Redis database by using the command redis-server on your terminal
-​
+
 <br />
-​
+
 
 ```
     $ redis-server
 ```
 
-​
+
 <br />
-​
+
 this will start a redis instance with the default value of : port: 6379, host: 127.0.0.1
 You are now ready to use RediSee on your newly running Redis instance.
-​
+
 <br />
 <br />
-​
+
 
 ## How to use Redisee ?
 
-​
+
 <br>
 
 - Clone the repo to your local machine
@@ -150,22 +150,22 @@ Bugs found :
 
 - Sometime the user is not redirected correctly
 - Send different error status from the server to the client so Message modal can interpret response from server easily
-​
+
 ## License
-​
+
 [MIT](https://choosealicense.com/licenses/mit/)
-​
+
 ## Team
-​
+
 Garrett Yan //
 garrettyan6@gmail.com
-​
+
 Anna Ivakhnik //
 ai1337@nyu.edu
-​
+
 Patrice Pellan //
 pellan.patrice@gmail.com
-​
+
 David Koo //
 jonghyunkoo92@gmail.com
 
